@@ -43,7 +43,7 @@
 		<div class="col-md">
 			<h1>MULTI-Module Firmware Downloads</h1>
 			<hr class="hr-thick">
-			<p>For instructions for flashing updating MULTI-Module firmware, please refer to the <a href="https://www.multi-module.org/using-the-module/firmware-updates">MULTI-Module documentation</a>.</p>
+			<p>For instructions for updating MULTI-Module firmware, please refer to the <a href="https://www.multi-module.org/using-the-module/firmware-updates">MULTI-Module documentation</a>.</p>
 			<p>The full list of files for every release is available on <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module">Github</a>.</p>
 			<hr>
 		</div> <!-- Column -->
@@ -68,11 +68,11 @@
 			</select>
 			<br><br>
 			<div class="modulelink" id="modulelink">
-				<table>
+				<table id="linkTable">
 					<tr>
-						<td style="background-color: #f1f1f1; padding-left: 10px; padding-right: 10px;">Link:</td>
-						<td width=100% style="padding-left: 10px; padding-right: 10px;"><span id=moduleLinkUrlDisplay></span></td>
-						<td style="background-color: #f1f1f1; text-align: right; padding-left: 10px; padding-right: 10px;"><i class="fp-copy-paste" onclick="copyToClipboard('moduleLinkUrlDisplay');"></td>
+						<td style="background-color: #f1f1f1;"><b>Link:</b></td>
+						<td width=100%><span id=moduleLinkUrlDisplay></span></td>
+						<td style="background-color: #f1f1f1; text-align: right;"><i class="fp-copy-paste" title="Copy to clipboard" onclick="copyToClipboard('moduleLinkUrlDisplay');"></td>
 					</tr>
 				</table>
 			</div>
@@ -349,6 +349,11 @@
 
 		</div> <!-- Column -->
 	</div> <!-- Row -->
+	<div class="row" style="width:100%; padding-top: 20px; font-size: 12px; color: grey; text-align: right;">
+		<div class="col-md">
+			<p>Last updated: Sunday, January 26, 2020 7:31 PM</p>
+		</div>
+	</div>
 </div> <!-- Top-level container -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
