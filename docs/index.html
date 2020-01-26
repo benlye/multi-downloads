@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>MULTI-Module Firmware Downloads</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+	<link rel="stylesheet" href="./styles.css" type="text/css"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+</head>
+<body onload="myFunction()">
+	<!-- Fixed navbar -->
+	<div class="container">
+		<nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+				
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<a class="navbar-brand" href="/">
+					<img src="multi.png" height="50" class="d-inline-block align-top" alt="">
+				</a>
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.multi-module.org">Documentation</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module">Github</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.rcgroups.com/forums/showthread.php?2165676-DIY-Multiprotocol-TX-Module">Forum</a>
+					</li>
+				</ul>
+			</div>
+			
+		</nav>
+	</div>
+	<!-- Fixed navbar -->
+<div class="container-fluid"> <!-- Top-level container -->
+	<div class="row" style="width:100%">
+		<div class="col-md">
+			<h1>MULTI-Module Firmware Downloads</h1>
+			<hr class="hr-thick">
+			<p>For instructions for flashing updating MULTI-Module firmware, please refer to the <a href="https://www.multi-module.org/using-the-module/firmware-updates">MULTI-Module documentation</a>.</p>
+			<p>The full list of files for every release is available on <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module">Github</a>.</p>
+			<hr>
+		</div> <!-- Column -->
+	</div> <!-- Row -->
+	<div class="row" style="width:100%">
+		<div class="col-6" style="padding-right:0px; border-right: 1px solid #f1f1f1;">
+			<h2>MULTI-Module Selection</h2>
+			<p>Select a specific MULTI-Module to load a set of default firmware file filters.</p>
+			<select class="js-example-basic-single" id="multiModuleSelect" name="multiModuleSelect" style="width:350px" onchange="moduleSelect()">
+			<option></option>
+			<option value="banggood-avr">Banggood Atmega328p (AVR)</option>
+			<option value="banggood-stm32">Banggood STM32</option>
+			<option value="diy-avr">DIY Atmega328p (AVR)</option>
+			<option value="diy-stm32">DIY STM32</option>
+			<option value="hobbyporter-stm32">Hobby Porter JP4IN1</option>
+			<option value="irangex-irx">iRangeX IRX4 / IRX4+ / IRX4 Lite</option>
+			<option value="jumper-jp4in1">Jumper JP4IN1 / JP4IN-SE</option>
+			<option value="jumper-t16ext">Jumper T16 External (JP4IN-SE)</option>
+			<option value="jumper-t16int">Jumper T16 Pro Internal Module</option>
+			<option value="orangerx">OrangeRX</option>
+			<option value="vantac-mpm">Vantac MPM / MPM Lite</option>
+			</select>
+		</div>
+		<div class="col-6">
+			<h2>File Filters</h2>
+			<p>Use the filters to show firmware files matcing specific criteria.</p>
+			<form onreset="formReset()">
+			<table id="filterTable">
+				<tr>
+					<td style="width:40%;">
+						<b>Module Type:</b>
+					</td>
+					<td style="width:40%;">
+						<select id="moduleType" name="module_type" onchange="myFunction()">
+						  <option value=""> -- Show all -- </option>
+						  <option value="-stm-">STM32</option>
+						  <option value="-avr-">Atmega328p</option>
+						  <option value="-orangerx-">OrangeRX</option>
+						</select>
+					</td>
+					<td style="width:20%;">
+						<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="MULTI-Module Type" data-content="Select the MCU (processor) type. If you're not sure which one you have, it is probably STM32."></i>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:20%;">
+						<b>Radio Type:</b>
+					</td>
+					<td style="width:20%;">
+						<select id="radioType" name="radio_type" onchange="myFunction()">
+							  <option value=""> -- Show all -- </option>
+							  <option value="-erskytx-">erSkyTX</option>
+							  <option value="-opentx-">OpenTX</option>
+							  <option value="-ppm-">PPM</option>
+						</select>
+					</td>
+					<td style="width:60%;">
+							<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Radio Type" data-content="Determines the format which the MULTI-Module sends status information (telemetry) to the radio. PPM radios do not support telemetry"></i></td>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:20%;">
+						<b>Channel Order:</b>
+					</td>
+					<td style="width:20%;">
+						<select id="channelOrder" name="channel_order" onchange="myFunction()">
+							<option value=""> -- Show all -- </option>
+							<option value="-aetr-">AETR</option>
+							<option value="-taer-">TAER</option>
+							<option value="-reta-">RETA</option>
+						</select>
+					</td>
+					<td style="width:60%;">
+						<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Order" data-content="Determines the Expected Channel Order for the MULTI-Module.<br><br>See the <a target=_new href=https://www.multi-module.org/using-the-module/channel-order>Channel Order</a> documentation for more details. "></i></td>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:20%;">
+						<b>Telemetry Inversion:</b>
+					</td>
+					<td style="width:20%;">
+						<select id="telemetryInversion" name="telemetry_inversion" onchange="myFunction()">
+							<option value=""> -- Show all -- </option>
+							<option value="-inv-">Inverted</option>
+							<option value="-noinv-">Not Inverted</option>
+						</select>
+					</td>
+					<td style="width:60%;">
+						<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Telemetry Inversion" data-content="Choose <b>Inverted</b> for external modules or <b>Not Inverted</b> for internal modules."></i></td>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:20%;">
+						<b>Firmware Version:</b>
+					</td>
+					<td style="width:20%;">
+						<select id="firmwareVersion" name="firmware_version" onchange="myFunction()">
+							<option value="1.3.0.53">1.3.0.53 (Latest)</option>
+ 							<option value="1.3.0.47">1.3.0.47</option>
+ 							<option value="1.3.0.45">1.3.0.45</option>
+ 							<option value="1.3.0.44">1.3.0.44</option>
+ 							<option value="1.2.1.85">1.2.1.85</option>
+
+						</select>
+					</td>
+					<td style="width:60%;"></td>
+				</tr>
+				<tr>
+					<td style="width:20%;">
+						<b>Include Debug Builds:</b>
+					</td>
+					<td style="width:20%;">
+						<input type="radio" value="debug-" id="includeDebugYes" name="include_debug" onchange="myFunction()"> Yes &nbsp;&nbsp;&nbsp;
+						<input type="radio" value="" id="includeDebugNo" name="include_debug" onchange="myFunction()" checked> No
+					</td>
+					<td style="width:60%;">
+						
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2 style="width:40%; text-align:right">
+						<input class="btn btn-outline-primary btn-sm" type="reset" value="Reset" onclick="this.blur();">
+					</td>
+					<td style="width:60%;"></td>
+				</tr>
+			</table>
+			</form>
+		</div> <!-- Column -->
+	</div> <!-- Row -->
+	<div class="row" style="width:100%">
+		<div class="col-md">
+			<hr>
+		</div> <!-- Column -->
+	</div> <!-- Row -->
+	<div class="row" style="width:100%">
+		<div class="col-md">
+			<table id="fileTable">
+ 				<tr class="header">
+ 					<th style="width:60%;">Firmware File</th>
+ 					<th style="width:20%;">File Size</th>
+ 					<th style="width:20%;">Download Count</th>
+ 				</tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-avr-txflash-aetr-A7105-inv-v1.3.0.53.bin">multi-avr-txflash-aetr-A7105-inv-v1.3.0.53.bin</a></td><td>19KB</td><td>49</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-avr-txflash-aetr-CC2500-inv-v1.3.0.53.bin">multi-avr-txflash-aetr-CC2500-inv-v1.3.0.53.bin</a></td><td>26KB</td><td>33</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-avr-txflash-aetr-CYRF6936-inv-v1.3.0.53.bin">multi-avr-txflash-aetr-CYRF6936-inv-v1.3.0.53.bin</a></td><td>20KB</td><td>17</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-avr-usbasp-aetr-A7105-inv-v1.3.0.53.bin">multi-avr-usbasp-aetr-A7105-inv-v1.3.0.53.bin</a></td><td>19KB</td><td>11</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-avr-usbasp-aetr-CC2500-inv-v1.3.0.53.bin">multi-avr-usbasp-aetr-CC2500-inv-v1.3.0.53.bin</a></td><td>26KB</td><td>13</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-avr-usbasp-aetr-CYRF6936-inv-v1.3.0.53.bin">multi-avr-usbasp-aetr-CYRF6936-inv-v1.3.0.53.bin</a></td><td>20KB</td><td>12</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-orangerx-aetr-blue-inv-v1.3.0.53.bin">multi-orangerx-aetr-blue-inv-v1.3.0.53.bin</a></td><td>18KB</td><td>10</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-orangerx-aetr-green-inv-v1.3.0.53.bin">multi-orangerx-aetr-green-inv-v1.3.0.53.bin</a></td><td>18KB</td><td>8</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-erskytx-aetr-inv-v1.3.0.53.bin">multi-stm-erskytx-aetr-inv-v1.3.0.53.bin</a></td><td>103KB</td><td>34</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-erskytx-aetr-noinv-v1.3.0.53.bin">multi-stm-erskytx-aetr-noinv-v1.3.0.53.bin</a></td><td>103KB</td><td>39</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-erskytx-reta-inv-v1.3.0.53.bin">multi-stm-erskytx-reta-inv-v1.3.0.53.bin</a></td><td>103KB</td><td>15</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-erskytx-reta-noinv-v1.3.0.53.bin">multi-stm-erskytx-reta-noinv-v1.3.0.53.bin</a></td><td>103KB</td><td>21</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-erskytx-taer-inv-v1.3.0.53.bin">multi-stm-erskytx-taer-inv-v1.3.0.53.bin</a></td><td>103KB</td><td>26</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-erskytx-taer-noinv-v1.3.0.53.bin">multi-stm-erskytx-taer-noinv-v1.3.0.53.bin</a></td><td>103KB</td><td>26</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-opentx-aetr-inv-v1.3.0.53.bin">multi-stm-opentx-aetr-inv-v1.3.0.53.bin</a></td><td>105KB</td><td>606</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-opentx-aetr-noinv-v1.3.0.53.bin">multi-stm-opentx-aetr-noinv-v1.3.0.53.bin</a></td><td>105KB</td><td>1005</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-opentx-reta-inv-v1.3.0.53.bin">multi-stm-opentx-reta-inv-v1.3.0.53.bin</a></td><td>105KB</td><td>109</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-opentx-reta-noinv-v1.3.0.53.bin">multi-stm-opentx-reta-noinv-v1.3.0.53.bin</a></td><td>105KB</td><td>197</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-opentx-taer-inv-v1.3.0.53.bin">multi-stm-opentx-taer-inv-v1.3.0.53.bin</a></td><td>105KB</td><td>235</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-opentx-taer-noinv-v1.3.0.53.bin">multi-stm-opentx-taer-noinv-v1.3.0.53.bin</a></td><td>105KB</td><td>265</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-ppm-aetr-noinv-v1.3.0.53.bin">multi-stm-ppm-aetr-noinv-v1.3.0.53.bin</a></td><td>103KB</td><td>54</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-ppm-reta-noinv-v1.3.0.53.bin">multi-stm-ppm-reta-noinv-v1.3.0.53.bin</a></td><td>103KB</td><td>19</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/multi-stm-ppm-taer-noinv-v1.3.0.53.bin">multi-stm-ppm-taer-noinv-v1.3.0.53.bin</a></td><td>103KB</td><td>18</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.53/Multi.txt">Multi.txt</a></td><td>1KB</td><td>251</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-avr-txflash-aetr-A7105-inv-v1.3.0.47.bin">multi-avr-txflash-aetr-A7105-inv-v1.3.0.47.bin</a></td><td>18KB</td><td>79</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-avr-txflash-aetr-CC2500-inv-v1.3.0.47.bin">multi-avr-txflash-aetr-CC2500-inv-v1.3.0.47.bin</a></td><td>26KB</td><td>40</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-avr-txflash-aetr-CYRF6936-inv-v1.3.0.47.bin">multi-avr-txflash-aetr-CYRF6936-inv-v1.3.0.47.bin</a></td><td>20KB</td><td>38</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-avr-usbasp-aetr-A7105-inv-v1.3.0.47.bin">multi-avr-usbasp-aetr-A7105-inv-v1.3.0.47.bin</a></td><td>18KB</td><td>25</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-avr-usbasp-aetr-CC2500-inv-v1.3.0.47.bin">multi-avr-usbasp-aetr-CC2500-inv-v1.3.0.47.bin</a></td><td>25KB</td><td>27</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-avr-usbasp-aetr-CYRF6936-inv-v1.3.0.47.bin">multi-avr-usbasp-aetr-CYRF6936-inv-v1.3.0.47.bin</a></td><td>20KB</td><td>23</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-orangerx-aetr-blue-inv-v1.3.0.47.bin">multi-orangerx-aetr-blue-inv-v1.3.0.47.bin</a></td><td>18KB</td><td>30</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-orangerx-aetr-green-inv-v1.3.0.47.bin">multi-orangerx-aetr-green-inv-v1.3.0.47.bin</a></td><td>18KB</td><td>15</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-erskytx-aetr-inv-ftdidebug-v1.3.0.47.bin">multi-stm-erskytx-aetr-inv-ftdidebug-v1.3.0.47.bin</a></td><td>118KB</td><td>21</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-erskytx-aetr-inv-v1.3.0.47.bin">multi-stm-erskytx-aetr-inv-v1.3.0.47.bin</a></td><td>100KB</td><td>53</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-erskytx-aetr-noinv-v1.3.0.47.bin">multi-stm-erskytx-aetr-noinv-v1.3.0.47.bin</a></td><td>100KB</td><td>58</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-erskytx-reta-inv-v1.3.0.47.bin">multi-stm-erskytx-reta-inv-v1.3.0.47.bin</a></td><td>100KB</td><td>23</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-erskytx-reta-noinv-v1.3.0.47.bin">multi-stm-erskytx-reta-noinv-v1.3.0.47.bin</a></td><td>100KB</td><td>30</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-erskytx-taer-inv-v1.3.0.47.bin">multi-stm-erskytx-taer-inv-v1.3.0.47.bin</a></td><td>100KB</td><td>30</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-erskytx-taer-noinv-v1.3.0.47.bin">multi-stm-erskytx-taer-noinv-v1.3.0.47.bin</a></td><td>100KB</td><td>46</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-erskytx-xn297dump-inv-ftdidebug-v1.3.0.47.bin">multi-stm-erskytx-xn297dump-inv-ftdidebug-v1.3.0.47.bin</a></td><td>44KB</td><td>13</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-erskytx-xn297dump-inv-usbdebug-v1.3.0.47.bin">multi-stm-erskytx-xn297dump-inv-usbdebug-v1.3.0.47.bin</a></td><td>49KB</td><td>15</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-opentx-aetr-inv-ftdidebug-v1.3.0.47.bin">multi-stm-opentx-aetr-inv-ftdidebug-v1.3.0.47.bin</a></td><td>121KB</td><td>143</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-opentx-aetr-inv-v1.3.0.47.bin">multi-stm-opentx-aetr-inv-v1.3.0.47.bin</a></td><td>103KB</td><td>1091</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-opentx-aetr-noinv-v1.3.0.47.bin">multi-stm-opentx-aetr-noinv-v1.3.0.47.bin</a></td><td>103KB</td><td>1523</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-opentx-reta-inv-v1.3.0.47.bin">multi-stm-opentx-reta-inv-v1.3.0.47.bin</a></td><td>103KB</td><td>243</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-opentx-reta-noinv-v1.3.0.47.bin">multi-stm-opentx-reta-noinv-v1.3.0.47.bin</a></td><td>103KB</td><td>384</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-opentx-taer-inv-v1.3.0.47.bin">multi-stm-opentx-taer-inv-v1.3.0.47.bin</a></td><td>103KB</td><td>411</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-opentx-taer-noinv-v1.3.0.47.bin">multi-stm-opentx-taer-noinv-v1.3.0.47.bin</a></td><td>103KB</td><td>444</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-opentx-xn297dump-inv-ftdidebug-v1.3.0.47.bin">multi-stm-opentx-xn297dump-inv-ftdidebug-v1.3.0.47.bin</a></td><td>44KB</td><td>38</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-opentx-xn297dump-inv-usbdebug-v1.3.0.47.bin">multi-stm-opentx-xn297dump-inv-usbdebug-v1.3.0.47.bin</a></td><td>50KB</td><td>39</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-ppm-aetr-noinv-v1.3.0.47.bin">multi-stm-ppm-aetr-noinv-v1.3.0.47.bin</a></td><td>100KB</td><td>69</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-ppm-reta-noinv-v1.3.0.47.bin">multi-stm-ppm-reta-noinv-v1.3.0.47.bin</a></td><td>100KB</td><td>34</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/multi-stm-ppm-taer-noinv-v1.3.0.47.bin">multi-stm-ppm-taer-noinv-v1.3.0.47.bin</a></td><td>100KB</td><td>40</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.47/Multi.txt">Multi.txt</a></td><td>1KB</td><td>478</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-avr-txflash-aetr-A7105-inv-v1.3.0.45.bin">multi-avr-txflash-aetr-A7105-inv-v1.3.0.45.bin</a></td><td>18KB</td><td>16</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-avr-txflash-aetr-CC2500-inv-v1.3.0.45.bin">multi-avr-txflash-aetr-CC2500-inv-v1.3.0.45.bin</a></td><td>25KB</td><td>14</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-avr-txflash-aetr-CYRF6936-inv-v1.3.0.45.bin">multi-avr-txflash-aetr-CYRF6936-inv-v1.3.0.45.bin</a></td><td>20KB</td><td>12</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-avr-usbasp-aetr-A7105-inv-v1.3.0.45.bin">multi-avr-usbasp-aetr-A7105-inv-v1.3.0.45.bin</a></td><td>18KB</td><td>11</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-avr-usbasp-aetr-CC2500-inv-v1.3.0.45.bin">multi-avr-usbasp-aetr-CC2500-inv-v1.3.0.45.bin</a></td><td>25KB</td><td>15</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-avr-usbasp-aetr-CYRF6936-inv-v1.3.0.45.bin">multi-avr-usbasp-aetr-CYRF6936-inv-v1.3.0.45.bin</a></td><td>20KB</td><td>11</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-orangerx-aetr-blue-inv-v1.3.0.45.bin">multi-orangerx-aetr-blue-inv-v1.3.0.45.bin</a></td><td>18KB</td><td>12</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-orangerx-aetr-green-inv-v1.3.0.45.bin">multi-orangerx-aetr-green-inv-v1.3.0.45.bin</a></td><td>18KB</td><td>8</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-erskytx-aetr-inv-ftdidebug-v1.3.0.45.bin">multi-stm-erskytx-aetr-inv-ftdidebug-v1.3.0.45.bin</a></td><td>116KB</td><td>8</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-erskytx-aetr-inv-v1.3.0.45.bin">multi-stm-erskytx-aetr-inv-v1.3.0.45.bin</a></td><td>99KB</td><td>12</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-erskytx-aetr-noinv-v1.3.0.45.bin">multi-stm-erskytx-aetr-noinv-v1.3.0.45.bin</a></td><td>99KB</td><td>15</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-erskytx-reta-inv-v1.3.0.45.bin">multi-stm-erskytx-reta-inv-v1.3.0.45.bin</a></td><td>99KB</td><td>9</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-erskytx-reta-noinv-v1.3.0.45.bin">multi-stm-erskytx-reta-noinv-v1.3.0.45.bin</a></td><td>99KB</td><td>9</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-erskytx-taer-inv-v1.3.0.45.bin">multi-stm-erskytx-taer-inv-v1.3.0.45.bin</a></td><td>99KB</td><td>12</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-erskytx-taer-noinv-v1.3.0.45.bin">multi-stm-erskytx-taer-noinv-v1.3.0.45.bin</a></td><td>99KB</td><td>12</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-erskytx-xn297dump-ftdidebug-v1.3.0.45.bin">multi-stm-erskytx-xn297dump-ftdidebug-v1.3.0.45.bin</a></td><td>43KB</td><td>8</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-erskytx-xn297dump-usbdebug-v1.3.0.45.bin">multi-stm-erskytx-xn297dump-usbdebug-v1.3.0.45.bin</a></td><td>49KB</td><td>8</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-opentx-aetr-inv-ftdidebug-v1.3.0.45.bin">multi-stm-opentx-aetr-inv-ftdidebug-v1.3.0.45.bin</a></td><td>119KB</td><td>26</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-opentx-aetr-inv-v1.3.0.45.bin">multi-stm-opentx-aetr-inv-v1.3.0.45.bin</a></td><td>102KB</td><td>252</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-opentx-aetr-noinv-v1.3.0.45.bin">multi-stm-opentx-aetr-noinv-v1.3.0.45.bin</a></td><td>102KB</td><td>395</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-opentx-reta-inv-v1.3.0.45.bin">multi-stm-opentx-reta-inv-v1.3.0.45.bin</a></td><td>102KB</td><td>55</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-opentx-reta-noinv-v1.3.0.45.bin">multi-stm-opentx-reta-noinv-v1.3.0.45.bin</a></td><td>102KB</td><td>75</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-opentx-taer-inv-v1.3.0.45.bin">multi-stm-opentx-taer-inv-v1.3.0.45.bin</a></td><td>102KB</td><td>112</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-opentx-taer-noinv-v1.3.0.45.bin">multi-stm-opentx-taer-noinv-v1.3.0.45.bin</a></td><td>102KB</td><td>120</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-opentx-xn297dump-ftdidebug-v1.3.0.45.bin">multi-stm-opentx-xn297dump-ftdidebug-v1.3.0.45.bin</a></td><td>44KB</td><td>11</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-opentx-xn297dump-usbdebug-v1.3.0.45.bin">multi-stm-opentx-xn297dump-usbdebug-v1.3.0.45.bin</a></td><td>50KB</td><td>14</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-ppm-aetr-noinv-v1.3.0.45.bin">multi-stm-ppm-aetr-noinv-v1.3.0.45.bin</a></td><td>99KB</td><td>21</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-ppm-reta-noinv-v1.3.0.45.bin">multi-stm-ppm-reta-noinv-v1.3.0.45.bin</a></td><td>99KB</td><td>13</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/multi-stm-ppm-taer-noinv-v1.3.0.45.bin">multi-stm-ppm-taer-noinv-v1.3.0.45.bin</a></td><td>99KB</td><td>13</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.45/Multi.txt">Multi.txt</a></td><td>1KB</td><td>99</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-avr-txflash-aetr-A7105-inv-1.3.0.44.bin">multi-avr-txflash-aetr-A7105-inv-1.3.0.44.bin</a></td><td>18KB</td><td>17</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-avr-txflash-aetr-CC2500-inv-1.3.0.44.bin">multi-avr-txflash-aetr-CC2500-inv-1.3.0.44.bin</a></td><td>25KB</td><td>21</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-avr-txflash-aetr-CYRF6936-inv-1.3.0.44.bin">multi-avr-txflash-aetr-CYRF6936-inv-1.3.0.44.bin</a></td><td>20KB</td><td>15</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-avr-usbasp-aetr-A7105-inv-1.3.0.44.bin">multi-avr-usbasp-aetr-A7105-inv-1.3.0.44.bin</a></td><td>18KB</td><td>15</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-avr-usbasp-aetr-CC2500-inv-1.3.0.44.bin">multi-avr-usbasp-aetr-CC2500-inv-1.3.0.44.bin</a></td><td>25KB</td><td>17</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-avr-usbasp-aetr-CYRF6936-inv-1.3.0.44.bin">multi-avr-usbasp-aetr-CYRF6936-inv-1.3.0.44.bin</a></td><td>20KB</td><td>14</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-orangerx-aetr-blue-inv-1.3.0.44.bin">multi-orangerx-aetr-blue-inv-1.3.0.44.bin</a></td><td>18KB</td><td>16</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-orangerx-aetr-green-inv-1.3.0.44.bin">multi-orangerx-aetr-green-inv-1.3.0.44.bin</a></td><td>18KB</td><td>14</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-erskytx-aetr-inv-1.3.0.44.bin">multi-stm-erskytx-aetr-inv-1.3.0.44.bin</a></td><td>99KB</td><td>13</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-erskytx-aetr-inv-ftdidebug-1.3.0.44.bin">multi-stm-erskytx-aetr-inv-ftdidebug-1.3.0.44.bin</a></td><td>116KB</td><td>14</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-erskytx-aetr-noinv-1.3.0.44.bin">multi-stm-erskytx-aetr-noinv-1.3.0.44.bin</a></td><td>99KB</td><td>19</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-erskytx-reta-inv-1.3.0.44.bin">multi-stm-erskytx-reta-inv-1.3.0.44.bin</a></td><td>99KB</td><td>10</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-erskytx-reta-noinv-1.3.0.44.bin">multi-stm-erskytx-reta-noinv-1.3.0.44.bin</a></td><td>99KB</td><td>14</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-erskytx-taer-inv-1.3.0.44.bin">multi-stm-erskytx-taer-inv-1.3.0.44.bin</a></td><td>99KB</td><td>16</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-erskytx-taer-noinv-1.3.0.44.bin">multi-stm-erskytx-taer-noinv-1.3.0.44.bin</a></td><td>99KB</td><td>16</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-opentx-aetr-inv-1.3.0.44.bin">multi-stm-opentx-aetr-inv-1.3.0.44.bin</a></td><td>101KB</td><td>261</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-opentx-aetr-inv-ftdidebug-1.3.0.44.bin">multi-stm-opentx-aetr-inv-ftdidebug-1.3.0.44.bin</a></td><td>119KB</td><td>33</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-opentx-aetr-noinv-1.3.0.44.bin">multi-stm-opentx-aetr-noinv-1.3.0.44.bin</a></td><td>101KB</td><td>311</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-opentx-reta-inv-1.3.0.44.bin">multi-stm-opentx-reta-inv-1.3.0.44.bin</a></td><td>101KB</td><td>64</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-opentx-reta-noinv-1.3.0.44.bin">multi-stm-opentx-reta-noinv-1.3.0.44.bin</a></td><td>101KB</td><td>84</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-opentx-taer-inv-1.3.0.44.bin">multi-stm-opentx-taer-inv-1.3.0.44.bin</a></td><td>101KB</td><td>130</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-opentx-taer-noinv-1.3.0.44.bin">multi-stm-opentx-taer-noinv-1.3.0.44.bin</a></td><td>101KB</td><td>124</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-ppm-aetr-noinv-1.3.0.44.bin">multi-stm-ppm-aetr-noinv-1.3.0.44.bin</a></td><td>99KB</td><td>32</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-ppm-reta-noinv-1.3.0.44.bin">multi-stm-ppm-reta-noinv-1.3.0.44.bin</a></td><td>99KB</td><td>13</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/multi-stm-ppm-taer-noinv-1.3.0.44.bin">multi-stm-ppm-taer-noinv-1.3.0.44.bin</a></td><td>99KB</td><td>22</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/1.3.0.44/Multi.txt">Multi.txt</a></td><td>1KB</td><td>141</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-avr-txflash-aetr-A7105-inv-v1.2.1.85.bin">multi-avr-txflash-aetr-A7105-inv-v1.2.1.85.bin</a></td><td>17KB</td><td>62</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-avr-txflash-aetr-CC2500-inv-v1.2.1.85.bin">multi-avr-txflash-aetr-CC2500-inv-v1.2.1.85.bin</a></td><td>21KB</td><td>35</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-avr-txflash-aetr-CYRF6936-inv-v1.2.1.85.bin">multi-avr-txflash-aetr-CYRF6936-inv-v1.2.1.85.bin</a></td><td>19KB</td><td>27</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-avr-usbasp-aetr-A7105-inv-v1.2.1.85.bin">multi-avr-usbasp-aetr-A7105-inv-v1.2.1.85.bin</a></td><td>17KB</td><td>37</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-avr-usbasp-aetr-CC2500-inv-v1.2.1.85.bin">multi-avr-usbasp-aetr-CC2500-inv-v1.2.1.85.bin</a></td><td>21KB</td><td>29</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-avr-usbasp-aetr-CYRF6936-inv-v1.2.1.85.bin">multi-avr-usbasp-aetr-CYRF6936-inv-v1.2.1.85.bin</a></td><td>19KB</td><td>33</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-orangerx-aetr-blue-inv-v1.2.1.85.bin">multi-orangerx-aetr-blue-inv-v1.2.1.85.bin</a></td><td>17KB</td><td>23</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-orangerx-aetr-green-inv-v1.2.1.85.bin">multi-orangerx-aetr-green-inv-v1.2.1.85.bin</a></td><td>17KB</td><td>27</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-erskytx-aetr-inv-ftdidebug-v1.2.1.85.bin">multi-stm-erskytx-aetr-inv-ftdidebug-v1.2.1.85.bin</a></td><td>111KB</td><td>33</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-erskytx-aetr-inv-usbdebug-v1.2.1.85.bin">multi-stm-erskytx-aetr-inv-usbdebug-v1.2.1.85.bin</a></td><td>117KB</td><td>31</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-erskytx-aetr-inv-v1.2.1.85.bin">multi-stm-erskytx-aetr-inv-v1.2.1.85.bin</a></td><td>95KB</td><td>51</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-erskytx-aetr-noinv-v1.2.1.85.bin">multi-stm-erskytx-aetr-noinv-v1.2.1.85.bin</a></td><td>95KB</td><td>34</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-erskytx-reta-inv-v1.2.1.85.bin">multi-stm-erskytx-reta-inv-v1.2.1.85.bin</a></td><td>95KB</td><td>26</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-erskytx-reta-noinv-v1.2.1.85.bin">multi-stm-erskytx-reta-noinv-v1.2.1.85.bin</a></td><td>95KB</td><td>24</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-erskytx-taer-inv-v1.2.1.85.bin">multi-stm-erskytx-taer-inv-v1.2.1.85.bin</a></td><td>95KB</td><td>34</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-erskytx-taer-noinv-v1.2.1.85.bin">multi-stm-erskytx-taer-noinv-v1.2.1.85.bin</a></td><td>95KB</td><td>34</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-opentx-aetr-inv-ftdidebug-v1.2.1.85.bin">multi-stm-opentx-aetr-inv-ftdidebug-v1.2.1.85.bin</a></td><td>111KB</td><td>93</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-opentx-aetr-inv-usbdebug-v1.2.1.85.bin">multi-stm-opentx-aetr-inv-usbdebug-v1.2.1.85.bin</a></td><td>117KB</td><td>101</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-opentx-aetr-inv-v1.2.1.85.bin">multi-stm-opentx-aetr-inv-v1.2.1.85.bin</a></td><td>95KB</td><td>694</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-opentx-aetr-noinv-v1.2.1.85.bin">multi-stm-opentx-aetr-noinv-v1.2.1.85.bin</a></td><td>95KB</td><td>579</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-opentx-reta-inv-v1.2.1.85.bin">multi-stm-opentx-reta-inv-v1.2.1.85.bin</a></td><td>95KB</td><td>179</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-opentx-reta-noinv-v1.2.1.85.bin">multi-stm-opentx-reta-noinv-v1.2.1.85.bin</a></td><td>95KB</td><td>138</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-opentx-taer-inv-v1.2.1.85.bin">multi-stm-opentx-taer-inv-v1.2.1.85.bin</a></td><td>95KB</td><td>302</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-opentx-taer-noinv-v1.2.1.85.bin">multi-stm-opentx-taer-noinv-v1.2.1.85.bin</a></td><td>95KB</td><td>232</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-ppm-aetr-noinv-v1.2.1.85.bin">multi-stm-ppm-aetr-noinv-v1.2.1.85.bin</a></td><td>95KB</td><td>62</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-ppm-reta-noinv-v1.2.1.85.bin">multi-stm-ppm-reta-noinv-v1.2.1.85.bin</a></td><td>95KB</td><td>34</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/multi-stm-ppm-taer-noinv-v1.2.1.85.bin">multi-stm-ppm-taer-noinv-v1.2.1.85.bin</a></td><td>95KB</td><td>37</td></tr>
+ 				<tr><td><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.2.1.85/Multi.txt">Multi.txt</a></td><td>1KB</td><td>438</td></tr>
+ 			</table>
+
+		</div> <!-- Column -->
+	</div> <!-- Row -->
+</div> <!-- Top-level container -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+	<script src="./script.js"></script>
+</body>
+</html>
+
+

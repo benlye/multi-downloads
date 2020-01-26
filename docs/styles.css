@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 80px; /* 40px to make the container go all the way to the bottom of the topbar */
+  padding-bottom: 70px;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+p {
+	line-height: 1.625 !important;
+}
+
+h1 {
+	font-size: 32px !important;
+	font-weight: 700 !important;
+	line-height: 1.5 !important;
+}
+
+h2 {
+	font-size: 24px !important;
+	font-weight: 700 !important;
+	line-height: 1.5 !important;
+}
+
+.nav-link {
+	font-size: 18px;
+	font-weight: bold !important;
+}
+
+.hr-thick {
+	border: none;
+	height: 1.5px;
+	background-color: #f1f1f1
+}
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 960px; /* or 950px */
+}
+
+#filterTable {
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+#filterTable th, #filterTable td {
+  text-align: left;
+  padding: 4px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+#fileTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+#fileTable th, #fileTable td {
+  text-align: left;
+  padding: 6px;
+}
+
+#fileTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#fileTable tr.header, #fileTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+.tip {
+	font-size: 14px;
+	/*font-style: italic;*/
+	margin-top: 5px;
+}
+
+select {
+	width: 150px;
+}
+
+.fp-question-circle:before {
+    color:#000;
+    content: '\f059'; /* replace / with \ */
+    font-family: "Font Awesome 5 Free"; /* here is the correct font-family */
+    font-style: normal;
+    font-weight: 900;
+	font-size: 18px;
+    text-decoration: inherit;
+	cursor: pointer;
+}
