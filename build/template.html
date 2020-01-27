@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>MULTI-Module Firmware Downloads</title>
@@ -180,6 +180,21 @@
 							data-content="Debug builds are only available for STM32 modules. They can be used for serial debugging, or XN297L protocol dumping."></i>
 					</td>
 				</tr>
+				<!--
+				<tr>
+					<td style="width:40%;">
+						<b>Show Multi.txt:</b>
+					</td>
+					<td style="width:40%;">
+						<input type="radio" value="debug-" id="includeMultiTxtYes" name="include_multitxt" onchange="myFunction()"> Yes &nbsp;&nbsp;&nbsp;
+						<input type="radio" value="" id="includeMultiTxtNo" name="include_multitxt" onchange="myFunction()" checked> No
+					</td>
+					<td style="width:20%;">
+						<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Multi.txt" 
+							data-content="Multi.txt is needed for radios running erSkyTX firmware.<br><br>Place the file in the root of the SD card so that new protocols appear in the radio's menu."></i>
+					</td>
+				</tr>
+				-->
 				<tr>
 					<td colspan=2 style="width:40%; text-align:right">
 						<input class="btn btn-outline-primary btn-sm" type="reset" value="Reset" onclick="this.blur();">
@@ -203,7 +218,7 @@
 	</div> <!-- Row -->
 	<div class="row" style="width:100%; padding-top: 20px; font-size: 12px; color: grey; text-align: right;">
 		<div class="col-md">
-			<p>Last updated: %%lastupdatestamp%%</p>
+			<p>Page updated every four hours.  Last updated: %%lastupdatestamp%%</p>
 		</div>
 	</div>
 </div> <!-- Top-level container -->

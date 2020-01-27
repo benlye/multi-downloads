@@ -22,6 +22,12 @@ function myFunction() {
         includeDebug = false;
     }
 
+    if (radioType == "-OPENTX-" || radioType == "-PPM-") {
+        includeMultiTxt = false;
+    } else {
+        includeMultiTxt = true;
+    }
+
     table = document.getElementById("fileTable");
     tr = table.getElementsByTagName("tr");
 
@@ -39,6 +45,13 @@ function myFunction() {
             if ((txtValue.toLowerCase().indexOf("debug") > -1 && includeDebug == false)) {
                 tr[i].style.display = "none";
             }
+			
+			// Show the Multi.txt file
+            if ((txtValue.toLowerCase().indexOf("multi.txt") > -1 && txtValue.toUpperCase().indexOf(firmwareVersion) > -1 && includeMultiTxt == true)) {
+				tr[i].style.display = "";
+			} else if (txtValue.toLowerCase().indexOf("multi.txt") > -1) {
+				tr[i].style.display = "none";
+			}
         }
     }
 
