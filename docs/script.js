@@ -71,7 +71,7 @@ function moduleSelect() {
     switch(selectedModule) {
         case "bg-avr":
         case "diy-avr":
-            document.getElementById("moduleType").value = "-avr-";
+			$('#moduleType').val('-avr-').trigger('change');
             document.getElementById("radioType").value = "";
             document.getElementById("telemetryInversion").value = "-inv-";
             break;
@@ -81,30 +81,30 @@ function moduleSelect() {
         case "irangex":
         case "jp4in1":
         case "vantac-mpm":
-            document.getElementById("moduleType").value = "-stm-";
-            document.getElementById("radioType").value = "";
-            document.getElementById("telemetryInversion").value = "-inv-";
+            $('#moduleType').val('-stm-').trigger('change');
+			$('#radioType').val(null).trigger('change');
+			$('#telemetryInversion').val('-inv-').trigger('change');
             break;
         case "jp-t16ext":
-            document.getElementById("moduleType").value = "-stm-";
-            document.getElementById("radioType").value = "-opentx-";
-            document.getElementById("telemetryInversion").value = "-inv-";
+            $('#moduleType').val('-stm-').trigger('change');
+			$('#radioType').val('-opentx-').trigger('change');
+			$('#telemetryInversion').val('-inv-').trigger('change');
             break;
         case "jp-t16int":
 		case "rmtx16s":
-            document.getElementById("moduleType").value = "-stm-";
-            document.getElementById("radioType").value = "-opentx-";
-            document.getElementById("telemetryInversion").value = "-noinv-";
+            $('#moduleType').val('-stm-').trigger('change');
+			$('#radioType').val('-opentx-').trigger('change');
+			$('#telemetryInversion').val('-noinv-').trigger('change');
             break;
         case "orangerx":
-            document.getElementById("moduleType").value = "-orangerx-";
-            document.getElementById("radioType").value = "";
-            document.getElementById("telemetryInversion").value = "";
+            $('#moduleType').val('-orangerx-').trigger('change');
+			$('#radioType').val(null).trigger('change');
+			$('#telemetryInversion').val(null).trigger('change');
             break;
         default:
-            document.getElementById("moduleType").value = "";
-            document.getElementById("radioType").value = "";
-            document.getElementById("telemetryInversion").value = "";
+			$('#moduleType').val(null).trigger('change');
+			$('#radioType').val(null).trigger('change');
+			$('#telemetryInversion').val(null).trigger('change');
             break;
     }
 
@@ -115,6 +115,13 @@ function formReset() {
     setTimeout(function () {
         myFunction();
         $('#multiModuleSelect').val(null).trigger('change');
+		$('#moduleType').val(null).trigger('change');
+		$('#radioType').val(null).trigger('change');
+		$('#channelOrder').val(null).trigger('change');
+		$('#telemetryInversion').val(null).trigger('change');
+		$("#firmwareVersion").prop("selectedIndex", 0).val(); 
+		$('#firmwareVersion').trigger('change');
+		//$("#firmwareVersion")[0].selectedIndex = 0;
     }, 100); 
 }
 
@@ -159,6 +166,15 @@ $(document).ready(function(){
         allowClear: true
     });
 
+	$(".js-example-basic-hide-search").select2({
+		placeholder: "Show all",
+        allowClear: true,
+		minimumResultsForSearch: Infinity
+	});
+	
+	$(".js-example-basic-hide-search-no-clear").select2({
+		minimumResultsForSearch: Infinity
+	});
 
 });
 
