@@ -7,6 +7,14 @@
 # Get all the releases
 $MultiReleases = Invoke-RestMethod -Method GET -Uri "https://api.github.com/repos/pascallanger/DIY-Multiprotocol-TX-Module/releases"
 
+# Die if we didn't get any releases
+If ($Null -eq $MultiReleases -or $MultiReleases.Count -eq 0) {
+	Throw "No releases retrieved from Github"
+}
+
+# Filter to just recent releases
+$MultiReleases = $MultiReleases | ? { (Get-Date ($_.created_at)) -ge (get-date 2019-10-01) }
+
 # Array to store the release selector drop-down options
 $ReleaseSelector = @()
 
@@ -26,8 +34,8 @@ $IsLatestRelease = $True
 
 # Iterate through the releases
 ForEach ($Release in $MultiReleases) {
-	# Filter out older releases
-	If ((Get-Date ($Release.created_at)) -ge (get-date 2019-10-01)) {
+	# Filter releases with too few assets
+	If ($Release.assets.Count -gt 15) {
 		# Clean up the tag name
 		$ReleaseTag = $Release.tag_name.Replace("v","")
 
@@ -41,7 +49,11 @@ ForEach ($Release in $MultiReleases) {
 		
 		# Loop through the assets in the release, adding them to the file list
 		ForEach ($Asset in $Release.assets) {
-			$FileTable += "				<tr><td><a href=""$($Asset.browser_download_url)"">$($Asset.name)</a></td><td>$([math]::Round($Asset.size / 1024))KB</td><td>$($Asset.download_count)</td></tr>`n"
+			If ($Asset.name -eq "Multi.txt") {
+				$FileTable += "				<tr><td><a href=""$($Asset.browser_download_url)"">$($Asset.name) (v$ReleaseTag)</a></td><td>$([math]::Round($Asset.size / 1024))KB</td><td>$($Asset.download_count)</td></tr>`n"
+			} Else {
+				$FileTable += "				<tr><td><a href=""$($Asset.browser_download_url)"">$($Asset.name)</a></td><td>$([math]::Round($Asset.size / 1024))KB</td><td>$($Asset.download_count)</td></tr>`n"
+			}
 		}
 	}
 }
@@ -51,6 +63,11 @@ $FileTable += "			</table>"
 
 # Import the template
 $Page = Get-Content .\build\template.html
+
+# Die if we couldn't import the template
+If ($Null -eq $Page) {
+	Throw "Unable to load page template"
+}
 
 # Replace the placeholders in the template
 $Page = ($Page | Out-String).Replace("%%filetable%%", $FileTable)
