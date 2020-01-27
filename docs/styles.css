@@ -20,6 +20,9 @@ h1 {
 	font-size: 32px !important;
 	font-weight: 700 !important;
 	line-height: 1.5 !important;
+	padding-top: 20px;
+	padding-bottom: 30px;
+	border-bottom: 1.5px solid #f1f1f1;
 }
 
 h2 {
