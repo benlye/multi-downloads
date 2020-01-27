@@ -49,9 +49,9 @@
 		</div> <!-- Column -->
 	</div> <!-- Row -->
 	<div class="row" style="width:100%">
-		<div class="col-md" style="padding-right:0px; border-right: 1px solid #f1f1f1;">
+		<div class="col-md" style="padding-right:0px; margin-right: 10px; border-right: 1px solid #f1f1f1;">
 			<h2>MULTI-Module Selection</h2>
-			<p>Select a specific MULTI-Module to load a set of default firmware file filters. Change the filters to refine (or expand) the list of files.</p>
+			<p>Select a specific MULTI-Module to load a set of default firmware file filters.  Change the filters to refine (or expand) the list of files.</p>
 			<select class="js-example-basic-single" id="multiModuleSelect" name="multiModuleSelect" style="width:80%" onchange="moduleSelect()">
 			<option></option>
 			<option value="bg-avr">Banggood Atmega328p (AVR)</option>
@@ -68,16 +68,16 @@
 			<option value="vantac-mpm">Vantac MPM / MPM Lite</option>
 			</select>
 			<br><br>
-			<div class="modulelink" id="modulelink" hidden>
-				<table id="linkTable">
+			<div id="modulelink" hidden>
+				<table id="linkTable"  class="modulelink">
 					<tr>
 						<td style="background-color: #f1f1f1;"><b>Link:</b></td>
 						<td width=100%><span id=moduleLinkUrlDisplay></span></td>
 						<td style="background-color: #f1f1f1; text-align: right;"><i class="fp-copy-paste" title="Copy to clipboard" onclick="copyToClipboard('moduleLinkUrlDisplay');"></td>
 					</tr>
 				</table>
+				<br>
 			</div>
-			<br><br>
 		</div>
 			
 		<div class="col-md">
