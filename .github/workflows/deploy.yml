@@ -9,11 +9,11 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: Run Generate-MultiDownloadPage.ps1
-      run: .\build\Generate-MultiDownloadPage.ps1
+      run: ./build/Generate-MultiDownloadPage.ps1
       shell: pwsh
     - name: Commit files
       run: |
