@@ -80,6 +80,7 @@ function moduleSelect() {
         case "hp4in1":
         case "irangex":
         case "jp4in1":
+		case "uruav-tmx5":
         case "vantac-mpm":
             $('#moduleType').val('-stm-').trigger('change');
 			$('#radioType').val(null).trigger('change');
@@ -121,7 +122,6 @@ function formReset() {
 		$('#telemetryInversion').val(null).trigger('change');
 		$("#firmwareVersion").prop("selectedIndex", 0).val(); 
 		$('#firmwareVersion').trigger('change');
-		//$("#firmwareVersion")[0].selectedIndex = 0;
     }, 100); 
 }
 
