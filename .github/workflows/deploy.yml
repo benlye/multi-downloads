@@ -1,15 +1,15 @@
 name: Deploy
 
 on:
+  push:
+    branches:    
+      - master
   schedule:
-    # * is a special character in YAML so you have to quote this string
     - cron:  '0 */4 * * *'
 
 jobs:
   build:
-
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@master
     - name: Run Generate-MultiDownloadPage.ps1
