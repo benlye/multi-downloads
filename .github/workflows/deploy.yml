@@ -11,23 +11,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Run Generate-MultiDownloadPage.ps1
-      run: ./build/Generate-MultiDownloadPage.ps1
-      shell: pwsh
-    - name: Commit files
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git config --global core.safecrlf false
-        git commit -m "Index file update" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Request Github Pages build
-      run: >-
-        curl -s -L -X POST 
-        -H "Content-Type: application/json"
-        -H "Authorization: token ${{ secrets.ACCESS_TOKEN}}"
-        "https://api.github.com/repos/${{ github.repository }}/pages/builds"
+      - name: Checkout master branch
+        uses: actions/checkout@master
+      - name: Generate download page
+        run: ./build/Generate-MultiDownloadPage.ps1
+        shell: pwsh
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git config --global core.safecrlf false
+          git commit -m "Index file update" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Request Github Pages build
+        run: >-
+          curl -s -L -X POST 
+          -H "Content-Type: application/json"
+          -H "Authorization: token ${{ secrets.ACCESS_TOKEN}}"
+          "https://api.github.com/repos/${{ github.repository }}/pages/builds"
