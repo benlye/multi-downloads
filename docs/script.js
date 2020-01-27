@@ -78,6 +78,7 @@ function moduleSelect() {
             document.getElementById("telemetryInversion").value = "-inv-";
             break;
         case "jp-t16int":
+		case "rmtx16s":
             document.getElementById("moduleType").value = "-stm-";
             document.getElementById("radioType").value = "-opentx-";
             document.getElementById("telemetryInversion").value = "-noinv-";
