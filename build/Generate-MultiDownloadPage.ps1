@@ -4,6 +4,12 @@
  # and updates the download page.
  #>
 
+# Script parameters
+[cmdletbinding()]
+	param(
+		[switch]$ForceUpdate
+	)
+
 # Get all the releases
 $MultiReleases = Invoke-RestMethod -Method GET -Uri "https://api.github.com/repos/pascallanger/DIY-Multiprotocol-TX-Module/releases"
 
@@ -12,8 +18,20 @@ If ($Null -eq $MultiReleases -or $MultiReleases.Count -eq 0) {
 	Throw "No releases retrieved from Github"
 }
 
-# Filter to just recent releases
+# Filter to just recent releases and exclude pre-releases
 $MultiReleases = $MultiReleases | ? { (Get-Date ($_.created_at)) -ge (get-date 2019-10-01) -and $_.prerelease -eq $False}
+
+# Get the last release tag on GitHub
+$LastReleaseTag = $MultiReleases[0].tag_name
+
+# Get the last release tag we processed
+$LastProcessedTag = Get-Content .\build\last_release -ErrorAction SilentlyContinue
+
+# Stop if the last tag hasn't changed and this isn't a forced update
+If ($LastReleaseTag -eq $LastProcessedTag -and $ForceUpdate -eq $False ) {
+	Write-Host "No change to GitHub releases, not updating download page."
+	exit 0
+}
 
 # Array to store the release selector drop-down options
 $ReleaseSelector = @()
@@ -75,4 +93,7 @@ $Page = ($Page | Out-String).Replace("%%releaseselector%%", $ReleaseSelector)
 $Page = ($Page | Out-String).Replace("%%lastupdatestamp%%", (Get-Date -format f))
 
 # Write the new file
-$Page | out-file .\docs\index.html -Encoding utf8
+$Page | Out-File .\docs\index.html -Encoding ascii
+
+# Update the last release file
+$MultiReleases[0].tag_name | Out-File .\build\last_release -Encoding ascii
