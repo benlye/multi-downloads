@@ -13,7 +13,7 @@ If ($Null -eq $MultiReleases -or $MultiReleases.Count -eq 0) {
 }
 
 # Filter to just recent releases
-$MultiReleases = $MultiReleases | ? { (Get-Date ($_.created_at)) -ge (get-date 2019-10-01) }
+$MultiReleases = $MultiReleases | ? { (Get-Date ($_.created_at)) -ge (get-date 2019-10-01) -and $_.prerelease -eq $False}
 
 # Array to store the release selector drop-down options
 $ReleaseSelector = @()
