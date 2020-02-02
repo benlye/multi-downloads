@@ -1,4 +1,4 @@
-name: MULTI Release Check
+name: Update and deploy MULTI download page
 
 on:
   push:
