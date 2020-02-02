@@ -1,11 +1,8 @@
-name: Deploy
+name: MULTI Release Check
 
 on:
-  push:
-    branches:    
-      - master
   schedule:
-    - cron:  '0 */4 * * *'
+    - cron:  '*/5 * * * *'
 
 jobs:
   build:
