@@ -1,8 +1,11 @@
 name: MULTI Release Check
 
 on:
+  push:
+    branches:    
+      - master
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron:  '0 */4 * * *'
 
 jobs:
   build:
@@ -11,7 +14,7 @@ jobs:
       - name: Checkout master branch
         uses: actions/checkout@master
       - name: Generate download page
-        run: ./build/Generate-MultiDownloadPage.ps1
+        run: ./build/Generate-MultiDownloadPage.ps1 -ForceUpdate
         shell: pwsh
       - name: Commit changes
         run: |
