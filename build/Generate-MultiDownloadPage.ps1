@@ -36,6 +36,8 @@ If ($LastReleaseTag -eq $LastProcessedTag -and $ForceUpdate -eq $False ) {
 # Array to store the release selector drop-down options
 $ReleaseSelector = @()
 
+$ReleaseInfo = @()
+
 # Array to store the table containing the list of files
 $FileTable =@()
 
@@ -65,6 +67,8 @@ ForEach ($Release in $MultiReleases) {
 			$ReleaseSelector += "							<option value=""$ReleaseTag"">$ReleaseTag</option>`n"
 		}
 		
+		$TotalDownloads = 0
+		
 		# Loop through the assets in the release, adding them to the file list
 		ForEach ($Asset in $Release.assets) {
 			If ($Asset.name -eq "Multi.txt") {
@@ -72,7 +76,11 @@ ForEach ($Release in $MultiReleases) {
 			} Else {
 				$FileTable += "				<tr><td><a href=""$($Asset.browser_download_url)"">$($Asset.name)</a></td><td>$([math]::Round($Asset.size / 1024))KB</td><td>$($Asset.download_count)</td></tr>`n"
 			}
+			$TotalDownloads += $Asset.download_count
 		}
+		
+		$ReleaseInfo += "						<i id=""release_$ReleaseTag"" style=""display: none;"" class=""fp-question-circle"" tabindex=""0"" data-trigger=""focus"" data-container=""body"" data-toggle=""popover"" data-placement=""right"" title=""Firmware Version"" data-content=""<table width=250px><tr><td><b>Version:</b></td><td>$ReleaseTag</td></tr><tr><td><b>Release Date:</b></td><td>$(Get-Date($Release.published_at) -Format D)</td></tr><tr><td><b>Downloads:</b></td><td>$TotalDownloads</td></tr><tr><td><b>Release Notes:</b></td><td><a href=https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/tag/$ReleaseTag target=_new>Link</a></td></tr></table>""></i>`n"
+		
 	}
 }
 
@@ -90,6 +98,7 @@ If ($Null -eq $Page) {
 # Replace the placeholders in the template
 $Page = ($Page | Out-String).Replace("%%filetable%%", $FileTable)
 $Page = ($Page | Out-String).Replace("%%releaseselector%%", $ReleaseSelector)
+$Page = ($Page | Out-String).Replace("%%releaseinfo%%", $ReleaseInfo)
 $Page = ($Page | Out-String).Replace("%%lastupdatestamp%%", (Get-Date -format f))
 
 # Write the new file

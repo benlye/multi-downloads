@@ -64,6 +64,17 @@ function myFunction() {
         document.getElementById("moduleLinkUrlDisplay").innerHTML = null;
         document.getElementById("modulelink").hidden = true;
     }
+	
+	var x = document.getElementById("firmwareVersion");
+    var i;
+    for (i = 0; i < x.length; i++) {
+        release = x.options[i].value;
+		releaseInfoLink = document.getElementById("release_" + release);
+		releaseInfoLink.style.display = "none";
+    }
+	
+	releaseInfoLink = document.getElementById("release_" + firmwareVersion);
+	releaseInfoLink.style.display = "";
 }
 
 function moduleSelect() {
