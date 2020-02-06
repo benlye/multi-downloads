@@ -10,6 +10,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      LANG: en_US.utf8
     steps:
       - name: Checkout master branch
         uses: actions/checkout@master
