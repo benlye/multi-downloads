@@ -79,7 +79,7 @@ ForEach ($Release in $MultiReleases) {
 			$TotalDownloads += $Asset.download_count
 		}
 		
-		$ReleaseInfo += "						<i id=""release_$ReleaseTag"" style=""display: none;"" class=""fp-question-circle"" tabindex=""0"" data-trigger=""focus"" data-container=""body"" data-toggle=""popover"" data-placement=""right"" title=""Firmware Version"" data-content=""<table width=250px><tr><td><b>Version:</b></td><td>$ReleaseTag</td></tr><tr><td><b>Release Date:</b></td><td>$(Get-Date($Release.published_at) -Format D)</td></tr><tr><td><b>Downloads:</b></td><td>$TotalDownloads</td></tr><tr><td><b>Release Notes:</b></td><td><a href=https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/tag/$ReleaseTag target=_new>Link</a></td></tr></table>""></i>`n"
+		$ReleaseInfo += "						<i id=""release_$ReleaseTag"" style=""display: none;"" class=""fp-question-circle"" tabindex=""0"" data-trigger=""focus"" data-container=""body"" data-toggle=""popover"" data-placement=""right"" title=""Firmware Version"" data-content=""<table width=250px><tr><td><b>Version:</b></td><td>$ReleaseTag</td></tr><tr><td><b>Release Date:</b></td><td>$(Get-Date($Release.published_at) -uFormat '%d %B %Y')</td></tr><tr><td><b>Downloads:</b></td><td>$('{0:N0}' -f $TotalDownloads)</td></tr><tr><td><b>Release Notes:</b></td><td><a href=https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/tag/$ReleaseTag target=_new>Link</a></td></tr></table>""></i>`n"
 		
 	}
 }
