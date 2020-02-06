@@ -74,7 +74,7 @@ ForEach ($Release in $MultiReleases) {
 			If ($Asset.name -eq "Multi.txt") {
 				$FileTable += "				<tr><td><a href=""$($Asset.browser_download_url)"">$($Asset.name) (v$ReleaseTag)</a></td><td>$([math]::Round($Asset.size / 1024))KB</td><td>$($Asset.download_count)</td></tr>`n"
 			} Else {
-				$FileTable += "				<tr><td><a href=""$($Asset.browser_download_url)"">$($Asset.name)</a></td><td>$([math]::Round($Asset.size / 1024))KB</td><td>$($Asset.download_count)</td></tr>`n"
+				$FileTable += "				<tr><td><a href=""$($Asset.browser_download_url)"">$($Asset.name)</a></td><td>$([math]::Round($Asset.size / 1024))KB</td><td>$('{0:N0}' -f $Asset.download_count)</td></tr>`n"
 			}
 			$TotalDownloads += $Asset.download_count
 		}
