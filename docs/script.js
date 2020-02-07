@@ -45,13 +45,13 @@ function myFunction() {
             if ((txtValue.toLowerCase().indexOf("debug") > -1 && includeDebug == false)) {
                 tr[i].style.display = "none";
             }
-			
-			// Show the Multi.txt file
+
+            // Show the Multi.txt file
             if ((txtValue.toLowerCase().indexOf("multi.txt") > -1 && txtValue.toUpperCase().indexOf(firmwareVersion) > -1 && includeMultiTxt == true)) {
-				tr[i].style.display = "";
-			} else if (txtValue.toLowerCase().indexOf("multi.txt") > -1) {
-				tr[i].style.display = "none";
-			}
+                tr[i].style.display = "";
+            } else if (txtValue.toLowerCase().indexOf("multi.txt") > -1) {
+                tr[i].style.display = "none";
+            }
         }
     }
 
@@ -64,25 +64,25 @@ function myFunction() {
         document.getElementById("moduleLinkUrlDisplay").innerHTML = null;
         document.getElementById("modulelink").hidden = true;
     }
-	
-	var x = document.getElementById("firmwareVersion");
+
+    var x = document.getElementById("firmwareVersion");
     var i;
     for (i = 0; i < x.length; i++) {
         release = x.options[i].value;
-		releaseInfoLink = document.getElementById("release_" + release);
-		releaseInfoLink.style.display = "none";
+        releaseInfoLink = document.getElementById("release_" + release);
+        releaseInfoLink.style.display = "none";
     }
-	
-	releaseInfoLink = document.getElementById("release_" + firmwareVersion);
-	releaseInfoLink.style.display = "";
+
+    releaseInfoLink = document.getElementById("release_" + firmwareVersion);
+    releaseInfoLink.style.display = "";
 }
 
 function moduleSelect() {
     selectedModule = document.getElementById("multiModuleSelect").value.toLowerCase();
-    switch(selectedModule) {
+    switch (selectedModule) {
         case "bg-avr":
         case "diy-avr":
-			$('#moduleType').val('-avr-').trigger('change');
+            $('#moduleType').val('-avr-').trigger('change');
             document.getElementById("radioType").value = "";
             document.getElementById("telemetryInversion").value = "-inv-";
             break;
@@ -91,32 +91,32 @@ function moduleSelect() {
         case "hp4in1":
         case "irangex":
         case "jp4in1":
-		case "uruav-tmx5":
+        case "uruav-tmx5":
         case "vantac-mpm":
             $('#moduleType').val('-stm-').trigger('change');
-			$('#radioType').val(null).trigger('change');
-			$('#telemetryInversion').val('-inv-').trigger('change');
+            $('#radioType').val(null).trigger('change');
+            $('#telemetryInversion').val('-inv-').trigger('change');
             break;
         case "jp-t16ext":
             $('#moduleType').val('-stm-').trigger('change');
-			$('#radioType').val('-opentx-').trigger('change');
-			$('#telemetryInversion').val('-inv-').trigger('change');
+            $('#radioType').val('-opentx-').trigger('change');
+            $('#telemetryInversion').val('-inv-').trigger('change');
             break;
         case "jp-t16int":
-		case "rmtx16s":
+        case "rmtx16s":
             $('#moduleType').val('-stm-').trigger('change');
-			$('#radioType').val('-opentx-').trigger('change');
-			$('#telemetryInversion').val('-noinv-').trigger('change');
+            $('#radioType').val('-opentx-').trigger('change');
+            $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
         case "orangerx":
             $('#moduleType').val('-orangerx-').trigger('change');
-			$('#radioType').val(null).trigger('change');
-			$('#telemetryInversion').val(null).trigger('change');
+            $('#radioType').val(null).trigger('change');
+            $('#telemetryInversion').val(null).trigger('change');
             break;
         default:
-			$('#moduleType').val(null).trigger('change');
-			$('#radioType').val(null).trigger('change');
-			$('#telemetryInversion').val(null).trigger('change');
+            $('#moduleType').val(null).trigger('change');
+            $('#radioType').val(null).trigger('change');
+            $('#telemetryInversion').val(null).trigger('change');
             break;
     }
 
@@ -124,52 +124,52 @@ function moduleSelect() {
 }
 
 function formReset() {
-    setTimeout(function () {
+    setTimeout(function() {
         myFunction();
         $('#multiModuleSelect').val(null).trigger('change');
-		$('#moduleType').val(null).trigger('change');
-		$('#radioType').val(null).trigger('change');
-		$('#channelOrder').val(null).trigger('change');
-		$('#telemetryInversion').val(null).trigger('change');
-		$("#firmwareVersion").prop("selectedIndex", 0).val(); 
-		$('#firmwareVersion').trigger('change');
-    }, 100); 
+        $('#moduleType').val(null).trigger('change');
+        $('#radioType').val(null).trigger('change');
+        $('#channelOrder').val(null).trigger('change');
+        $('#telemetryInversion').val(null).trigger('change');
+        $("#firmwareVersion").prop("selectedIndex", 0).val();
+        $('#firmwareVersion').trigger('change');
+    }, 100);
 }
 
 function openReleaseNotes() {
     firmwareVersion = document.getElementById("firmwareVersion").value.toLowerCase();
     url = 'https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/tag/' + firmwareVersion;
-    window.open(url,'_new');
+    window.open(url, '_new');
 }
 
 function copyToClipboard(elementId) {
 
     // Create an auxiliary hidden input
     var aux = document.createElement("input");
-  
+
     // Get the text from the element passed into the input
     aux.setAttribute("value", document.getElementById(elementId).innerHTML);
-  
+
     // Append the aux input to the body
     document.body.appendChild(aux);
-  
+
     // Highlight the content
     aux.select();
-  
+
     // Execute the copy command
     document.execCommand("copy");
-  
+
     // Remove the input from the body
     document.body.removeChild(aux);
-  
-  }
-  
-$(document).ready(function(){
+
+}
+
+$(document).ready(function() {
     $("[data-toggle=popover]").popover({
-        html: true, 
+        html: true,
         content: function() {
             return $('#popover-content').html();
-            }
+        }
     });
 
     $(".js-example-basic-single").select2({
@@ -177,18 +177,18 @@ $(document).ready(function(){
         allowClear: true
     });
 
-	$(".js-example-basic-hide-search").select2({
-		placeholder: "Show all",
+    $(".js-example-basic-hide-search").select2({
+        placeholder: "Show all",
         allowClear: true,
-		minimumResultsForSearch: Infinity
-	});
-	
-	$(".js-example-basic-hide-search-no-clear").select2({
-		minimumResultsForSearch: Infinity
-	});
+        minimumResultsForSearch: Infinity
+    });
+
+    $(".js-example-basic-hide-search-no-clear").select2({
+        minimumResultsForSearch: Infinity
+    });
 
 });
 
 $('.popover-dismiss').popover({
-trigger: 'focus'
+    trigger: 'focus'
 })
