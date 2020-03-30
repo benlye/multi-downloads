@@ -33,6 +33,12 @@ h2 {
     line-height: 1.5 !important;
 }
 
+.modal-title {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    line-height: 1.5 !important;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -70,6 +76,7 @@ h2 {
 
 #filterTable {
     border-collapse: collapse;
+    width: 100%;
     font-size: 16px;
 }
 
@@ -149,4 +156,37 @@ select {
     font-size: 14px;
     text-decoration: inherit;
     cursor: pointer;
+}
+
+.fp-warning-triangle:before {
+    color: #000;
+    content: '\f071';
+    /* replace / with \ */
+    font-family: "Font Awesome 5 Free";
+    /* here is the correct font-family */
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    text-decoration: inherit;
+    cursor: pointer;
+}
+
+.col1 {
+    width: 35%;
+}
+
+.col2 {
+    width: 50%
+}
+
+.col3 {
+    width: 20%
+}
+
+.filterselect {
+    width: 100%;
+}
+
+.select2-container--default .select2-results__option[aria-disabled=true] {
+    display: none;
 }

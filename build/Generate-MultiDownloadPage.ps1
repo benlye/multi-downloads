@@ -19,7 +19,7 @@ If ($Null -eq $MultiReleases -or $MultiReleases.Count -eq 0) {
 }
 
 # Filter to just recent releases and exclude pre-releases
-$MultiReleases = $MultiReleases | ? { (Get-Date ($_.created_at)) -ge (get-date 2019-10-01) -and $_.prerelease -eq $False}
+$MultiReleases = $MultiReleases | ? { (Get-Date ($_.created_at)) -ge (get-date 2019-10-01)}
 
 # Get the last release tag on GitHub
 $LastReleaseTag = $MultiReleases[0].tag_name
@@ -61,10 +61,19 @@ ForEach ($Release in $MultiReleases) {
 
 		# Write the option to the release selector array
 		If ($IsLatestRelease) {
-			$ReleaseSelector += "									<option value=""$ReleaseTag"">$ReleaseTag (Latest)</option>"
-			$IsLatestRelease = $False
+			If ($Release.prerelease -eq $False) {
+				$ReleaseSelector += "									<option class=""optLatestStable"" value=""$ReleaseTag"">$ReleaseTag (Latest stable)</option>"
+				$IsLatestRelease = $False
+			} else {
+				$ReleaseSelector += "									<option class=""optPreRelease"" value=""$ReleaseTag"" disabled>$ReleaseTag (Pre-release)</option>"
+			}
+			
 		} Else {
-			$ReleaseSelector += "									<option value=""$ReleaseTag"">$ReleaseTag</option>"
+			If ($Release.prerelease -eq $False) {
+				$ReleaseSelector += "									<option value=""$ReleaseTag"">$ReleaseTag</option>"
+			} else {
+				$ReleaseSelector += "									<option class=""optPreRelease"" value=""$ReleaseTag"" disabled>$ReleaseTag (Pre-release)</option>"
+			}
 		}
 		
 		$TotalDownloads = 0

@@ -77,6 +77,27 @@ function myFunction() {
     releaseInfoLink.style.display = "";
 }
 
+function togglePreRelease(){
+
+    if (document.getElementById('includePreReleaseYes').checked) {
+        includePreRelease = true;
+    } else {
+        includePreRelease = false;
+    }
+
+    $("option.optPreRelease").each(function (i) {
+        this.disabled = !includePreRelease;
+    });
+
+    $('#firmwareVersion').children('option:enabled').eq(0).prop('selected',true);
+    $('#firmwareVersion').trigger('change');
+
+    if (includePreRelease) {
+        $('#exampleModalCenter').modal();
+    }
+
+}
+
 function moduleSelect() {
     selectedModule = document.getElementById("multiModuleSelect").value.toLowerCase();
     switch (selectedModule) {
@@ -126,6 +147,7 @@ function moduleSelect() {
 function formReset() {
     setTimeout(function() {
         myFunction();
+        
         $('#multiModuleSelect').val(null).trigger('change');
         $('#moduleType').val(null).trigger('change');
         $('#radioType').val(null).trigger('change');
@@ -133,6 +155,7 @@ function formReset() {
         $('#telemetryInversion').val(null).trigger('change');
         $("#firmwareVersion").prop("selectedIndex", 0).val();
         $('#firmwareVersion').trigger('change');
+        togglePreRelease();
     }, 100);
 }
 

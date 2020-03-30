@@ -104,11 +104,11 @@
 				<form onreset="formReset()">
 					<table id="filterTable">
 						<tr>
-							<td style="width:40%;">
+							<td class="col1">
 								<b>Module Type:</b>
 							</td>
-							<td style="width:40%;">
-								<select class="js-example-basic-hide-search" id="moduleType" name="module_type"
+							<td class="col2">
+								<select class="js-example-basic-hide-search filterselect" id="moduleType" name="module_type"
 									onchange="myFunction()">
 									<option></option>
 									<option value="-stm-">STM32</option>
@@ -116,18 +116,18 @@
 									<option value="-orangerx-">OrangeRX</option>
 								</select>
 							</td>
-							<td style="width:20%;">
+							<td class="col3">
 								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
 									data-toggle="popover" data-placement="right" title="MULTI-Module Type"
 									data-content="Select the MCU (processor) type. If you're not sure which one you have, it is probably STM32."></i>
 							</td>
 						</tr>
 						<tr>
-							<td style="width:40%;">
+							<td class="col1">
 								<b>Radio Type:</b>
 							</td>
-							<td style="width:40%;">
-								<select class="js-example-basic-hide-search" id="radioType" name="radio_type"
+							<td class="col2">
+								<select class="js-example-basic-hide-search filterselect" id="radioType" name="radio_type"
 									onchange="myFunction()">
 									<option></option>
 									<option value="-erskytx-">er9x</option>
@@ -136,18 +136,18 @@
 									<option value="-ppm-">PPM</option>
 								</select>
 							</td>
-							<td style="width:20%;">
+							<td class="col3">
 								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
 									data-toggle="popover" data-placement="right" title="Radio Type"
 									data-content="Determines the format which the MULTI-Module sends status information (telemetry) to the radio. PPM radios do not support telemetry"></i>
 							</td>
 						</tr>
 						<tr>
-							<td style="width:40%;">
+							<td class="col1">
 								<b>Channel Order:</b>
 							</td>
-							<td style="width:40%;">
-								<select class="js-example-basic-hide-search" id="channelOrder" name="channel_order"
+							<td class="col2">
+								<select class="js-example-basic-hide-search filterselect" id="channelOrder" name="channel_order"
 									onchange="myFunction()">
 									<option></option>
 									<option value="-aetr-">AETR</option>
@@ -155,66 +155,82 @@
 									<option value="-reta-">RETA</option>
 								</select>
 							</td>
-							<td style="width:20%;">
+							<td class="col3">
 								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
 									data-toggle="popover" data-placement="right" title="Channel Order"
 									data-content="<p>Determines the Expected Channel Order for the MULTI-Module.  The default is <b>AETR</b>.</p><p>See the <a target=_new href=https://www.multi-module.org/using-the-module/channel-order>Channel Order</a> documentation for more details.</p>"></i>
 							</td>
 						</tr>
 						<tr>
-							<td style="width:40%;">
+							<td class="col1">
 								<b>Telemetry Inversion:</b>
 							</td>
-							<td style="width:40%;">
-								<select class="js-example-basic-hide-search" id="telemetryInversion"
+							<td class="col2">
+								<select class="js-example-basic-hide-search filterselect" id="telemetryInversion"
 									name="telemetry_inversion" onchange="myFunction()">
 									<option></option>
 									<option value="-inv-">Inverted</option>
 									<option value="-noinv-">Not Inverted</option>
 								</select>
 							</td>
-							<td style="width:20%;">
+							<td class="col3">
 								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
 									data-toggle="popover" data-placement="right" title="Telemetry Inversion"
 									data-content="Choose <b>Inverted</b> for external modules or <b>Not Inverted</b> for internal modules."></i>
 							</td>
 						</tr>
 						<tr>
-							<td style="width:40%;">
+							<td class="col1">
 								<b>Firmware Version:</b>
 							</td>
-							<td style="width:40%;">
-								<select class="js-example-basic-hide-search-no-clear" id="firmwareVersion"
+							<td class="col2">
+								<select class="js-example-basic-hide-search-no-clear filterselect" id="firmwareVersion"
 									name="firmware_version" onchange="myFunction()">
 									%%releaseselector%%
 								</select>
 							</td>
-							<td style="width:20%;">
+							<td class="col3">
 								%%releaseinfo%%
 							</td>
 						</tr>
 						<tr>
-							<td style="width:40%;">
-								<b>Include Debug Builds:</b>
+							<td class="col1">
+								<b>Show Pre-releases:</b>
 							</td>
-							<td style="width:40%;">
+							<td class="col2">
+								<input type="radio" value="debug-" id="includePreReleaseYes" name="include_prerelease"
+									onchange="togglePreRelease()"> Yes &nbsp;&nbsp;&nbsp;
+								<input type="radio" value="" id="includePreReleaseNo" name="include_prerelease"
+									onchange="togglePreRelease()" checked> No
+							</td>
+							<td class="col3">
+								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
+									data-toggle="popover" data-placement="right" title="Pre-Release Builds"
+									data-content="Pre-release builds are made available for testing new features or changes before the build is offically released.<br><br>They should be used with caution, and any feedback (good or bad) given to the developers."></i>
+							</td>
+						</tr>
+						<tr>
+							<td class="col1">
+								<b>Show Debug Builds:</b>
+							</td>
+							<td class="col2">
 								<input type="radio" value="debug-" id="includeDebugYes" name="include_debug"
 									onchange="myFunction()"> Yes &nbsp;&nbsp;&nbsp;
 								<input type="radio" value="" id="includeDebugNo" name="include_debug"
 									onchange="myFunction()" checked> No
 							</td>
-							<td style="width:20%;">
+							<td class="col3">
 								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
 									data-toggle="popover" data-placement="right" title="Debug Builds"
 									data-content="Debug builds are only available for STM32 modules. They can be used for serial debugging, or XN297L protocol dumping."></i>
 							</td>
 						</tr>
 						<tr>
-							<td colspan=2 style="width:40%; text-align:right">
+							<td colspan=2 style="width:80%; text-align:right">
 								<input class="btn btn-outline-primary btn-sm" type="reset" value="Reset"
 									onclick="this.blur();">
 							</td>
-							<td style="width:20%;">
+							<td class="col3">
 							</td>
 						</tr>
 					</table>
@@ -238,6 +254,29 @@
 		</div>
 
 	</div> <!-- Top-level container -->
+
+	<!-- Modal -->
+	<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h2 class="modal-title" id="exampleModalLongTitle"><i class="fp-warning-triangle"></i> WARNING</h2>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+				<p>Pre-release builds are intended for testing and validation of changes or new features.</p>
+				<p>It is extremely important that you read the release notes for the build you are testing.</p>
+				<p>If you choose to test a pre-release build, please give feedback to the MULTI-Module developers.</p>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
+
 	<footer class="footer">
 		<div class="container">
 			<span style="color: rgba(0,0,0,.5);"><b>Powered by GitHub Pages | Copyright &copy; 2020</b></span>
