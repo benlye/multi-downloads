@@ -198,10 +198,16 @@
 								<b>Show Pre-releases:</b>
 							</td>
 							<td class="col2">
+								<!--
 								<input type="radio" value="debug-" id="includePreReleaseYes" name="include_prerelease"
 									onchange="togglePreRelease()"> Yes &nbsp;&nbsp;&nbsp;
 								<input type="radio" value="" id="includePreReleaseNo" name="include_prerelease"
 									onchange="togglePreRelease()" checked> No
+								-->
+								<label class="switch">
+									<input type="checkbox" id="includePreReleaseYes" name="include_prerelease" onchange="togglePreRelease()">
+									<span class="slider round"></span>
+								</label>
 							</td>
 							<td class="col3">
 								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
@@ -214,10 +220,16 @@
 								<b>Show Debug Builds:</b>
 							</td>
 							<td class="col2">
+								<!--
 								<input type="radio" value="debug-" id="includeDebugYes" name="include_debug"
 									onchange="myFunction()"> Yes &nbsp;&nbsp;&nbsp;
 								<input type="radio" value="" id="includeDebugNo" name="include_debug"
 									onchange="myFunction()" checked> No
+								-->
+								<label class="switch">
+									<input type="checkbox" id="includeDebugYes" name="include_debug" onchange="myFunction()">
+									<span class="slider round"></span>
+								</label>
 							</td>
 							<td class="col3">
 								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
