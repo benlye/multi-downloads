@@ -6,6 +6,7 @@ function bodyLoad() {
         // alert(parts[1]);
         $('#multiModuleSelect').val(parts[1]).trigger('change');
     }
+    var preReleaseWarningShown = false;
 }
 
 function myFunction() {
@@ -92,8 +93,9 @@ function togglePreRelease(){
     $('#firmwareVersion').children('option:enabled').eq(0).prop('selected',true);
     $('#firmwareVersion').trigger('change');
 
-    if (includePreRelease) {
+    if (includePreRelease &! this.preReleaseWarningShown) {
         $('#exampleModalCenter').modal();
+        this.preReleaseWarningShown = true;
     }
 
 }
@@ -132,6 +134,11 @@ function moduleSelect() {
         case "orangerx":
             $('#moduleType').val('-orangerx-').trigger('change');
             $('#radioType').val(null).trigger('change');
+            $('#telemetryInversion').val(null).trigger('change');
+            break;
+        case "jp-t18int":
+            $('#moduleType').val('-t18int-').trigger('change');
+            $('#radioType').val('-opentx-').trigger('change');
             $('#telemetryInversion').val(null).trigger('change');
             break;
         default:
