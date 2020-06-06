@@ -139,7 +139,7 @@ function moduleSelect() {
         case "jp-t18int":
             $('#moduleType').val('-t18int-').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
-            $('#telemetryInversion').val(null).trigger('change');
+            $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
         default:
             $('#moduleType').val(null).trigger('change');
