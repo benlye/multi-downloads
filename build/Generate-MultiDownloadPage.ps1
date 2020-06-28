@@ -80,7 +80,7 @@ ForEach ($Release in $MultiReleases) {
 		
 		# Loop through the assets in the release, adding them to the file list
 		ForEach ($Asset in $Release.assets) {
-			If ($Asset.name -eq "Multi.txt") {
+			If ($Asset.name -eq "Multi.txt" -or $Asset.name -eq "MultiLuaScripts.zip") {
 				$FileTable += "					<tr><td><a href=""$($Asset.browser_download_url)"">$($Asset.name) (v$ReleaseTag)</a></td><td>$([math]::Round($Asset.size / 1024))KB</td><td>$($Asset.download_count)</td></tr>"
 			} Else {
 				$FileTable += "					<tr><td><a href=""$($Asset.browser_download_url)"">$($Asset.name)</a></td><td>$([math]::Round($Asset.size / 1024))KB</td><td>$('{0:N0}' -f $Asset.download_count)</td></tr>"

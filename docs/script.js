@@ -29,6 +29,12 @@ function myFunction() {
         includeMultiTxt = true;
     }
 
+    if (radioType == "" || radioType == "-OPENTX-") {
+        includeLuaZip = true;
+    } else {
+        includeLuaZip = false;
+    }
+
     table = document.getElementById("fileTable");
     tr = table.getElementsByTagName("tr");
 
@@ -51,6 +57,13 @@ function myFunction() {
             if ((txtValue.toLowerCase().indexOf("multi.txt") > -1 && txtValue.toUpperCase().indexOf(firmwareVersion) > -1 && includeMultiTxt == true)) {
                 tr[i].style.display = "";
             } else if (txtValue.toLowerCase().indexOf("multi.txt") > -1) {
+                tr[i].style.display = "none";
+            }
+
+            // Show the Lua script zip file
+            if ((txtValue.toLowerCase().indexOf("multiluascripts.zip") > -1 && txtValue.toUpperCase().indexOf(firmwareVersion) > -1 && includeLuaZip == true)) {
+                tr[i].style.display = "";
+            } else if (txtValue.toLowerCase().indexOf("multiluascripts.zip") > -1) {
                 tr[i].style.display = "none";
             }
         }
