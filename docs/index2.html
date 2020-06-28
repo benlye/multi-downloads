@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MULTI-Module Firmware Downloads</title>
+	<meta name="description"
+		content="MULTI-Module firmware downloads. Download firmware for your multiprotocol TX module here.">
+	<meta name="keywords"
+		content="MULTI-Module,Multiprotocol,Firmware,Download,TX Module,Multiprotocol TX Module,Multimodule,4in1,Multi 4in1,MULTI-4IN1,JP4IN1,IRX,IRX+,IRX plus">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+		integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+	<link rel="stylesheet" href="./styles.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157023843-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'UA-157023843-1');
+	</script>
+</head>
+
+<body onload="bodyLoad()">
+	<!-- Bootstrap navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand mx-auto" href="/">
+			<img src="multi.png" height="50" class="d-inline-block align-top" alt="MULTI Logo">
+		</a>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-link" href="https://www.multi-module.org">Documentation</a>
+				<a class="nav-link" href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module">Github</a>
+				<a class="nav-link"
+					href="https://www.rcgroups.com/forums/showthread.php?2165676-DIY-Multiprotocol-TX-Module">Forum</a>
+				<a class="nav-link"
+					href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VF2K9T23DRY56&lc=US&item_name=DIY%20Multiprotocol&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted">Donate</a>
+			</div>
+		</div>
+	</nav>
+	<!-- Bootstrap navbar -->
+	<div class="container-fluid">
+		<!-- Top-level container -->
+		<div class="row" style="width:100%">
+			<div class="col-md">
+				<h1>MULTI-Module Firmware Downloads</h1>
+				<p style="padding-top: 10px;">This page provides an easy way to download the latest firmware file for
+					your MULTI-Module, or MULTI-Module equipped radio.
+					By default the latest firmware is shown, with older releases available using the drop-down Firmware
+					Version selector</p>
+				<p>Once you have downloaded the firmware file for your module or radio, please refer to the
+					<a href="https://www.multi-module.org/using-the-module/firmware-updates">MULTI-Module
+						documentation</a> for further instructions on updating the firmware.</p>
+				<hr class="hr-thick">
+			</div> <!-- Column -->
+		</div> <!-- Row -->
+		<div class="row" style="width:100%">
+			<div class="col-md" style="padding-right:0px; margin-right: 10px; border-right: 1px solid #f1f1f1;">
+				<h2>MULTI-Module Selection</h2>
+				<p>Select a specific MULTI-Module to load a set of default firmware file filters. Change the filters to
+					refine (or expand) the list of files.</p>
+				<select class="js-example-basic-single" id="multiModuleSelect" name="multiModuleSelect"
+					style="width:80%" onchange="moduleSelect()">
+					<option></option>
+					<option value="bg-avr">Banggood Atmega328p (AVR)</option>
+					<option value="bg-stm32">Banggood STM32</option>
+					<option value="diy-avr">DIY Atmega328p (AVR)</option>
+					<option value="diy-stm32">DIY STM32</option>
+					<option value="hp4in1">Hobby Porter JP4IN1</option>
+					<option value="irangex">iRangeX IRX4 / IRX4+ / IRX4 Lite</option>
+					<option value="jp4in1">Jumper JP4IN1 / JP4IN-SE</option>
+					<option value="jp-t16ext">Jumper T16 External Module (JP4IN-SE)</option>
+					<option value="jp-t16int">Jumper T16 Pro Internal Module</option>
+					<option value="jp-t18int">Jumper T18 Internal 5-in-1 Module</option>
+					<option value="orangerx">OrangeRX</option>
+					<option value="rmtx16s">RadioMaster TX16S Internal Module</option>
+					<option value="uruav-tmx5">URUAV TMX5 / TMX5 Lite</option>
+					<option value="vantac-mpm">Vantac MPM / MPM Lite</option>
+				</select>
+				<br><br>
+				<div id="modulelink" hidden>
+					<table id="linkTable" class="modulelink">
+						<tr>
+							<td style="background-color: #f1f1f1;"><b>Link:</b></td>
+							<td width=100%><span id=moduleLinkUrlDisplay></span></td>
+							<td style="background-color: #f1f1f1; text-align: right;"><i class="fp-copy-paste"
+									title="Copy to clipboard" onclick="copyToClipboard('moduleLinkUrlDisplay');"></td>
+						</tr>
+					</table>
+					<br>
+				</div>
+			</div>
+			<div class="col-md">
+				<h2>File Filters</h2>
+				<p>Use the filters to show firmware files matcing specific criteria.</p>
+				<form onreset="formReset()">
+					<table id="filterTable">
+						<tr>
+							<td class="col1">
+								<b>Module Type:</b>
+							</td>
+							<td class="col2">
+								<select class="js-example-basic-hide-search filterselect" id="moduleType" name="module_type"
+									onchange="myFunction()">
+									<option></option>
+									<option value="-stm-">STM32</option>
+									<option value="-avr-">Atmega328p</option>
+									<option value="-orangerx-">OrangeRX</option>
+									<option value="-t18int-">Jumper T18 5in1</option>
+								</select>
+							</td>
+							<td class="col3">
+								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
+									data-toggle="popover" data-placement="right" title="MULTI-Module Type"
+									data-content="Select the MCU (processor) type. If you're not sure which one you have, it is probably STM32."></i>
+							</td>
+						</tr>
+						<tr>
+							<td class="col1">
+								<b>Radio Type:</b>
+							</td>
+							<td class="col2">
+								<select class="js-example-basic-hide-search filterselect" id="radioType" name="radio_type"
+									onchange="myFunction()">
+									<option></option>
+									<option value="-erskytx-">er9x</option>
+									<option value="-erskytx-">erSkyTX</option>
+									<option value="-opentx-">OpenTX</option>
+									<option value="-ppm-">PPM</option>
+								</select>
+							</td>
+							<td class="col3">
+								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
+									data-toggle="popover" data-placement="right" title="Radio Type"
+									data-content="Determines the format which the MULTI-Module sends status information (telemetry) to the radio. PPM radios do not support telemetry"></i>
+							</td>
+						</tr>
+						<tr>
+							<td class="col1">
+								<b>Channel Order:</b>
+							</td>
+							<td class="col2">
+								<select class="js-example-basic-hide-search filterselect" id="channelOrder" name="channel_order"
+									onchange="myFunction()">
+									<option></option>
+									<option value="-aetr-">AETR</option>
+									<option value="-taer-">TAER</option>
+									<option value="-reta-">RETA</option>
+								</select>
+							</td>
+							<td class="col3">
+								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
+									data-toggle="popover" data-placement="right" title="Channel Order"
+									data-content="<p>Determines the Expected Channel Order for the MULTI-Module.  The default is <b>AETR</b>.</p><p>See the <a target=_new href=https://www.multi-module.org/using-the-module/channel-order>Channel Order</a> documentation for more details.</p>"></i>
+							</td>
+						</tr>
+						<tr>
+							<td class="col1">
+								<b>Telemetry Inversion:</b>
+							</td>
+							<td class="col2">
+								<select class="js-example-basic-hide-search filterselect" id="telemetryInversion"
+									name="telemetry_inversion" onchange="myFunction()">
+									<option></option>
+									<option value="-inv-">Inverted</option>
+									<option value="-noinv-">Not Inverted</option>
+								</select>
+							</td>
+							<td class="col3">
+								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
+									data-toggle="popover" data-placement="right" title="Telemetry Inversion"
+									data-content="Choose <b>Inverted</b> for external modules or <b>Not Inverted</b> for internal modules."></i>
+							</td>
+						</tr>
+						<tr>
+							<td class="col1">
+								<b>Firmware Version:</b>
+							</td>
+							<td class="col2">
+								<select class="js-example-basic-hide-search-no-clear filterselect" id="firmwareVersion"
+									name="firmware_version" onchange="myFunction()">
+								</select>
+							</td>
+							<td class="col3">
+								<i id="release_info" class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
+									data-toggle="popover" data-placement="right" title="Firmware Version"
+									data-content=""></i>
+							</td>
+						</tr>
+						<tr>
+							<td class="col1">
+								<b>Show Pre-releases:</b>
+							</td>
+							<td class="col2">
+								<label class="switch">
+									<input type="checkbox" id="includePreReleaseYes" name="include_prerelease" onchange="togglePreRelease()">
+									<span class="slider round"></span>
+								</label>
+							</td>
+							<td class="col3">
+								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
+									data-toggle="popover" data-placement="right" title="Pre-Release Builds"
+									data-content="Pre-release builds are made available for testing new features or changes before the build is offically released.<br><br>They should be used with caution, and any feedback (good or bad) given to the developers."></i>
+							</td>
+						</tr>
+						<tr>
+							<td class="col1">
+								<b>Show Debug Builds:</b>
+							</td>
+							<td class="col2">
+								<label class="switch">
+									<input type="checkbox" id="includeDebugYes" name="include_debug" onchange="myFunction()">
+									<span class="slider round"></span>
+								</label>
+							</td>
+							<td class="col3">
+								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
+									data-toggle="popover" data-placement="right" title="Debug Builds"
+									data-content="Debug builds are only available for STM32 modules. They can be used for serial debugging, or XN297L protocol dumping."></i>
+							</td>
+						</tr>
+						<tr>
+							<td colspan=2 style="width:80%; text-align:right">
+								<input class="btn btn-outline-primary btn-sm" type="reset" value="Reset"
+									onclick="this.blur();">
+							</td>
+							<td class="col3">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div> <!-- Column -->
+		</div> <!-- Row -->
+		<div class="row" style="width:100%">
+			<div class="col-md">
+				<hr class="hr-thick">
+			</div> <!-- Column -->
+		</div> <!-- Row -->
+		<div class="row" style="width:100%">
+			<div class="col-md">
+				<table id="fileTable">
+					<tr class="header">
+					<th style="width:60%;">Firmware File</th>
+					<th style="width:20%;">File Size</th>
+					<th style="width:20%;">Download Count</th>
+					</tr>
+				</table>
+			</div> <!-- Column -->
+		</div> <!-- Row -->
+		<div class="row" style="width:100%; padding-top: 20px; font-size: 12px; color: grey; text-align: right;">
+			<div class="col-md" id="lastupdate">
+			</div>
+		</div>
+	</div> <!-- Top-level container -->
+	<!-- Modal -->
+	<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h2 class="modal-title" id="exampleModalLongTitle"><i class="fp-warning-triangle"></i> WARNING</h2>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+				<p>Pre-release builds are intended for testing and validation of changes or new features in the MULTI-Module firmware.</p>
+				<p>It is <b>extremely important</b> that you read the release notes for the build you are testing, and that you fly with caution.</p>
+				<p>If you choose to test a pre-release build, please give feedback to the MULTI-Module developers via the <a href="https://www.rcgroups.com/forums/showthread.php?2165676-DIY-Multiprotocol-TX-Module" target=_new>forum</a>.</p>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<span style="color: rgba(0,0,0,.5);"><b>Powered by GitHub Pages | Copyright &copy; 2020</b></span>
+		</div>
+	</footer>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+	crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+	<script src="./script2.js"></script>
+</body>
+</html>
