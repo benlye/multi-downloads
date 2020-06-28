@@ -3,8 +3,8 @@ function bodyLoad() {
     var url = window.location.toString();
     var parts = url.split("?")
     if (parts.length > 1) {
-        // alert(parts[1]);
-        $('#multiModuleSelect').val(parts[1]).trigger('change');
+        var module = parts[1].split("&")[0];
+        $('#multiModuleSelect').val(module).trigger('change');
     }
     var preReleaseWarningShown = false;
 }
