@@ -138,6 +138,7 @@ function moduleSelect() {
             $('#radioType').val('-opentx-').trigger('change');
             $('#telemetryInversion').val('-inv-').trigger('change');
             break;
+        case "jp-t12pro":
         case "jp-t16int":
         case "rmtx16s":
             $('#moduleType').val('-stm-').trigger('change');
