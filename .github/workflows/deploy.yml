@@ -18,6 +18,9 @@ jobs:
       - name: Generate download page
         run: ./build/Generate-MultiDownloadPage.ps1 -ForceUpdate
         shell: pwsh
+      - name: Generate download page v2
+        run: ./build/Generate-MultiDownloadPageV2.ps1
+        shell: pwsh
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
