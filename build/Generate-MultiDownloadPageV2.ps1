@@ -25,11 +25,11 @@ $ReleaseData | ? {$_.prerelease -eq $True} | % {$_.text = "$($_.text) (Pre-relea
 # Get the asset data
 $AssetData = @()
 ForEach ($Release in $ReleaseData | ? { (Get-Date ($_.created_at)) -ge (get-date 2019-10-01)}) {
-	$ReleaseAssets = $MultiReleases | ? {$_.tag_name -eq $Release.tag_name} | select -ExpandProperty assets | select name, @{label="display_name"; exp={$_.name}}, size, download_count, browser_download_url, @{label="release_version"; exp={$Release.tag_name.replace("v","")}}
+	$ReleaseAssets = $MultiReleases | ? {$_.tag_name -eq $Release.tag_name} | select -ExpandProperty assets | select name, @{label="display_name"; exp={$_.name}}, size, download_count, @{label="url"; exp={$_.browser_download_url}}, @{label="release_version"; exp={$Release.tag_name.replace("v","")}}
 	$Release.download_count = ($ReleaseAssets | select -ExpandProperty download_count | measure -Sum).sum
 	$AssetData += $ReleaseAssets
 }
 $AssetData | ? {$_.name -eq "multi.txt" -or $_.name -eq "MultiLuaScripts.zip"} | % {$_.display_name = "$($_.name) (v$($_.release_version))";}
 
 # Update the data file
-@{"releases"=$ReleaseData; "assets"=$AssetData; "lastUpdate"=$(Get-Date -format f)} | ConvertTo-Json -Depth 3 | Out-File ".\docs\data.json"
+[ordered]@{"assets"=$AssetData; "releases"=$ReleaseData; "lastUpdate"=$(Get-Date -format f)} | ConvertTo-Json -Depth 3 -Compress | Out-File ".\docs\data.json" -Encoding ascii

@@ -1,12 +1,12 @@
+var preReleaseWarningShown = false;
+
 function bodyLoad() {
-    var releases = Array ();
     var url = window.location.toString();
     var parts = url.split("?")
     if (parts.length > 1) {
         var module = parts[1].split("&")[0];
         $('#multiModuleSelect').val(module).trigger('change');
     }
-    var preReleaseWarningShown = false;
 }
 
 function myFunction() {
@@ -214,7 +214,7 @@ function copyToClipboard(elementId) {
 function createAssetTable(data) {
     $.each(data,function(index, item){
         $('<tr>').append(
-            $('<td>').html('<a href="' + item.browser_download_url + '">' + item.display_name + '</a>'),
+            $('<td>').html('<a href="' + item.url + '">' + item.display_name + '</a>'),
             $('<td>').text((item.size/1024).toFixed(0) + "KB"),
             $('<td>').text(item.download_count)
         ).appendTo('#fileTable');
@@ -229,7 +229,6 @@ $(document).ready(function() {
         createAssetTable(assets);
 
         releases = data.releases;
-        //console.log(releases);
 
         $(".js-example-basic-hide-search-no-clear").select2({
             minimumResultsForSearch: Infinity,
