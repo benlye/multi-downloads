@@ -4,12 +4,6 @@
  # and updates the data used to populate the download page.
  #>
 
-# Script parameters
-[cmdletbinding()]
-	param(
-		[switch]$ForceUpdate
-	)
-
 # Get all the releases
 $MultiReleases = Invoke-RestMethod -Method GET -Uri "https://api.github.com/repos/pascallanger/DIY-Multiprotocol-TX-Module/releases"
 
@@ -26,7 +20,7 @@ $ReleaseData = $MultiReleases | ? { (Get-Date ($_.created_at)) -ge (get-date 201
 $ReleaseData | ? {$_.prerelease -eq $False} | select -First 1 | % {$_.latest_stable = $True; $_.text = "$($_.text) (Latest stable)";}
 
 # Tag the pre-releases
-$ReleaseData | ? {$_.prerelease -eq $True} | % {$_.latest_stable = $True; $_.text = "$($_.text) (Pre-release)";}
+$ReleaseData | ? {$_.prerelease -eq $True} | % {$_.text = "$($_.text) (Pre-release)";}
 
 # Get the asset data
 $AssetData = @()
