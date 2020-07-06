@@ -1,5 +1,4 @@
 {
-  "lastUpdate": "Monday, July 6, 2020 7:45 AM",
   "assets": [
     {
       "name": "multi-avr-txflash-aetr-A7105-inv-v1.3.1.36.bin",
@@ -141,7 +140,7 @@
       "name": "multi-stm-opentx-aetr-noinv-v1.3.1.36.bin",
       "display_name": "multi-stm-opentx-aetr-noinv-v1.3.1.36.bin",
       "size": 116444,
-      "download_count": 78,
+      "download_count": 79,
       "browser_download_url": "https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.3.1.36/multi-stm-opentx-aetr-noinv-v1.3.1.36.bin",
       "release_version": "1.3.1.36"
     },
@@ -221,7 +220,7 @@
       "name": "multi-t18int-opentx-aetr-noinv-v1.3.1.36.bin",
       "display_name": "multi-t18int-opentx-aetr-noinv-v1.3.1.36.bin",
       "size": 116028,
-      "download_count": 20,
+      "download_count": 22,
       "browser_download_url": "https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.3.1.36/multi-t18int-opentx-aetr-noinv-v1.3.1.36.bin",
       "release_version": "1.3.1.36"
     },
@@ -253,7 +252,7 @@
       "name": "MultiLuaScripts.zip",
       "display_name": "MultiLuaScripts.zip (v1.3.1.36)",
       "size": 8228,
-      "download_count": 75,
+      "download_count": 77,
       "browser_download_url": "https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/download/v1.3.1.36/MultiLuaScripts.zip",
       "release_version": "1.3.1.36"
     },
@@ -3398,7 +3397,7 @@
       "asset_count": 32,
       "prerelease": false,
       "latest_stable": true,
-      "download_count": 327.0
+      "download_count": 332.0
     },
     {
       "tag_name": "v1.3.1.24",
@@ -3582,5 +3581,6 @@
       "latest_stable": false,
       "download_count": 3892.0
     }
-  ]
+  ],
+  "lastUpdate": "Monday, July 6, 2020 8:06 AM"
 }
