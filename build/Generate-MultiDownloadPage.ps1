@@ -111,18 +111,7 @@ $Page = ($Page | Out-String).Replace("%%releaseinfo%%", ($ReleaseInfo | Out-Stri
 $Page = ($Page | Out-String).Replace("%%lastupdatestamp%%", (Get-Date -format f))
 
 # Write the new file
-$Page | Out-File .\docs\index.html -Encoding ascii
+$Page | Out-File .\docs\index_old.html -Encoding ascii
 
 # Update the last release file
 $MultiReleases[0].tag_name | Out-File .\build\last_release -Encoding ascii
-
-# Update the sitemap
-$SitemapDate = get-date -UFormat "%Y-%m-%d"
-$Sitemap = "<urlset xmlns=""http://www.sitemaps.org/schemas/sitemap/0.9"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"">
-	<url>
-		<loc>https://downloads.multi-module.org/</loc>
-		<lastmod>$SitemapDate</lastmod>
-	</url>
-</urlset>"
-
-$Sitemap | Out-File .\docs\sitemap.xml -Encoding ascii

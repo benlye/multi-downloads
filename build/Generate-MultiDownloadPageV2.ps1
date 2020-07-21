@@ -33,3 +33,14 @@ $AssetData | ? {$_.name -eq "multi.txt" -or $_.name -eq "MultiLuaScripts.zip"} |
 
 # Update the data file
 [ordered]@{"assets"=$AssetData; "releases"=$ReleaseData; "lastUpdate"=$(Get-Date -format f)} | ConvertTo-Json -Depth 3 -Compress | Out-File ".\docs\data.json" -Encoding ascii
+
+# Update the sitemap
+$SitemapDate = get-date -UFormat "%Y-%m-%d"
+$Sitemap = "<urlset xmlns=""http://www.sitemaps.org/schemas/sitemap/0.9"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"">
+	<url>
+		<loc>https://downloads.multi-module.org/</loc>
+		<lastmod>$SitemapDate</lastmod>
+	</url>
+</urlset>"
+
+$Sitemap | Out-File .\docs\sitemap.xml -Encoding ascii
