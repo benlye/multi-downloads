@@ -1,12 +1,12 @@
-var preReleaseWarningShown = false;
-
 function bodyLoad() {
+    myFunction();
     var url = window.location.toString();
     var parts = url.split("?")
     if (parts.length > 1) {
         var module = parts[1].split("&")[0];
         $('#multiModuleSelect').val(module).trigger('change');
     }
+    var preReleaseWarningShown = false;
 }
 
 function myFunction() {
@@ -16,14 +16,6 @@ function myFunction() {
     channelOrder = document.getElementById("channelOrder").value.toUpperCase();
     telemetryInversion = document.getElementById("telemetryInversion").value.toUpperCase();
     firmwareVersion = document.getElementById("firmwareVersion").value.toUpperCase();
-
-    selectedRelease = releases.find(obj => {
-        return obj.id === firmwareVersion
-    });
-
-    var releaseDate = new Date(selectedRelease.created_at);
-    releaseInfo = `<table width=250px><tr><td><b>Version:</b></td><td>${firmwareVersion}</td></tr><tr><td><b>Release Date:</b></td><td>${selectedRelease.created_at}</td></tr><tr><td><b>Downloads:</b></td><td>${selectedRelease.download_count}</td></tr><tr><td><b>Release Notes:</b></td><td><a href=https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/tag/${selectedRelease.tag_name} target=_new>Link</a></td></tr></table>`
-    $("#release_info").attr('data-content', releaseInfo);
 
     if (document.getElementById('includeDebugYes').checked) {
         includeDebug = true;
@@ -91,29 +83,34 @@ function myFunction() {
     var i;
     for (i = 0; i < x.length; i++) {
         release = x.options[i].value;
-        //releaseInfoLink = document.getElementById("release_" + release);
-        //releaseInfoLink.style.display = "none";
+        releaseInfoLink = document.getElementById("release_" + release);
+        releaseInfoLink.style.display = "none";
     }
 
-    //releaseInfoLink = document.getElementById("release_" + firmwareVersion);
-    //releaseInfoLink.style.display = "";
+    releaseInfoLink = document.getElementById("release_" + firmwareVersion);
+    releaseInfoLink.style.display = "";
 }
 
 function togglePreRelease(){
+
     if (document.getElementById('includePreReleaseYes').checked) {
         includePreRelease = true;
-        $("#firmwareVersion").find("option:contains('Pre-release')").removeAttr('disabled');
-        if (! this.preReleaseWarningShown) {
-            $('#exampleModalCenter').modal();
-            this.preReleaseWarningShown = true;
-        }
     } else {
         includePreRelease = false;
-        $("#firmwareVersion").find("option:contains('Pre-release')").attr('disabled', '');
     }
+
+    $("option.optPreRelease").each(function (i) {
+        this.disabled = !includePreRelease;
+    });
 
     $('#firmwareVersion').children('option:enabled').eq(0).prop('selected',true);
     $('#firmwareVersion').trigger('change');
+
+    if (includePreRelease &! this.preReleaseWarningShown) {
+        $('#exampleModalCenter').modal();
+        this.preReleaseWarningShown = true;
+    }
+
 }
 
 function moduleSelect() {
@@ -211,36 +208,7 @@ function copyToClipboard(elementId) {
 
 }
 
-function createAssetTable(data) {
-    $.each(data,function(index, item){
-        $('<tr>').append(
-            $('<td>').html('<a href="' + item.url + '">' + item.display_name + '</a>'),
-            $('<td>').text((item.size/1024).toFixed(0) + "KB"),
-            $('<td>').text(item.download_count)
-        ).appendTo('#fileTable');
-    });
-}
-
 $(document).ready(function() {
-    $.getJSON("data.json", loadData);
-
-    function loadData(data) {
-        assets = data.assets;
-        createAssetTable(assets);
-
-        releases = data.releases;
-
-        $(".js-example-basic-hide-search-no-clear").select2({
-            minimumResultsForSearch: Infinity,
-            data: releases
-        });
-
-        lastUpdated = data.lastUpdate;
-        document.getElementById("lastupdate").innerHTML = `<p>Page updated every four hours. Last updated: ${lastUpdated}</p>`;
-        togglePreRelease()
-        myFunction();
-    }
-
     $("[data-toggle=popover]").popover({
         html: true,
         content: function() {
@@ -258,6 +226,11 @@ $(document).ready(function() {
         allowClear: true,
         minimumResultsForSearch: Infinity
     });
+
+    $(".js-example-basic-hide-search-no-clear").select2({
+        minimumResultsForSearch: Infinity
+    });
+
 });
 
 $('.popover-dismiss').popover({
