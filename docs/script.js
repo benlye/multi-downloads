@@ -148,6 +148,11 @@ function moduleSelect() {
             $('#radioType').val('-opentx-').trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
+        case "rmtx16se":
+            $('#moduleType').val('-cc2500-').trigger('change');
+            $('#radioType').val('-opentx-').trigger('change');
+            $('#telemetryInversion').val('-noinv-').trigger('change');
+            break;
         case "orangerx":
             $('#moduleType').val('-orangerx-').trigger('change');
             $('#radioType').val(null).trigger('change');
@@ -222,6 +227,7 @@ function createAssetTable(data) {
 }
 
 $(document).ready(function() {
+    //$.getJSON("https://downloads.multi-module.org/data.json", loadData);
     $.getJSON("data.json", loadData);
 
     function loadData(data) {

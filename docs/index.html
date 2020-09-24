@@ -67,7 +67,7 @@
 				<p>Select a specific MULTI-Module to load a set of default firmware file filters. Change the filters to
 					refine (or expand) the list of files.</p>
 				<select class="js-example-basic-single" id="multiModuleSelect" name="multiModuleSelect"
-					style="width:80%" onchange="moduleSelect()">
+					style="width:95%" onchange="moduleSelect()">
 					<option></option>
 					<option value="bg-avr">Banggood Atmega328p (AVR)</option>
 					<option value="bg-stm32">Banggood STM32</option>
@@ -76,12 +76,13 @@
 					<option value="hp4in1">Hobby Porter JP4IN1</option>
 					<option value="irangex">iRangeX IRX4 / IRX4+ / IRX4 Lite</option>
 					<option value="jp4in1">Jumper JP4IN1 / JP4IN-SE</option>
-					<option value="jp-t12pro">Jumper T12 Pro Internal Module</option>
+					<option value="jp-t12pro">Jumper T12 Pro Internal 4-in-1 Module</option>
 					<option value="jp-t16ext">Jumper T16 External Module (JP4IN-SE)</option>
-					<option value="jp-t16int">Jumper T16 Pro Internal Module</option>
+					<option value="jp-t16int">Jumper T16 Pro Internal 4-in-1 Module</option>
 					<option value="jp-t18int">Jumper T18 Internal 5-in-1 Module</option>
 					<option value="orangerx">OrangeRX</option>
-					<option value="rmtx16s">RadioMaster TX16S Internal Module</option>
+					<option value="rmtx16s">RadioMaster TX16S Internal 4-in-1 Module</option>
+					<option value="rmtx16se">RadioMaster TX16SE Internal CC2500 Module</option>
 					<option value="vantac-mpm">Vantac MPM / MPM Lite</option>
 				</select>
 				<br><br>
@@ -111,6 +112,7 @@
 									onchange="myFunction()">
 									<option></option>
 									<option value="-stm-">STM32</option>
+									<option value="-cc2500-">STM32 (CC2500 only)</option>
 									<option value="-avr-">Atmega328p</option>
 									<option value="-orangerx-">OrangeRX</option>
 									<option value="-t18int-">Jumper T18 5in1</option>
