@@ -121,7 +121,7 @@ function moduleSelect() {
     switch (selectedModule) {
         case "bg-avr":
         case "diy-avr":
-            $('#moduleType').val('-avr-').trigger('change');
+            $('#moduleType').val('multi-avr-').trigger('change');
             document.getElementById("radioType").value = "";
             document.getElementById("telemetryInversion").value = "-inv-";
             break;
@@ -132,34 +132,34 @@ function moduleSelect() {
         case "jp4in1":
         case "uruav-tmx5":
         case "vantac-mpm":
-            $('#moduleType').val('-stm-').trigger('change');
+            $('#moduleType').val('multi-stm-').trigger('change');
             $('#radioType').val(null).trigger('change');
             $('#telemetryInversion').val('-inv-').trigger('change');
             break;
         case "jp-t16ext":
-            $('#moduleType').val('-stm-').trigger('change');
+            $('#moduleType').val('multi-stm-').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
             $('#telemetryInversion').val('-inv-').trigger('change');
             break;
         case "jp-t12pro":
         case "jp-t16int":
         case "rmtx16s":
-            $('#moduleType').val('-stm-').trigger('change');
+            $('#moduleType').val('multi-stm-').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
         case "rmtx16se":
-            $('#moduleType').val('-cc2500-').trigger('change');
+            $('#moduleType').val('multi-cc2500-').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
         case "orangerx":
-            $('#moduleType').val('-orangerx-').trigger('change');
+            $('#moduleType').val('multi-orangerx-').trigger('change');
             $('#radioType').val(null).trigger('change');
             $('#telemetryInversion').val(null).trigger('change');
             break;
         case "jp-t18int":
-            $('#moduleType').val('-t18int-').trigger('change');
+            $('#moduleType').val('multi-t18int-').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
