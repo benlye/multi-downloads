@@ -15,9 +15,6 @@ jobs:
     steps:
       - name: Checkout master branch
         uses: actions/checkout@master
-      - name: Generate download page
-        run: ./build/Generate-MultiDownloadPage.ps1 -ForceUpdate
-        shell: pwsh
       - name: Generate download page v2
         run: ./build/Generate-MultiDownloadPageV2.ps1
         shell: pwsh
