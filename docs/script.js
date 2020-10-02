@@ -91,12 +91,7 @@ function myFunction() {
     var i;
     for (i = 0; i < x.length; i++) {
         release = x.options[i].value;
-        //releaseInfoLink = document.getElementById("release_" + release);
-        //releaseInfoLink.style.display = "none";
     }
-
-    //releaseInfoLink = document.getElementById("release_" + firmwareVersion);
-    //releaseInfoLink.style.display = "";
 }
 
 function togglePreRelease(){
@@ -227,25 +222,29 @@ function createAssetTable(data) {
 }
 
 $(document).ready(function() {
-    //$.getJSON("https://downloads.multi-module.org/data.json", loadData);
-    $.getJSON("data.json", loadData);
+    var dataUrl = "https://downloads.multi-module.org/data.json";
 
-    function loadData(data) {
-        assets = data.assets;
-        createAssetTable(assets);
-
-        releases = data.releases;
-
-        $(".js-example-basic-hide-search-no-clear").select2({
-            minimumResultsForSearch: Infinity,
-            data: releases
-        });
-
-        lastUpdated = data.lastUpdate;
-        document.getElementById("lastupdate").innerHTML = `<p>Page updated every four hours. Last updated: ${lastUpdated}</p>`;
-        togglePreRelease()
-        myFunction();
-    }
+    $.ajax({
+        url: dataUrl,
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+            assets = data.assets;
+            createAssetTable(assets);
+    
+            releases = data.releases;
+    
+            $(".js-example-basic-hide-search-no-clear").select2({
+                minimumResultsForSearch: Infinity,
+                data: releases
+            });
+    
+            lastUpdated = data.lastUpdate;
+            document.getElementById("lastupdate").innerHTML = `<p>Page updated every four hours. Last updated: ${lastUpdated}</p>`;
+            togglePreRelease()
+            myFunction();
+        }
+      });
 
     $("[data-toggle=popover]").popover({
         html: true,
