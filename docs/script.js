@@ -125,8 +125,6 @@ function moduleSelect() {
         case "hp4in1":
         case "irangex":
         case "jp4in1":
-        case "uruav-tmx5":
-        case "vantac-mpm":
             $('#moduleType').val('multi-stm-').trigger('change');
             $('#radioType').val(null).trigger('change');
             $('#telemetryInversion').val('-inv-').trigger('change');
