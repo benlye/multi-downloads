@@ -26,10 +26,12 @@ function myFunction() {
     var useNewFilters = true;
     if (releaseDate < (new Date(2020, 09, 10))) {
         document.getElementById('oldRadioTypeSelection').style = "";
+        document.getElementById('newRadioTypeSelection').style = "display:none;";
         document.getElementById('telemetrySelection').style = "";
         useNewFilters = false;
     } else {
         document.getElementById('oldRadioTypeSelection').style = "display:none;";
+        document.getElementById('newRadioTypeSelection').style = "display:none;";
         document.getElementById('telemetrySelection').style = "display:none;";
         useNewFilters = true;
     }
@@ -116,6 +118,18 @@ function myFunction() {
             break; 
     }
 
+    if (moduleType == 'atmega-4in1') {
+        document.getElementById('avrWarningMessage').style.display = "";
+    } else {
+        document.getElementById('avrWarningMessage').style.display = "none";
+    }
+
+    if (radioType == '-PPM-') {
+        document.getElementById('ppmWarningMessage').style.display = "";
+    } else {
+        document.getElementById('ppmWarningMessage').style.display = "none";
+    }
+
     table = document.getElementById("fileTable");
     tr = table.getElementsByTagName("tr");
     
@@ -130,8 +144,12 @@ function myFunction() {
             }
 
             // Filter debug builds
-            if ((txtValue.toLowerCase().indexOf("debug") > -1 && includeDebug == false)) {
-                tr[i].style.display = "none";
+            if (txtValue.toLowerCase().indexOf("debug") > -1) {
+                if (txtValue.match(moduleFilterString) && txtValue.toLowerCase().indexOf("debug") > -1 && includeDebug == true && txtValue.toUpperCase().indexOf(firmwareVersion) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
             }
 
             // Show the Multi.txt file
