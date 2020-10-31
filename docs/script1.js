@@ -11,8 +11,10 @@ function bodyLoad() {
 
 function myFunction() {
     var input, filter, table, tr, td, i, txtValue;
-    moduleType = document.getElementById("moduleType").value; //.toUpperCase();
+    moduleType = document.getElementById("moduleType").value.toUpperCase();
+    radioType = document.getElementById("radioType").value.toUpperCase();
     channelOrder = document.getElementById("channelOrder").value.toUpperCase();
+    telemetryInversion = document.getElementById("telemetryInversion").value.toUpperCase();
     firmwareVersion = document.getElementById("firmwareVersion").value.toUpperCase();
 
     selectedRelease = releases.find(obj => {
@@ -23,133 +25,40 @@ function myFunction() {
     releaseInfo = `<table width=250px><tr><td><b>Version:</b></td><td>${firmwareVersion}</td></tr><tr><td><b>Release Date:</b></td><td>${selectedRelease.created_at}</td></tr><tr><td><b>Downloads:</b></td><td>${selectedRelease.download_count}</td></tr><tr><td><b>Release Notes:</b></td><td><a href=https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/releases/tag/${selectedRelease.tag_name} target=_new>Link</a></td></tr></table>`
     $("#release_info").attr('data-content', releaseInfo);
 
-    var useNewFilters = true;
-    if (releaseDate < (new Date(2020, 09, 10))) {
-        document.getElementById('oldRadioTypeSelection').style = "";
-        document.getElementById('newRadioTypeSelection').style = "display:none;";
-        document.getElementById('telemetrySelection').style = "";
-        useNewFilters = false;
-    } else {
-        document.getElementById('oldRadioTypeSelection').style = "display:none;";
-        document.getElementById('newRadioTypeSelection').style = "display:none;";
-        document.getElementById('telemetrySelection').style = "display:none;";
-        useNewFilters = true;
-    }
-
-    if (useNewFilters) {
-        radioType = document.getElementById("radioTypeNew").value.toUpperCase();
-        telemetryInversion = "";
-
-        if (radioType == "" || radioType == "-SERIAL-") {
-            includeMultiTxt = true;
-            includeLuaZip = true;
-        } else {
-            includeMultiTxt = false;
-            includeLuaZip = false;
-        }
-    } else {
-        radioType = document.getElementById("radioType").value.toUpperCase();
-        telemetryInversion = document.getElementById("telemetryInversion").value.toUpperCase();
-
-        if (radioType == "-OPENTX-" || radioType == "-PPM-") {
-            includeMultiTxt = false;
-        } else {
-            includeMultiTxt = true;
-        }
-    
-        if (radioType == "" || radioType == "-OPENTX-") {
-            includeLuaZip = true;
-        } else {
-            includeLuaZip = false;
-        }
-    }
-
     if (document.getElementById('includeDebugYes').checked) {
         includeDebug = true;
     } else {
         includeDebug = false;
     }
 
-    var moduleFilterString;
-    switch(moduleType) {
-        case 'stm32f1-4in1':
-            moduleFilterString = 'multi-stm-serial|multi-stm-ppm|multi-stm-erskytx|multi-stm-opentx|multi-stm-xn297';
-            if (useNewFilters) {
-                document.getElementById('newRadioTypeSelection').style = "";
-            }
-            break;
-        case 'stm32f1-cc2500':
-            moduleFilterString = 'multi-stm-cc2500';
-            if (useNewFilters) {
-                radioType = '';
-                includeLuaZip = true;
-                includeMultiTxt = false;
-                document.getElementById('newRadioTypeSelection').style = "display:none;";
-            }
-            break;
-        case 'atmega-4in1':
-            moduleFilterString = 'multi-avr';
-            if (useNewFilters) {
-                radioType = '';
-                document.getElementById('newRadioTypeSelection').style = "display:none;";
-            }
-            break;
-        case 'orangerx':
-            moduleFilterString = 'multi-orangerx';
-            if (useNewFilters) {
-                radioType = '';
-                document.getElementById('newRadioTypeSelection').style = "display:none;";
-            }
-            break;
-        case 't18int':
-            moduleFilterString = 'multi-t18int';
-            if (useNewFilters) {
-                radioType = '';
-                includeLuaZip = true;
-                includeMultiTxt = false;
-                document.getElementById('newRadioTypeSelection').style = "display:none;";
-            }
-            break;
-        default:
-            moduleFilterString = '';
-            if (useNewFilters) {
-                document.getElementById('newRadioTypeSelection').style = "display:none;";
-            }
-            break; 
+    if (radioType == "-OPENTX-" || radioType == "-PPM-") {
+        includeMultiTxt = false;
+    } else {
+        includeMultiTxt = true;
     }
 
-    if (moduleType == 'atmega-4in1') {
-        document.getElementById('avrWarningMessage').style.display = "";
+    if (radioType == "" || radioType == "-OPENTX-") {
+        includeLuaZip = true;
     } else {
-        document.getElementById('avrWarningMessage').style.display = "none";
-    }
-
-    if (radioType == '-PPM-') {
-        document.getElementById('ppmWarningMessage').style.display = "";
-    } else {
-        document.getElementById('ppmWarningMessage').style.display = "none";
+        includeLuaZip = false;
     }
 
     table = document.getElementById("fileTable");
     tr = table.getElementsByTagName("tr");
-    
+
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
         if (td) {
             txtValue = td.textContent || td.innerText;
-            if (txtValue.match(moduleFilterString) && txtValue.toUpperCase().indexOf(radioType) > -1 && txtValue.toUpperCase().indexOf(channelOrder) > -1 && txtValue.toUpperCase().indexOf(telemetryInversion) > -1 && txtValue.toUpperCase().indexOf(firmwareVersion) > -1) {
+            if (txtValue.toUpperCase().indexOf(moduleType) > -1 && txtValue.toUpperCase().indexOf(radioType) > -1 && txtValue.toUpperCase().indexOf(channelOrder) > -1 && txtValue.toUpperCase().indexOf(telemetryInversion) > -1 && txtValue.toUpperCase().indexOf(firmwareVersion) > -1) {
                 tr[i].style.display = "";
             } else {
                 tr[i].style.display = "none";
             }
 
             // Filter debug builds
-            if (txtValue.toLowerCase().indexOf("debug") > -1) {
-                if (txtValue.match(moduleFilterString) && txtValue.toLowerCase().indexOf("debug") > -1 && includeDebug == true && txtValue.toUpperCase().indexOf(firmwareVersion) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
+            if ((txtValue.toLowerCase().indexOf("debug") > -1 && includeDebug == false)) {
+                tr[i].style.display = "none";
             }
 
             // Show the Multi.txt file
@@ -202,16 +111,12 @@ function togglePreRelease(){
     $('#firmwareVersion').trigger('change');
 }
 
-function showFirmwareFileChangeModal(){
-    $('#releaseChangesModalCenter').modal();
-}
-
 function moduleSelect() {
     selectedModule = document.getElementById("multiModuleSelect").value.toLowerCase();
     switch (selectedModule) {
         case "bg-avr":
         case "diy-avr":
-            $('#moduleType').val('atmega-4in1').trigger('change');
+            $('#moduleType').val('multi-avr-').trigger('change');
             document.getElementById("radioType").value = "";
             document.getElementById("telemetryInversion").value = "-inv-";
             break;
@@ -220,46 +125,40 @@ function moduleSelect() {
         case "hp4in1":
         case "irangex":
         case "jp4in1":
-            $('#moduleType').val('stm32f1-4in1').trigger('change');
+            $('#moduleType').val('multi-stm-').trigger('change');
             $('#radioType').val(null).trigger('change');
-            $('#radioTypeNew').val(null).trigger('change');
             $('#telemetryInversion').val('-inv-').trigger('change');
             break;
         case "jp-t16ext":
-            $('#moduleType').val('stm32f1-4in1').trigger('change');
+            $('#moduleType').val('multi-stm-').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
-            $('#radioTypeNew').val('-serial-').trigger('change');
             $('#telemetryInversion').val('-inv-').trigger('change');
             break;
         case "jp-t12pro":
         case "jp-t16int":
         case "rmtx16s":
-            $('#moduleType').val('stm32f1-4in1').trigger('change');
+            $('#moduleType').val('multi-stm-').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
-            $('#radioTypeNew').val('-serial-').trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
         case "rmtx16se":
-            $('#moduleType').val('stm32f1-cc2500').trigger('change');
+            $('#moduleType').val('multi-cc2500-').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
-            $('#radioTypeNew').val(null).trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
         case "orangerx":
-            $('#moduleType').val('orangerx').trigger('change');
+            $('#moduleType').val('multi-orangerx-').trigger('change');
             $('#radioType').val(null).trigger('change');
             $('#telemetryInversion').val(null).trigger('change');
             break;
         case "jp-t18int":
-            $('#moduleType').val('t18int').trigger('change');
+            $('#moduleType').val('multi-t18int-').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
-            $('#radioTypeNew').val(null).trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
         default:
             $('#moduleType').val(null).trigger('change');
             $('#radioType').val(null).trigger('change');
-            $('#radioTypeNew').val(null).trigger('change');
             $('#telemetryInversion').val(null).trigger('change');
             break;
     }
@@ -274,7 +173,6 @@ function formReset() {
         $('#multiModuleSelect').val(null).trigger('change');
         $('#moduleType').val(null).trigger('change');
         $('#radioType').val(null).trigger('change');
-        $('#radioTypeNew').val(null).trigger('change');
         $('#channelOrder').val(null).trigger('change');
         $('#telemetryInversion').val(null).trigger('change');
         $("#firmwareVersion").prop("selectedIndex", 0).val();
@@ -322,7 +220,7 @@ function createAssetTable(data) {
 }
 
 $(document).ready(function() {
-    var dataUrl = "https://downloads.multi-module.org/data2.json";
+    var dataUrl = "https://downloads.multi-module.org/data.json";
 
     $.ajax({
         url: dataUrl,

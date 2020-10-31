@@ -58,9 +58,6 @@
 				<p>Once you have downloaded the firmware file for your module or radio, please refer to the
 					<a href="https://www.multi-module.org/using-the-module/firmware-updates">MULTI-Module
 						documentation</a> for further instructions on updating the firmware.</p>
-				<p><b>Important:</b> please <a href='javascript:showFirmwareFileChangeModal();'>click here</a> to read 
-						about changes to the firmware builds and file filters starting from v1.3.1.75, including the radio 
-						firmware versions required to support the changes.</p>
 				<hr class="hr-thick">
 			</div> <!-- Column -->
 		</div> <!-- Row -->
@@ -102,24 +99,9 @@
 			</div>
 			<div class="col-md">
 				<h2>File Filters</h2>
-				<p>Use the filters to show firmware files matching specific criteria.</p>
+				<p>Use the filters to show firmware files matcing specific criteria.</p>
 				<form onreset="formReset()">
 					<table id="filterTable">
-						<tr>
-							<td class="col1">
-								<b>Firmware Version:</b>
-							</td>
-							<td class="col2">
-								<select class="js-example-basic-hide-search-no-clear filterselect" id="firmwareVersion"
-									name="firmware_version" onchange="myFunction()">
-								</select>
-							</td>
-							<td class="col3">
-								<i id="release_info" class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
-									data-toggle="popover" data-placement="right" title="Firmware Version"
-									data-content=""></i>
-							</td>
-						</tr>
 						<tr>
 							<td class="col1">
 								<b>Module Type:</b>
@@ -128,11 +110,11 @@
 								<select class="js-example-basic-hide-search filterselect" id="moduleType" name="module_type"
 									onchange="myFunction()">
 									<option></option>
-									<option value="stm32f1-4in1">STM32 4-in-1</option>
-									<option value="stm32f1-cc2500">STM32 CC2500 only</option>
-									<option value="atmega-4in1">Atmega328p 4-in-1</option>
-									<option value="orangerx">OrangeRX</option>
-									<option value="t18int">Jumper T18 5-in-1</option>
+									<option value="multi-stm-">STM32</option>
+									<option value="multi-cc2500-">STM32 (CC2500 only)</option>
+									<option value="multi-avr-">Atmega328p</option>
+									<option value="multi-orangerx-">OrangeRX</option>
+									<option value="multi-t18int-">Jumper T18 5in1</option>
 								</select>
 							</td>
 							<td class="col3">
@@ -141,12 +123,12 @@
 									data-content="Select the MCU (processor) type. If you're not sure which one you have, it is probably STM32."></i>
 							</td>
 						</tr>
-						<tr id="oldRadioTypeSelection" style="display: none;">
+						<tr>
 							<td class="col1">
 								<b>Radio Type:</b>
 							</td>
 							<td class="col2">
-								<select class="js-example-basic-hide-search filterselect" id="radioType" name="radio_type" data-width="100%"
+								<select class="js-example-basic-hide-search filterselect" id="radioType" name="radio_type"
 									onchange="myFunction()">
 									<option></option>
 									<option value="-erskytx-">er9x</option>
@@ -161,31 +143,12 @@
 									data-content="Determines the format which the MULTI-Module sends status information (telemetry) to the radio. PPM radios do not support telemetry"></i>
 							</td>
 						</tr>
-						<tr id="newRadioTypeSelection" style="display: none;">
-							<td class="col1">
-								<b>Radio Type:</b>
-							</td>
-							<td class="col2">
-								<select class="js-example-basic-hide-search filterselect" id="radioTypeNew" name="radio_type_new" data-width="100%"
-									onchange="myFunction()">
-									<option></option>
-									<option value="-serial-">Serial (OpenTx/erSkyTx)</option>
-									<option value="-ppm-">PPM</option>
-								</select>
-							</td>
-							<td class="col3">
-								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
-									data-toggle="popover" data-placement="right" title="Radio Type"
-									data-content="<p>Determines how the radio and MULTI-Module communicate.</p><p>'Serial' is used when the protocol 
-										is selected via the radio menu.</p><p>'PPM' is used when a rotary switch on the module is used to select the protocol.</p>"></i>
-							</td>
-						</tr>
 						<tr>
 							<td class="col1">
 								<b>Channel Order:</b>
 							</td>
 							<td class="col2">
-								<select class="js-example-basic-hide-search filterselect" id="channelOrder" name="channel_order" data-width="100%"
+								<select class="js-example-basic-hide-search filterselect" id="channelOrder" name="channel_order"
 									onchange="myFunction()">
 									<option></option>
 									<option value="-aetr-">AETR</option>
@@ -199,12 +162,12 @@
 									data-content="<p>Determines the Expected Channel Order for the MULTI-Module.  The default is <b>AETR</b>.</p><p>See the <a target=_new href=https://www.multi-module.org/using-the-module/channel-order>Channel Order</a> documentation for more details.</p>"></i>
 							</td>
 						</tr>
-						<tr id="telemetrySelection" style="display:none;">
+						<tr>
 							<td class="col1">
 								<b>Telemetry Inversion:</b>
 							</td>
 							<td class="col2">
-								<select class="js-example-basic-hide-search filterselect" id="telemetryInversion" data-width="100%"
+								<select class="js-example-basic-hide-search filterselect" id="telemetryInversion"
 									name="telemetry_inversion" onchange="myFunction()">
 									<option></option>
 									<option value="-inv-">Inverted</option>
@@ -215,6 +178,21 @@
 								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
 									data-toggle="popover" data-placement="right" title="Telemetry Inversion"
 									data-content="Choose <b>Inverted</b> for external modules or <b>Not Inverted</b> for internal modules."></i>
+							</td>
+						</tr>
+						<tr>
+							<td class="col1">
+								<b>Firmware Version:</b>
+							</td>
+							<td class="col2">
+								<select class="js-example-basic-hide-search-no-clear filterselect" id="firmwareVersion"
+									name="firmware_version" onchange="myFunction()">
+								</select>
+							</td>
+							<td class="col3">
+								<i id="release_info" class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
+									data-toggle="popover" data-placement="right" title="Firmware Version"
+									data-content=""></i>
 							</td>
 						</tr>
 						<tr>
@@ -266,21 +244,6 @@
 				<hr class="hr-thick">
 			</div> <!-- Column -->
 		</div> <!-- Row -->
-		<div id="avrWarningMessage" class="row" style="width:100%; display:none">
-			<div class="col-md">
-				<p><b>WARNING: Firmware builds for Atmega328p MULTI-Modules are intended for testing and verification only</b></p>
-				<p>Due to the small amount flash space available on the Atmega328p these builds only contain a subset of the available protocols.</p>
-				<p>Owners of Atmega328p-based modules are expected to configure and compile their own firmware using <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/blob/master/docs/Compiling.md" target=_new>these instructions</a>.</p>
-			</div> <!-- Column -->
-		</div> <!-- Row -->
-		<div id="ppmWarningMessage" class="row" style="width:100%; display:none">
-			<div class="col-md">
-				<p><b>WARNING: PPM firmware builds are examples which are intended for testing and verification only.</b></p>
-				<p>Due to the large number of available protocols and the limited number of protocol selection switch positions it is impossible to create PPM builds which will suit all users.</p>
-				<p>Users of PPM-mode modules are expected to configure and compile their own firmware using <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/" target=_new>these instructions</a>.</p>
-				<p>The protocols which are configured by default in the PPM builds can be found in the source code, in the <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/blob/master/Multiprotocol/_Config.h">firmware configuration file</a>.</p>
-			</div> <!-- Column -->
-		</div> <!-- Row -->
 		<div class="row" style="width:100%">
 			<div class="col-md">
 				<table id="fileTable">
@@ -318,37 +281,6 @@
 		</div>
 		</div>
 	</div>
-	<!-- Modal -->
-	<div class="modal" id="releaseChangesModalCenter" tabindex="-1" role="dialog" aria-labelledby="releaseChangesModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-			<h2 class="modal-title" id="exampleModalLongTitle"><i class="fp-warning-triangle"></i> Release File Changes</h2>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			</div>
-			<div class="modal-body">
-				<p>
-					Starting from MULTI-Module firmware version v1.3.1.75 the firmware files have changed and some options are no longer required.
-					<ul>
-						<li>No need to choose between OpenTX and erSkyTx/er9x builds because OpenTX and erSkyTX/er9x now use the same method to receive telemetry data from the MULTI-Module.</li>
-						<li>No need to choose between inverted and non-inverted telemetry because the radio and MULTI-Module will automatically negotiate the telemetry inversion setting</li>
-					</ul>
-					The following minimum radio firmware versions are required in order to support these changes:
-					<ul>
-						<li>OpenTX - 2.3.9</li>
-						<li>erSkyTx - R223A4</li>
-						<li>er9x - v822U</li>
-					</ul>
-				</p>
-			</div>
-			<div class="modal-footer">
-			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-		</div>
-	</div>
 	<footer class="footer">
 		<div class="container">
 			<span style="color: rgba(0,0,0,.5);"><b>Powered by GitHub Pages | Copyright &copy; 2020</b></span>
@@ -365,6 +297,6 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
-	<script src="./script2.js"></script>
+	<script src="./script1.js"></script>
 </body>
 </html>
