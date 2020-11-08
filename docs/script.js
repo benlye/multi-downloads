@@ -241,6 +241,7 @@ function moduleSelect() {
             break;
         case "rmtx12":
         case "rmtx16se":
+        case "rmtx16sse":
             $('#moduleType').val('stm32f1-cc2500').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
             $('#radioTypeNew').val(null).trigger('change');
