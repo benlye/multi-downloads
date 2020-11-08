@@ -239,6 +239,7 @@ function moduleSelect() {
             $('#radioTypeNew').val('-serial-').trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
+        case "rmtx12":
         case "rmtx16se":
             $('#moduleType').val('stm32f1-cc2500').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
