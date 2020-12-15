@@ -133,11 +133,9 @@ select {
 }
 
 .fp-question-circle:before {
-    color: #000;
+    color: #999;
     content: '\f059';
-    /* replace / with \ */
     font-family: "Font Awesome 5 Free";
-    /* here is the correct font-family */
     font-style: normal;
     font-weight: 900;
     font-size: 18px;
@@ -145,12 +143,14 @@ select {
     cursor: pointer;
 }
 
+.fp-question-circle:hover::before {
+    color: #595959;
+}
+
 .fp-copy-paste:before {
     color: #000;
     content: '\f0ea';
-    /* replace / with \ */
     font-family: "Font Awesome 5 Free";
-    /* here is the correct font-family */
     font-style: normal;
     font-weight: 900;
     font-size: 14px;
@@ -161,9 +161,7 @@ select {
 .fp-warning-triangle:before {
     color: #000;
     content: '\f071';
-    /* replace / with \ */
     font-family: "Font Awesome 5 Free";
-    /* here is the correct font-family */
     font-style: normal;
     font-weight: 900;
     font-size: 18px;
@@ -171,16 +169,53 @@ select {
     cursor: pointer;
 }
 
+.fp-info-circle:before {
+    color: #999;
+    content: '\f05a';
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    text-decoration: inherit;
+    cursor: pointer;
+}
+
+.fp-info-circle:hover::before {
+    color: #595959;
+}
+
+.fp-warning:before {
+    /*color: #ffcc00;*/
+    color: #999;
+    content: '\f071';
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    text-decoration: inherit;
+    cursor: pointer;
+}
+
+.fp-warning:hover::before {
+    /*color: #b38f00;*/
+    color: #595959;
+}
+
+#fileTable .popover {
+    width:350px;
+    max-width:none;
+  }
+
 .col1 {
     width: 35%;
 }
 
 .col2 {
-    width: 55%
+    width: 57%
 }
 
 .col3 {
-    width: 10%
+    width: 8%
 }
 
 .filterselect {
