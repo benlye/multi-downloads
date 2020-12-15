@@ -313,13 +313,58 @@ function copyToClipboard(elementId) {
 
 }
 
+function getAssetInfo(fileName){
+    tipClass = null;
+    tipHeader = null;
+    tipText = null;
+    /*
+    if (fileName.includes("multi-avr-")) {
+        tipClass = "fp-warning"
+        tipHeader = 'AVR Module Firmware';
+        tipText = '<p><b>AVR module firmware builds are for testing purposes only.</b><p>Users of AVR modules are expected to configure and compile their own firmware using <a href=https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/blob/master/docs/Compiling.md target=_new>these instructions</a>.</p>';
+    }
+
+    if (fileName.includes("multi-stm-ppm-")) {
+        tipClass = "fp-warning"
+        tipHeader = 'PPM Mode Firmware';
+        tipText = '<p><b>PPM firmware builds are for testing purposes only.</b><p>Users of PPM-mode modules are expected to configure and compile their own firmware using the instructions available <a href=https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/ target=_new>here</a>.</p>';
+    }
+    */
+
+    if (fileName.includes("Multi.txt")) {
+        tipClass = "fp-info-circle"
+        tipHeader = 'Multi.txt';
+        tipText = '<p><b>For erSkyTx and er9x radios only</b></p><p>Tells the radio what protocols are available in the firmware. Copy the file to the top-level of the SD card.</p>';
+    }
+    if (fileName.includes("MultiLuaScripts.zip")) {
+        tipClass = "fp-info-circle"
+        tipHeader = 'MultiLuaScripts.zip';
+        tipText = '<p><b>For OpenTX radios only</b></p><p>MULTI-Module LUA scripts. Unzip the file and copy the contents to the SD card.</p>';
+    }
+
+    if (tipClass && tipHeader && tipText) {
+        return '<i class="' + tipClass + '" tabindex="0" data-trigger="focus" data-container="#fileTable" data-toggle="popover" data-placement="right" title="' + tipHeader + '" data-content="' + tipText + '"></i>';
+    } else {
+        return;
+    }
+}
+
 function createAssetTable(data) {
     $.each(data,function(index, item){
+        var linkCellHtml = '<a href="' + item.url + '">' + item.display_name + '</a>';
+        if (item.display_name.includes("Multi.txt") || item.display_name.includes("MultiLuaScripts.zip")) {
+            var infoHtml = getAssetInfo(item.display_name)
+        }
+
+        if (infoHtml) {
+            linkCellHtml += '&nbsp;&nbsp;' + infoHtml
+        }
+
         $('<tr>').append(
-            $('<td>').html('<a href="' + item.url + '">' + item.display_name + '</a>'),
+            $('<td>').html(linkCellHtml),
             $('<td>').text((item.size/1024).toFixed(0) + "KB"),
-            $('<td>').text(item.download_count)
-        ).appendTo('#fileTable');
+            $('<td>').text(item.download_count),
+            ).appendTo('#fileTable');
     });
 }
 
