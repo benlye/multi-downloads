@@ -121,17 +121,11 @@ function myFunction() {
     }
 
     if (moduleType == 'atmega-4in1') {
-        //document.getElementById('avrWarningMessage').style.display = "";
         showAvrWarningModal();
-    } else {
-        //document.getElementById('avrWarningMessage').style.display = "none";
     }
 
     if (radioType == '-PPM-') {
-        //document.getElementById('ppmWarningMessage').style.display = "";
         showPpmWarningModal();
-    } else {
-        //document.getElementById('ppmWarningMessage').style.display = "none";
     }
 
     table = document.getElementById("fileTable");
@@ -174,7 +168,6 @@ function myFunction() {
 
     moduleModel = document.getElementById("multiModuleSelect").value.toLowerCase();
     if (moduleModel != '') {
-        // document.getElementById("moduleLinkUrl").href = "https://downloads.multi-module.org/?" + moduleModel;
         document.getElementById("moduleLinkUrlDisplay").innerHTML = "https://downloads.multi-module.org/?" + moduleModel;
         document.getElementById("modulelink").hidden = false;
     } else {
@@ -335,19 +328,6 @@ function getAssetInfo(fileName){
     tipClass = null;
     tipHeader = null;
     tipText = null;
-    /*
-    if (fileName.includes("multi-avr-")) {
-        tipClass = "fp-warning"
-        tipHeader = 'AVR Module Firmware';
-        tipText = '<p><b>AVR module firmware builds are for testing purposes only.</b><p>Users of AVR modules are expected to configure and compile their own firmware using <a href=https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/blob/master/docs/Compiling.md target=_new>these instructions</a>.</p>';
-    }
-
-    if (fileName.includes("multi-stm-ppm-")) {
-        tipClass = "fp-warning"
-        tipHeader = 'PPM Mode Firmware';
-        tipText = '<p><b>PPM firmware builds are for testing purposes only.</b><p>Users of PPM-mode modules are expected to configure and compile their own firmware using the instructions available <a href=https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/ target=_new>here</a>.</p>';
-    }
-    */
 
     if (fileName.includes("Multi.txt")) {
         tipClass = "fp-info-circle"
