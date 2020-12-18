@@ -217,6 +217,16 @@ function showAvrWarningModal(){
     }
 }
 
+function downloadStarted(filename){
+    if (filename.includes("-ppm-")) {
+        showPpmWarningModal();
+    }
+
+    if (filename.includes("-avr-")) {
+        showAvrWarningModal();
+    }
+}
+
 function moduleSelect() {
     selectedModule = document.getElementById("multiModuleSelect").value.toLowerCase();
     switch (selectedModule) {
@@ -349,7 +359,7 @@ function getAssetInfo(fileName){
 
 function createAssetTable(data) {
     $.each(data,function(index, item){
-        var linkCellHtml = '<a href="' + item.url + '">' + item.display_name + '</a>';
+        var linkCellHtml = '<a href="' + item.url + '" onclick="downloadStarted(\'' + item.display_name + '\');">' + item.display_name + '</a>';
         if (item.display_name.includes("Multi.txt") || item.display_name.includes("MultiLuaScripts.zip")) {
             var infoHtml = getAssetInfo(item.display_name)
         }
