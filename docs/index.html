@@ -265,28 +265,13 @@
 		<div class="row" style="width:100%">
 			<div class="col-md">
 				<hr class="hr-thick">
-			</div> <!-- Column -->
+			</div>
 		</div> <!-- Row -->
 		<div id="fileNameLengthMessage" class="row" style="width:100%;">
 			<div class="col-md">
 				<p><b>Note:</b> OpenTX radios with small LCD screens (e.g. Taranis Q X7, RadioMaster TX12) will not display files with names longer than 33 characters 
 					when browsing the SD card from the radio menu.  You may need to rename the downloaded file before you can access it on your radio.</p>
-			</div> <!-- Column -->
-		</div> <!-- Row -->
-		<div id="avrWarningMessage" class="row" style="width:100%; display:none">
-			<div class="col-md">
-				<p><b>WARNING: Firmware builds for Atmega328p MULTI-Modules are intended for testing and verification only</b></p>
-				<p>Due to the small amount flash space available on the Atmega328p these builds only contain a subset of the available protocols.</p>
-				<p>Owners of Atmega328p-based modules are expected to configure and compile their own firmware using <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/blob/master/docs/Compiling.md" target=_new>these instructions</a>.</p>
-			</div> <!-- Column -->
-		</div> <!-- Row -->
-		<div id="ppmWarningMessage" class="row" style="width:100%; display:none">
-			<div class="col-md">
-				<p><b>WARNING: PPM firmware builds are examples which are intended for testing and verification only.</b></p>
-				<p>Due to the large number of available protocols and the limited number of protocol selection switch positions it is impossible to create PPM builds which will suit all users.</p>
-				<p>Users of PPM-mode modules are expected to configure and compile their own firmware using <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/" target=_new>these instructions</a>.</p>
-				<p>The protocols which are configured by default in the PPM builds can be found in the source code, in the <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/blob/master/Multiprotocol/_Config.h">firmware configuration file</a>.</p>
-			</div> <!-- Column -->
+			</div>
 		</div> <!-- Row -->
 		<div class="row" style="width:100%">
 			<div class="col-md">
@@ -298,7 +283,7 @@
 						<!--<th style="width:12%;">Details</th>-->
 					</tr>
 				</table>
-			</div> <!-- Column -->
+			</div>
 		</div> <!-- Row -->
 		<div class="row" style="width:100%; padding-top: 20px; font-size: 12px; color: grey; text-align: right;">
 			<div class="col-md" id="lastupdate">
@@ -306,7 +291,7 @@
 		</div>
 	</div> <!-- Top-level container -->
 	<!-- Modal -->
-	<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal" id="prereleaseModalCenter" tabindex="-1" role="dialog" aria-labelledby="prereleaseModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -326,6 +311,52 @@
 		</div>
 		</div>
 	</div>
+	<!-- Modal -->
+	<!-- Modal -->
+	<div class="modal" id="ppmWarningModalCenter" tabindex="-1" role="dialog" aria-labelledby="ppmWarningModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h2 class="modal-title" id="exampleModalLongTitle"><i class="fp-warning-triangle"></i> WARNING</h2>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+				<p><b>PPM firmware builds are examples which are intended for testing and verification only.</b></p>
+				<p>Due to the large number of available protocols and the limited number of protocol selection switch positions it is impossible to create PPM builds which will suit all users.</p>
+				<p>Users of PPM-mode modules are expected to configure and compile their own firmware using <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/" target=_new>these instructions</a>.</p>
+				<p>The protocols which are configured by default in the PPM builds can be found in the source code, in the <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/blob/master/Multiprotocol/_Config.h">firmware configuration file</a>.</p>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<!-- Modal -->
+	<div class="modal" id="avrWarningModalCenter" tabindex="-1" role="dialog" aria-labelledby="avrWarningModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h2 class="modal-title" id="exampleModalLongTitle"><i class="fp-warning-triangle"></i> WARNING</h2>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+				<p><b>Firmware builds for Atmega328p MULTI-Modules are intended for testing and verification only</b></p>
+				<p>Due to the small amount flash space available on the Atmega328p these builds only contain a subset of the available protocols.</p>
+				<p>Owners of Atmega328p-based modules are expected to configure and compile their own firmware using <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/blob/master/docs/Compiling.md" target=_new>these instructions</a>.</p>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
+	<!-- Modal -->
 	<!-- Modal -->
 	<div class="modal" id="releaseChangesModalCenter" tabindex="-1" role="dialog" aria-labelledby="releaseChangesModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -360,6 +391,7 @@
 		</div>
 		</div>
 	</div>
+	<!-- Modal -->
 	<footer class="footer">
 		<div class="container">
 			<span style="color: rgba(0,0,0,.5);"><b>Powered by GitHub Pages | Copyright &copy; 2020</b></span>

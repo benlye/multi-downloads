@@ -1,4 +1,6 @@
 var preReleaseWarningShown = false;
+var avrWarningShown = false;
+var ppmWarningShown = false;
 
 function bodyLoad() {
     var url = window.location.toString();
@@ -119,15 +121,17 @@ function myFunction() {
     }
 
     if (moduleType == 'atmega-4in1') {
-        document.getElementById('avrWarningMessage').style.display = "";
+        //document.getElementById('avrWarningMessage').style.display = "";
+        showAvrWarningModal();
     } else {
-        document.getElementById('avrWarningMessage').style.display = "none";
+        //document.getElementById('avrWarningMessage').style.display = "none";
     }
 
     if (radioType == '-PPM-') {
-        document.getElementById('ppmWarningMessage').style.display = "";
+        //document.getElementById('ppmWarningMessage').style.display = "";
+        showPpmWarningModal();
     } else {
-        document.getElementById('ppmWarningMessage').style.display = "none";
+        //document.getElementById('ppmWarningMessage').style.display = "none";
     }
 
     table = document.getElementById("fileTable");
@@ -190,7 +194,7 @@ function togglePreRelease(){
         includePreRelease = true;
         $("#firmwareVersion").find("option:contains('Pre-release')").removeAttr('disabled');
         if (! this.preReleaseWarningShown) {
-            $('#exampleModalCenter').modal();
+            $('#prereleaseModalCenter').modal();
             this.preReleaseWarningShown = true;
         }
     } else {
@@ -204,6 +208,20 @@ function togglePreRelease(){
 
 function showFirmwareFileChangeModal(){
     $('#releaseChangesModalCenter').modal();
+}
+
+function showPpmWarningModal(){
+    if (! this.ppmWarningShown) {
+        $('#ppmWarningModalCenter').modal();
+        this.ppmWarningShown = true;
+    }
+}
+
+function showAvrWarningModal(){
+    if (! this.avrWarningShown) {
+        $('#avrWarningModalCenter').modal();
+        this.avrWarningShown = true;
+    }
 }
 
 function moduleSelect() {
