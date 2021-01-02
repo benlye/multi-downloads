@@ -21,6 +21,8 @@ jobs:
         shell: pwsh
       - name: Show diff
         run: git diff
+      - name: Pull
+        run: git pull
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
