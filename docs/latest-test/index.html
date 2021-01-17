@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>MULTI-Module Firmware Test Build</title>
 	<meta name="description"
@@ -8,9 +9,9 @@
 		content="MULTI-Module,Multiprotocol,Firmware,Download,TX Module,Multiprotocol TX Module,Multimodule,4in1,Multi 4in1,MULTI-4IN1,JP4IN1,IRX,IRX+,IRX plus">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
-		integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-	<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+		integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+		crossorigin="anonymous" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 	<link rel="stylesheet" href="../styles.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,7 +25,6 @@
 </head>
 
 <body>
-	<!-- Bootstrap navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
 			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -45,54 +45,63 @@
 			</div>
 		</div>
 	</nav>
-	<!-- Bootstrap navbar -->
 	<div class="container-fluid">
-		<!-- Top-level container -->
 		<div class="row" style="width:100%">
 			<div class="col-md">
 				<h1>MULTI-Module Latest Test Build Download</h1>
-				<p style="padding-top: 10px;">This page provides access to the latest successful <b>test</b> build of the MULTI-Module firmware.</p>
-				<p>Tests are run by the GitHub servers every time the MULTI-Module firmware source code is modified. If all the tests pass, 
+				<p style="padding-top: 10px;">This page provides access to the latest successful <b>test</b> build of
+					the MULTI-Module firmware.</p>
+				<p>Tests are run by the GitHub servers every time the MULTI-Module firmware source code is modified. If
+					all the tests pass,
 					the firmware compiled by the test process is available for download.</p>
-				<p><a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/actions?query=workflow%3ACI">
-					<img src="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/workflows/CI/badge.svg"></a></p>
-				<div class="alert alert-danger"><p><strong>Warning!</strong> Test builds should not be used for flying.</p>
-					They are intended for testing the latest code and may be unstable. You should only use a test build if you have been instructed to do so by a MULTI-Module developer.</div>
-				<p>The test build download is a .zip file containing all the files which were created during the test process. You will need to select and extract
+				<div class="alert alert-danger">
+					<p><strong>Warning!</strong> Test builds should not be used for flying.</p>
+					They are intended for testing the latest code and may be unstable. You should only use a test build
+					if you have been instructed to do so by a MULTI-Module developer.
+				</div>
+				<p>The test build download is a .zip file containing all the files which were created during the test
+					process. You will need to select and extract
 					whichever file is appropriate for your module or radio.</p>
-				<p>Once you have downloaded the .zip file and extracted the firmware file for your module or radio, please refer to the
+				<p>Once you have downloaded the .zip file and extracted the firmware file for your module or radio,
+					please refer to the
 					<a href="https://www.multi-module.org/using-the-module/firmware-updates">MULTI-Module
-						documentation</a> for further instructions on flashing the firmware to your module or radio.</p>
-			</div> <!-- Column -->
-		</div> <!-- Row -->
-		<div class="row" style="width:100%; margin-bottom: 1rem;">
-			<div class="col-md text-center">
-				<a class="btn btn-outline-primary" href="https://nightly.link/pascallanger/DIY-Multiprotocol-TX-Module/workflows/main/master/multi-test-build.zip" role="button">Download Latest Test Build</a>
+						documentation</a> for further instructions on flashing the firmware to your module or radio.
+				</p>
 			</div>
 		</div>
 		<div class="row" style="width:100%; margin-bottom: 1rem;">
 			<div class="col-md text-center">
-				Or click <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/actions?query=branch%3Amaster++is%3Asuccess++event%3Apush">here</a> to view all recent test builds on Github.
+				<a class="btn btn-outline-primary"
+					href="https://nightly.link/pascallanger/DIY-Multiprotocol-TX-Module/workflows/main/master/multi-test-build.zip"
+					role="button">Download Latest Test Build</a>
 			</div>
-		</div> <!-- Row -->
+		</div>
+		<div class="row" style="width:100%; margin-bottom: 1rem;">
+			<div class="col-md text-center">
+				Or click <a
+					href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/actions?query=branch%3Amaster++is%3Asuccess++event%3Apush">here</a>
+				to view all recent successful test builds on Github.
+			</div>
+		</div>
+		<div class="row" style="width:100%; margin-bottom: 1rem;">
+			<div class="col-md text-center">
+				<a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/actions?query=workflow%3ACI"><img
+						alt="GitHub Workflow Status"
+						src="https://img.shields.io/github/workflow/status/pascallanger/DIY-Multiprotocol-TX-Module/CI?label=build%20tests"></a>
+			</div>
+		</div>
 		<div class="row" style="width:100%; margin-bottom: 1rem;"></div>
-
-	</div> <!-- Top-level container -->
+	</div>
 	<footer class="footer">
 		<div class="container">
 			<span style="color: rgba(0,0,0,.5);"><b>Powered by GitHub Pages | Copyright &copy; 2020</b></span>
 		</div>
 	</footer>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-	crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
+		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 </body>
+
 </html>
