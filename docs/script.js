@@ -254,6 +254,7 @@ function moduleSelect() {
             break;
         case "jp-t12pro":
         case "jp-t16int":
+        case "jp-tlt4in1":
         case "rmtx16s":
         case "tbsmpm":
             $('#moduleType').val('stm32f1-4in1').trigger('change');
@@ -261,6 +262,8 @@ function moduleSelect() {
             $('#radioTypeNew').val('-serial-').trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
             break;
+        case "jp-tlt2500":
+        case "rmt8":
         case "rmtx12":
         case "rmtx16se":
         case "rmtx16sse":
