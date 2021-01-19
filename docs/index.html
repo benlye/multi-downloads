@@ -48,10 +48,10 @@
 	<!-- Bootstrap navbar -->
 	<div class="container-fluid">
 		<!-- Top-level container -->
-		<div class="row" style="width:100%">
+		<div class="row">
 			<div class="col-md">
 				<h1>MULTI-Module Firmware Downloads</h1>
-				<p style="padding-top: 10px;">This page provides an easy way to download the latest firmware file for
+				<p>This page provides an easy way to download the latest firmware file for
 					your MULTI-Module, or MULTI-Module equipped radio.
 					By default the latest firmware is shown, with older releases available using the drop-down Firmware
 					Version selector</p>
@@ -64,7 +64,7 @@
 				<hr class="hr-thick">
 			</div> <!-- Column -->
 		</div> <!-- Row -->
-		<div class="row" style="width:100%">
+		<div class="row">
 			<div class="col-md" style="padding-right:0px; margin-right: 10px; border-right: 1px solid #f1f1f1;">
 				<h2>MULTI-Module Selection</h2>
 				<p>Select a specific MULTI-Module to load a set of default firmware file filters. Change the filters to
@@ -267,30 +267,29 @@
 				</form>
 			</div> <!-- Column -->
 		</div> <!-- Row -->
-		<div class="row" style="width:100%">
+		<div class="row">
 			<div class="col-md">
 				<hr class="hr-thick">
 			</div>
 		</div> <!-- Row -->
-		<div id="fileNameLengthMessage" class="row" style="width:100%;">
+		<div id="fileNameLengthMessage" class="row">
 			<div class="col-md">
 				<p><b>Note:</b> OpenTX radios with small LCD screens (e.g. Taranis Q X7, RadioMaster TX12) will not display files with names longer than 32 characters 
 					when browsing the SD card from the radio menu.  You may need to rename the downloaded file before you can access it on your radio.</p>
 			</div>
 		</div> <!-- Row -->
-		<div class="row" style="width:100%">
+		<div class="row">
 			<div class="col-md">
 				<table id="fileTable">
 					<tr class="header">
-						<th style="width:64%;">File Name</th>
-						<th style="width:12%;">Size</th>
-						<th style="width:12%;">Downloads</th>
-						<!--<th style="width:12%;">Details</th>-->
+						<th class="col1">File Name</th>
+						<th class="col2">Size</th>
+						<th class="col3">Downloads</th>
 					</tr>
 				</table>
 			</div>
 		</div> <!-- Row -->
-		<div class="row" style="width:100%; padding-top: 20px; font-size: 12px; color: grey; text-align: right;">
+		<div class="row">
 			<div class="col-md" id="lastupdate">
 			</div>
 		</div>
@@ -399,7 +398,7 @@
 	<!-- Modal -->
 	<footer class="footer">
 		<div class="container">
-			<span style="color: rgba(0,0,0,.5);"><b>Powered by GitHub Pages | Copyright &copy; 2021</b></span>
+			<span><b>Powered by GitHub Pages | Copyright &copy; 2021</b></span>
 		</div>
 	</footer>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

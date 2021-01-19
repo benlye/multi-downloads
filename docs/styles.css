@@ -3,7 +3,6 @@
 }
 
 html {
-    /*margin-left: calc(100vw - 100%);*/
     position: relative;
     min-height: 100%;
     min-width: 400px;
@@ -24,9 +23,10 @@ h1 {
     font-size: 32px !important;
     font-weight: 700 !important;
     line-height: 1.5 !important;
-    padding-top: 20px;
-    padding-bottom: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     border-bottom: 1.5px solid #f1f1f1;
+    margin-bottom: 15px;
 }
 
 h2 {
@@ -46,11 +46,10 @@ h2 {
     bottom: 0;
     width: 100%;
     height: 60px;
-    /* Set the fixed height of the footer here */
     line-height: 60px;
-    /* Vertically center the text there */
     background-color: #f5f5f5;
     text-align: center;
+    color: rgba(0,0,0,.5);
 }
 
 .navbar-brand {
@@ -73,7 +72,6 @@ h2 {
     margin-right: auto;
     margin-left: auto;
     max-width: 960px;
-    /* or 950px */
 }
 
 #filterTable {
@@ -119,7 +117,6 @@ h2 {
 
 .tip {
     font-size: 14px;
-    /*font-style: italic;*/
     margin-top: 5px;
 }
 
@@ -187,7 +184,6 @@ select {
 }
 
 .fp-warning:before {
-    /*color: #ffcc00;*/
     color: #999;
     content: '\f071';
     font-family: "Font Awesome 5 Free";
@@ -199,24 +195,35 @@ select {
 }
 
 .fp-warning:hover::before {
-    /*color: #b38f00;*/
     color: #595959;
 }
 
 #fileTable .popover {
     width:350px;
     max-width:none;
-  }
+}
 
-.col1 {
+#fileTable .col1 {
+    width: 64%;
+}
+
+#fileTable .col2 {
+    width: 12%;
+}
+
+#fileTable .col3 {
+    width: 12%;
+}
+
+#filterTable .col1 {
     width: 35%;
 }
 
-.col2 {
+#filterTable .col2 {
     width: 57%
 }
 
-.col3 {
+#filterTable .col3 {
     width: 8%
 }
 
@@ -296,5 +303,9 @@ select {
   
   .slider.round:before {
     border-radius: 50%;
+  }
+  
+  #lastupdate {
+    padding-top: 20px; font-size: 12px; color: grey; text-align: right;
   }
   
