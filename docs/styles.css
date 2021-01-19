@@ -12,6 +12,7 @@ html {
 body {
     margin-bottom: 60px;
     font-family: 'Roboto', sans-serif !important;
+    padding-right: 0px !important;
 }
 
 p {
