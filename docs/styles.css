@@ -57,11 +57,11 @@ h2 {
     padding-right: 30px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1000px) {
     .navbar-brand {
        padding-left: 2px;
     }
- }
+}
 
 .nav-link {
     font-size: 18px;
