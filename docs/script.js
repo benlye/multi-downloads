@@ -400,7 +400,7 @@ $(document).ready(function() {
             });
     
             lastUpdated = data.lastUpdate;
-            document.getElementById("lastupdate").innerHTML = `<p>Page updated every four hours. Last updated: ${lastUpdated}</p>`;
+            document.getElementById("lastupdate").innerHTML = `<p>Updated every four hours. Last update: ${lastUpdated}</p>`;
             togglePreRelease()
             myFunction();
         }

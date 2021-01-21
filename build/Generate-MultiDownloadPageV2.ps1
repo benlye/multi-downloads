@@ -32,7 +32,7 @@ ForEach ($Release in $ReleaseData | ? { (Get-Date ($_.created_at)) -ge (get-date
 $AssetData | ? {$_.name -eq "multi.txt" -or $_.name -eq "MultiLuaScripts.zip"} | % {$_.display_name = "$($_.name) (v$($_.release_version))";}
 
 # Update the data file
-[ordered]@{"assets"=$AssetData; "releases"=$ReleaseData; "lastUpdate"=$(Get-Date -format f)} | ConvertTo-Json -Depth 3 -Compress | Out-File ".\docs\data.json" -Encoding ascii
+[ordered]@{"assets"=$AssetData; "releases"=$ReleaseData; "lastUpdate"=$(Get-Date -UFormat "%e %b %Y %H:%M")} | ConvertTo-Json -Depth 3 -Compress | Out-File ".\docs\data.json" -Encoding ascii
 
 # Update the sitemap
 $SitemapDate = get-date -UFormat "%Y-%m-%d"
