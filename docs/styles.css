@@ -63,6 +63,13 @@ h2 {
     }
 }
 
+@media screen and (max-width: 767px) {
+    .navbar-brand {
+        position: relative; 
+        left: -20px;
+    }
+}
+
 .nav-link {
     font-size: 18px;
     font-weight: bold !important;
