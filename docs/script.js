@@ -80,6 +80,12 @@ function myFunction() {
                 document.getElementById('newRadioTypeSelection').style = "";
             }
             break;
+        case 'stm32f1-5in1':
+            moduleFilterString = 'multi-stm-5in1';
+            if (useNewFilters) {
+                document.getElementById('newRadioTypeSelection').style = "";
+            }
+            break;
         case 'stm32f1-cc2500':
             moduleFilterString = 'multi-stm-cc2500';
             if (useNewFilters) {
@@ -105,6 +111,15 @@ function myFunction() {
             break;
         case 't18int':
             moduleFilterString = 'multi-t18int';
+            if (useNewFilters) {
+                radioType = '';
+                includeLuaZip = true;
+                includeMultiTxt = false;
+                document.getElementById('newRadioTypeSelection').style = "display:none;";
+            }
+            break;
+        case 'tlite5in1':
+            moduleFilterString = 'multi-tlite5in1';
             if (useNewFilters) {
                 radioType = '';
                 includeLuaZip = true;
@@ -252,6 +267,7 @@ function moduleSelect() {
             $('#radioTypeNew').val('-serial-').trigger('change');
             $('#telemetryInversion').val('-inv-').trigger('change');
             break;
+        case "jp-t12ext":
         case "jp-t12pro":
         case "jp-t16int":
         case "jp-tlt4in1":
@@ -283,6 +299,18 @@ function moduleSelect() {
             $('#radioType').val('-opentx-').trigger('change');
             $('#radioTypeNew').val(null).trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
+            break;
+        case "jp-tlt5in1":
+            $('#moduleType').val('tlite5in1').trigger('change');
+            $('#radioType').val('-opentx-').trigger('change');
+            $('#radioTypeNew').val(null).trigger('change');
+            $('#telemetryInversion').val('-noinv-').trigger('change'); 
+            break;
+        case "diy-5in1":
+            $('#moduleType').val('stm32f1-5in1').trigger('change');
+            $('#radioType').val(null).trigger('change');
+            $('#radioTypeNew').val(null).trigger('change');
+            $('#telemetryInversion').val(null).trigger('change'); 
             break;
         default:
             $('#moduleType').val(null).trigger('change');
