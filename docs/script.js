@@ -75,19 +75,19 @@ function myFunction() {
     var moduleFilterString;
     switch(moduleType) {
         case 'stm32f1-4in1':
-            moduleFilterString = 'multi-stm-serial|multi-stm-ppm|multi-stm-erskytx|multi-stm-opentx|multi-stm-xn297';
+            moduleFilterString = 'multi-stm-serial|multi-stm-ppm|multi-stm-erskytx|multi-stm-opentx|multi-stm-xn297|mm-stm-serial|mm-stm-ppm|mm-stm-erskytx|mm-stm-opentx|mm-stm-xn297';
             if (useNewFilters) {
                 document.getElementById('newRadioTypeSelection').style = "";
             }
             break;
         case 'stm32f1-5in1':
-            moduleFilterString = 'multi-stm-5in1';
+            moduleFilterString = 'multi-stm-5in1|mm-stm-5in1';
             if (useNewFilters) {
                 document.getElementById('newRadioTypeSelection').style = "";
             }
             break;
         case 'stm32f1-cc2500':
-            moduleFilterString = 'multi-stm-cc2500';
+            moduleFilterString = 'multi-stm-cc2500|mm-stm-cc2500';
             if (useNewFilters) {
                 radioType = '';
                 includeLuaZip = true;
@@ -96,21 +96,21 @@ function myFunction() {
             }
             break;
         case 'atmega-4in1':
-            moduleFilterString = 'multi-avr';
+            moduleFilterString = 'multi-avr|mm-avr';
             if (useNewFilters) {
                 radioType = '';
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
             break;
         case 'orangerx':
-            moduleFilterString = 'multi-orangerx';
+            moduleFilterString = 'multi-orangerx|mm-orangerx';
             if (useNewFilters) {
                 radioType = '';
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
             break;
         case 't18int':
-            moduleFilterString = 'multi-t18int';
+            moduleFilterString = 'multi-t18int|mm-t18int';
             if (useNewFilters) {
                 radioType = '';
                 includeLuaZip = true;
@@ -119,7 +119,7 @@ function myFunction() {
             }
             break;
         case 'tlite5in1':
-            moduleFilterString = 'multi-tlite5in1';
+            moduleFilterString = 'multi-tlite5in1|mm-tlite5in1';
             if (useNewFilters) {
                 radioType = '';
                 includeLuaZip = true;
