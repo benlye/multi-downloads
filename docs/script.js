@@ -95,6 +95,15 @@ function myFunction() {
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
             break;
+        case 'stm32f1-cc2500-64':
+            moduleFilterString = 'multi-stm-cc2500-64|mm-stm-cc2500-64';
+            if (useNewFilters) {
+                radioType = '';
+                includeLuaZip = true;
+                includeMultiTxt = false;
+                document.getElementById('newRadioTypeSelection').style = "display:none;";
+            }
+            break;
         case 'atmega-4in1':
             moduleFilterString = 'multi-avr|mm-avr';
             if (useNewFilters) {
@@ -284,6 +293,13 @@ function moduleSelect() {
         case "rmtx16se":
         case "rmtx16sse":
             $('#moduleType').val('stm32f1-cc2500').trigger('change');
+            $('#radioType').val('-opentx-').trigger('change');
+            $('#radioTypeNew').val(null).trigger('change');
+            $('#telemetryInversion').val('-noinv-').trigger('change');
+            break;
+        case "rmt8-64":
+        case "rmtx12-64":
+            $('#moduleType').val('stm32f1-cc2500-64').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
             $('#radioTypeNew').val(null).trigger('change');
             $('#telemetryInversion').val('-noinv-').trigger('change');
