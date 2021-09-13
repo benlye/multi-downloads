@@ -87,7 +87,7 @@ function myFunction() {
             }
             break;
         case 'stm32f1-cc2500':
-            moduleFilterString = 'multi-stm-cc2500|mm-stm-cc2500';
+            moduleFilterString = 'multi-stm-cc2500-\\D|mm-stm-cc2500-\\D';
             if (useNewFilters) {
                 radioType = '';
                 includeLuaZip = true;
