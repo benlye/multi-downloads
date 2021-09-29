@@ -281,6 +281,7 @@ function moduleSelect() {
         case "jp-t16int":
         case "jp-tlt4in1":
         case "rmtx16s":
+        case "rktx18s":
         case "tbsmpm":
             $('#moduleType').val('stm32f1-4in1').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
@@ -292,6 +293,7 @@ function moduleSelect() {
         case "rmtx12":
         case "rmtx16se":
         case "rmtx16sse":
+        case "rktx18slite":
             $('#moduleType').val('stm32f1-cc2500').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
             $('#radioTypeNew').val(null).trigger('change');
@@ -310,7 +312,6 @@ function moduleSelect() {
             $('#telemetryInversion').val(null).trigger('change');
             break;
         case "jp-t18int":
-        case "rktx18s":
             $('#moduleType').val('t18int').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
             $('#radioTypeNew').val(null).trigger('change');
