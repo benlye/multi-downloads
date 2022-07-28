@@ -400,7 +400,7 @@ function getAssetInfo(fileName){
     if (fileName.includes("MultiLuaScripts.zip")) {
         tipClass = "fp-info-circle"
         tipHeader = 'MultiLuaScripts.zip';
-        tipText = '<p><b>For OpenTX radios only</b></p><p>MULTI-Module LUA scripts. Unzip the file and copy the contents to the SD card.</p>';
+        tipText = '<p><b>For OpenTX/EdgeTX radios only</b></p><p>MULTI-Module LUA scripts. Unzip the file and copy the contents to the SD card.</p>';
     }
 
     if (tipClass && tipHeader && tipText) {
