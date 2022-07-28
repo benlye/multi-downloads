@@ -395,12 +395,12 @@ function getAssetInfo(fileName){
     if (fileName.includes("Multi.txt")) {
         tipClass = "fp-info-circle"
         tipHeader = 'Multi.txt';
-        tipText = '<p><b>For erSkyTx and er9x radios only</b></p><p>Tells the radio what protocols are available in the firmware. Copy the file to the top-level of the SD card.</p>';
+        tipText = '<p><b>For erSkyTx and er9x radios</b></p><p>Tells the radio what protocols are available in the firmware. Copy the file to the top-level of the SD card.</p>';
     }
     if (fileName.includes("MultiLuaScripts.zip")) {
         tipClass = "fp-info-circle"
         tipHeader = 'MultiLuaScripts.zip';
-        tipText = '<p><b>For OpenTX/EdgeTX radios only</b></p><p>MULTI-Module LUA scripts. Unzip the file and copy the contents to the SD card.</p>';
+        tipText = '<p><b>For OpenTX and EdgeTX radios</b></p><p>MULTI-Module LUA scripts. Unzip the file and copy the contents to the SD card.</p>';
     }
 
     if (tipClass && tipHeader && tipText) {
