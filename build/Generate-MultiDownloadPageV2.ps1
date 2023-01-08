@@ -27,7 +27,7 @@ $ReleaseData | ? {$_.prerelease -eq $True} | % {$_.text = "$($_.text) (Pre-relea
 $AssetData = @()
 ForEach ($Release in $ReleaseData | ? { (Get-Date ($_.created_at)) -ge (get-date 2019-10-01)}) {
 	$ReleaseAssets = $MultiReleases | ? {$_.tag_name -eq $Release.tag_name} | select -ExpandProperty assets | select name, @{label="display_name"; exp={$_.name}}, size, download_count, @{label="url"; exp={$_.browser_download_url}}, @{label="release_version"; exp={$Release.tag_name.replace("v","")}}
-	$Release.download_count = ($ReleaseAssets | ? {$_.name -like "*.bin"} | select -ExpandProperty download_count | measure -Sum).sum
+	$Release.download_count = '{0:N0}' -f ($ReleaseAssets | ? {$_.name -like "*.bin"} | select -ExpandProperty download_count | measure -Sum).sum 
 	$AssetData += $ReleaseAssets
 }
 $AssetData | ? {$_.name -eq "multi.txt" -or $_.name -eq "MultiLuaScripts.zip"} | % {$_.display_name = "$($_.name) (v$($_.release_version))";}
