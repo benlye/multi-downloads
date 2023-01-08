@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@master
       - name: Generate download page v2
         run: ./build/Generate-MultiDownloadPageV2.ps1
+        secrets: ["READ_TOKEN"]
         shell: pwsh
       - name: Commit changes
         run: |
