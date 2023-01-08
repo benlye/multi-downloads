@@ -6,6 +6,7 @@
 
 # Get all the releases
 $Header = @{"Authorization"="token $($Env:READ_TOKEN)"}
+$Header
 $MultiReleases = Invoke-RestMethod -Method GET -Uri "https://api.github.com/repos/pascallanger/DIY-Multiprotocol-TX-Module/releases" -Header $Header
 
 # Die if we didn't get any releases
