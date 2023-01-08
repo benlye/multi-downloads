@@ -19,7 +19,6 @@ jobs:
       - name: Generate download page v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          READ_TOKEN: ${{ secrets.READ_TOKEN }}
         run: ./build/Generate-MultiDownloadPageV2.ps1
         shell: pwsh
       - name: Commit changes
@@ -29,9 +28,6 @@ jobs:
           git config --global core.safecrlf false
           git commit -m "Index file update" -a
       - name: Push changes
-#        uses: mikeal/publish-to-github-action@master
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -40,5 +36,5 @@ jobs:
         run: >-
           curl -s -L -X POST 
           -H "Content-Type: application/json"
-          -H "Authorization: token ${{ secrets.ACCESS_TOKEN}}"
+          -H "Authorization: token ${{ secrets.ACCESS_TOKEN }}"
           "https://api.github.com/repos/${{ github.repository }}/pages/builds"
