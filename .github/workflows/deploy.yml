@@ -20,7 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           READ_TOKEN: ${{ secrets.READ_TOKEN }}
-          run: ./build/Generate-MultiDownloadPageV2.ps1
+        run: ./build/Generate-MultiDownloadPageV2.ps1
         shell: pwsh
       - name: Commit changes
         run: |
