@@ -17,8 +17,10 @@ jobs:
       - name: Checkout master branch
         uses: actions/checkout@master
       - name: Generate download page v2
-        run: ./build/Generate-MultiDownloadPageV2.ps1
-        secrets: ["READ_TOKEN"]
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          READ_TOKEN: ${{ secrets.READ_TOKEN }}
+          run: ./build/Generate-MultiDownloadPageV2.ps1
         shell: pwsh
       - name: Commit changes
         run: |
