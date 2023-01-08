@@ -5,7 +5,8 @@
  #>
 
 # Get all the releases
-$MultiReleases = Invoke-RestMethod -Method GET -Uri "https://api.github.com/repos/pascallanger/DIY-Multiprotocol-TX-Module/releases"
+$Header = @{"Authorization"="token $($env:GITHUB_TOKEN)"}
+$MultiReleases = Invoke-RestMethod -Method GET -Uri "https://api.github.com/repos/pascallanger/DIY-Multiprotocol-TX-Module/releases" -Header $Header
 
 # Die if we didn't get any releases
 If ($Null -eq $MultiReleases -or $MultiReleases.Count -eq 0) {
