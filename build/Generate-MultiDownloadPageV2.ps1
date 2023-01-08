@@ -4,8 +4,12 @@
  # and updates the data used to populate the download page.
  #>
 
+param (
+    [string] $Token
+)
+
 # Get all the releases
-$Header = @{"Authorization"="token $($env:GITHUB_TOKEN)"}
+$Header = @{"Authorization"="token $Token"}
 $MultiReleases = Invoke-RestMethod -Method GET -Uri "https://api.github.com/repos/pascallanger/DIY-Multiprotocol-TX-Module/releases" -Header $Header
 
 # Die if we didn't get any releases

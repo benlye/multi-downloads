@@ -17,7 +17,7 @@ jobs:
       - name: Checkout master branch
         uses: actions/checkout@master
       - name: Generate download page v2
-        run: ./build/Generate-MultiDownloadPageV2.ps1
+        run: ./build/Generate-MultiDownloadPageV2.ps1 ${{ secrets.ACCESS_TOKEN}}
         shell: pwsh
       - name: Commit changes
         run: |
