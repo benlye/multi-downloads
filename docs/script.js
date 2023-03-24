@@ -304,6 +304,7 @@ function moduleSelect() {
         case "rmt8-64":
         case "rmtx12-64":
         case "jp-tlt2500-64":
+        case "rmzorro-cc-64":
             $('#moduleType').val('stm32f1-cc2500-64').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
             $('#radioTypeNew').val(null).trigger('change');
