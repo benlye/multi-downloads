@@ -282,6 +282,7 @@ function moduleSelect() {
         case "jp-tlt4in1":
         case "rmtx16s":
         case "rmzorro":
+        case "rmboxer":
         case "rktx18s":
         case "tbsmpm":
             $('#moduleType').val('stm32f1-4in1').trigger('change');
@@ -295,6 +296,7 @@ function moduleSelect() {
         case "rmtx16se":
         case "rmtx16sse":
         case "rmzorro-cc":
+        case "rmboxer-cc":
         case "rktx18slite":
             $('#moduleType').val('stm32f1-cc2500').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
