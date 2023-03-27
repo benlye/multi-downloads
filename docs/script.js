@@ -292,10 +292,6 @@ function moduleSelect() {
             break;
         case "jp-tlt2500":
         case "rmt8":
-        case "rmtx12":
-        case "rmtx16se":
-        case "rmtx16sse":
-        case "rmzorro-cc":
         case "rktx18slite":
             $('#moduleType').val('stm32f1-cc2500').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
@@ -305,8 +301,9 @@ function moduleSelect() {
         case "rmt8-64":
         case "rmtx12-64":
         case "rmboxer-cc-64":
-        case "jp-tlt2500-64":
+        case "rmtx16sse":
         case "rmzorro-cc-64":
+        case "jp-tlt2500-64":
             $('#moduleType').val('stm32f1-cc2500-64').trigger('change');
             $('#radioType').val('-opentx-').trigger('change');
             $('#radioTypeNew').val(null).trigger('change');
