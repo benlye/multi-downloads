@@ -280,6 +280,7 @@ function moduleSelect() {
         case "jp-t12pro":
         case "jp-t16int":
         case "jp-tlt4in1":
+        case "rm4in1":
         case "rmtx16s":
         case "rmzorro":
         case "rmboxer":
