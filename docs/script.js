@@ -302,6 +302,7 @@ function moduleSelect() {
         case "rmt8-64":
         case "rmtx12-64":
         case "rmboxer-cc-64":
+        case "rmpocket-cc-64":
         case "rmtx16sse":
         case "rmzorro-cc-64":
         case "jp-tlt2500-64":
