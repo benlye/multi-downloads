@@ -284,6 +284,7 @@ function moduleSelect() {
         case "rmtx16s":
         case "rmzorro":
         case "rmboxer":
+        case "rmmt12":
         case "rktx18s":
         case "tbsmpm":
             $('#moduleType').val('stm32f1-4in1').trigger('change');
