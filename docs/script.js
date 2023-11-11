@@ -13,8 +13,9 @@ function bodyLoad() {
 
 function myFunction() {
     var input, filter, table, tr, td, i, txtValue;
-    moduleType = document.getElementById("moduleType").value; //.toUpperCase();
+    moduleType = document.getElementById("moduleType").value;
     channelOrder = document.getElementById("channelOrder").value.toUpperCase();
+    regulatoryDomain = document.getElementById("regulatoryDomain").value.toUpperCase();
     firmwareVersion = document.getElementById("firmwareVersion").value.toUpperCase();
 
     selectedRelease = releases.find(obj => {
@@ -26,7 +27,7 @@ function myFunction() {
     $("#release_info").attr('data-content', releaseInfo);
 
     var useNewFilters = true;
-    if (releaseDate < (new Date(2020, 09, 10))) {
+    if (releaseDate < (new Date(2020, 9, 10))) {
         document.getElementById('oldRadioTypeSelection').style = "";
         document.getElementById('newRadioTypeSelection').style = "display:none;";
         document.getElementById('telemetrySelection').style = "";
@@ -162,6 +163,13 @@ function myFunction() {
             if (txtValue.match(moduleFilterString) && txtValue.toUpperCase().indexOf(radioType) > -1 && txtValue.toUpperCase().indexOf(channelOrder) > -1 && txtValue.toUpperCase().indexOf(telemetryInversion) > -1 && txtValue.toUpperCase().indexOf(firmwareVersion) > -1) {
                 tr[i].style.display = "";
             } else {
+                tr[i].style.display = "none";
+            }
+
+            // Filter regulatory domain builds
+            if (regulatoryDomain == 'EU' && txtValue.toUpperCase().indexOf('LBT') == -1 ) {
+                tr[i].style.display = "none";
+            } else if (regulatoryDomain == 'FCC' && txtValue.toUpperCase().indexOf('LBT') > -1 ) {
                 tr[i].style.display = "none";
             }
 
