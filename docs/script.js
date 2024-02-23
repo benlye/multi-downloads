@@ -27,7 +27,6 @@ function myFunction() {
 
     var useNewFilters = true;
     var useTypeFilter = true;
-    var typeFilterType = 1;
 
     if (releaseDate < (new Date(2020, 9, 10))) {
         document.getElementById('oldRadioTypeSelection').style = "";
@@ -105,7 +104,6 @@ function myFunction() {
             }
             useTypeFilter = true;
             activeTypeFilters = ["LBT", "FCC"];
-            //typeFilterType = 2;
             break;
         case 'stm32f1-cc2500-64':
             moduleFilterString = 'multi-stm-cc2500-64|mm-stm-cc2500-64';
@@ -172,7 +170,6 @@ function myFunction() {
     }
     
     document.querySelectorAll("#firmwareType option").forEach(opt => {
-        console.log(opt.value)
         if (activeTypeFilters.includes(opt.value)) {
             opt.disabled = false;
         } else {
@@ -473,7 +470,8 @@ function createAssetTable(data) {
 }
 
 $(document).ready(function() {
-    var dataUrl = "https://downloads.multi-module.org/data.json";
+    //var dataUrl = "https://downloads.multi-module.org/data.json";
+    var dataUrl = "./data.json";
 
     $.ajax({
         url: dataUrl,
