@@ -15,7 +15,6 @@ function myFunction() {
     var input, filter, table, tr, td, i, txtValue;
     moduleType = document.getElementById("moduleType").value;
     channelOrder = document.getElementById("channelOrder").value.toUpperCase();
-    regulatoryDomain = document.getElementById("regulatoryDomain").value.toUpperCase();
     firmwareVersion = document.getElementById("firmwareVersion").value.toUpperCase();
 
     selectedRelease = releases.find(obj => {
@@ -27,6 +26,9 @@ function myFunction() {
     $("#release_info").attr('data-content', releaseInfo);
 
     var useNewFilters = true;
+    var useTypeFilter = true;
+    var typeFilterType = 1;
+
     if (releaseDate < (new Date(2020, 9, 10))) {
         document.getElementById('oldRadioTypeSelection').style = "";
         document.getElementById('newRadioTypeSelection').style = "display:none;";
@@ -74,18 +76,24 @@ function myFunction() {
     }
 
     var moduleFilterString;
+    var activeTypeFilters = ["AIR", "SFC", "LBT"];
+
     switch(moduleType) {
         case 'stm32f1-4in1':
             moduleFilterString = 'multi-stm-serial|multi-stm-ppm|multi-stm-erskytx|multi-stm-opentx|multi-stm-xn297|mm-stm-serial|mm-stm-ppm|mm-stm-erskytx|mm-stm-opentx|mm-stm-xn297';
             if (useNewFilters) {
                 document.getElementById('newRadioTypeSelection').style = "";
             }
+            useTypeFilter = true;
+            activeTypeFilters = ["AIR", "SFC", "LBT"];
             break;
         case 'stm32f1-5in1':
             moduleFilterString = 'multi-stm-5in1|mm-stm-5in1';
             if (useNewFilters) {
                 document.getElementById('newRadioTypeSelection').style = "";
             }
+            useTypeFilter = true;
+            activeTypeFilters = ["AIR", "SFC", "LBT"];
             break;
         case 'stm32f1-cc2500':
             moduleFilterString = 'multi-stm-cc2500-\\D|mm-stm-cc2500-\\D';
@@ -95,6 +103,9 @@ function myFunction() {
                 includeMultiTxt = false;
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
+            useTypeFilter = true;
+            activeTypeFilters = ["LBT", "FCC"];
+            //typeFilterType = 2;
             break;
         case 'stm32f1-cc2500-64':
             moduleFilterString = 'multi-stm-cc2500-64|mm-stm-cc2500-64';
@@ -104,6 +115,8 @@ function myFunction() {
                 includeMultiTxt = false;
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
+            useTypeFilter = true;
+            activeTypeFilters = ["LBT", "FCC"];
             break;
         case 'atmega-4in1':
             moduleFilterString = 'multi-avr|mm-avr';
@@ -111,6 +124,7 @@ function myFunction() {
                 radioType = '';
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
+            useTypeFilter = false;
             break;
         case 'orangerx':
             moduleFilterString = 'multi-orangerx|mm-orangerx';
@@ -118,6 +132,7 @@ function myFunction() {
                 radioType = '';
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
+            useTypeFilter = false;
             break;
         case 't18int':
             moduleFilterString = 'multi-t18int|mm-t18int';
@@ -127,6 +142,7 @@ function myFunction() {
                 includeMultiTxt = false;
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
+            useTypeFilter = true;
             break;
         case 'tlite5in1':
             moduleFilterString = 'multi-tlite5in1|mm-tlite5in1';
@@ -136,12 +152,14 @@ function myFunction() {
                 includeMultiTxt = false;
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
+            useTypeFilter = true;
             break;
         default:
             moduleFilterString = '';
             if (useNewFilters) {
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
+            useTypeFilter = true;
             break; 
     }
 
@@ -152,6 +170,27 @@ function myFunction() {
     if (radioType == '-PPM-') {
         showPpmWarningModal();
     }
+    
+    document.querySelectorAll("#firmwareType option").forEach(opt => {
+        console.log(opt.value)
+        if (activeTypeFilters.includes(opt.value)) {
+            opt.disabled = false;
+        } else {
+            opt.disabled = true;
+        }
+    });
+
+    if(useTypeFilter && releaseDate > (new Date(2024, 1, 22))) {
+        document.getElementById('firmwareTypeSelection').style = "";
+        firmwareType = document.getElementById("firmwareType").value.toUpperCase();
+
+        if (firmwareType == "FCC") {
+            firmwareType = "^((?!AIR|SFC|LBT).)*$";
+        }
+    } else {
+        firmwareType = "";
+        document.getElementById('firmwareTypeSelection').style = "display:none;";
+    }
 
     table = document.getElementById("fileTable");
     tr = table.getElementsByTagName("tr");
@@ -160,22 +199,15 @@ function myFunction() {
         td = tr[i].getElementsByTagName("td")[0];
         if (td) {
             txtValue = td.textContent || td.innerText;
-            if (txtValue.match(moduleFilterString) && txtValue.toUpperCase().indexOf(radioType) > -1 && txtValue.toUpperCase().indexOf(channelOrder) > -1 && txtValue.toUpperCase().indexOf(telemetryInversion) > -1 && txtValue.toUpperCase().indexOf(firmwareVersion) > -1) {
+            if (txtValue.match(moduleFilterString) && txtValue.toUpperCase().indexOf(radioType) > -1 && txtValue.toUpperCase().match(firmwareType) && txtValue.toUpperCase().indexOf(channelOrder) > -1 && txtValue.toUpperCase().indexOf(telemetryInversion) > -1 && txtValue.match(`${firmwareVersion}\.bin$`)) {
                 tr[i].style.display = "";
             } else {
                 tr[i].style.display = "none";
             }
 
-            // Filter regulatory domain builds
-            if (regulatoryDomain == 'EU' && txtValue.toUpperCase().indexOf('LBT') == -1 ) {
-                tr[i].style.display = "none";
-            } else if (regulatoryDomain == 'FCC' && txtValue.toUpperCase().indexOf('LBT') > -1 ) {
-                tr[i].style.display = "none";
-            }
-
             // Filter debug builds
             if (txtValue.toLowerCase().indexOf("debug") > -1) {
-                if (txtValue.match(moduleFilterString) && txtValue.toLowerCase().indexOf("debug") > -1 && includeDebug == true && txtValue.toUpperCase().indexOf(firmwareVersion) > -1) {
+                if (txtValue.match(moduleFilterString) && txtValue.toLowerCase().indexOf("debug") > -1 && includeDebug == true && txtValue.match(`${firmwareVersion}\.bin$`)) {
                     tr[i].style.display = "";
                 } else {
                     tr[i].style.display = "none";
@@ -183,14 +215,14 @@ function myFunction() {
             }
 
             // Show the Multi.txt file
-            if ((txtValue.toLowerCase().indexOf("multi.txt") > -1 && txtValue.toUpperCase().indexOf(firmwareVersion) > -1 && includeMultiTxt == true)) {
+            if ((txtValue.trim().toLowerCase() == `multi.txt (v${firmwareVersion})` && includeMultiTxt == true)) {
                 tr[i].style.display = "";
             } else if (txtValue.toLowerCase().indexOf("multi.txt") > -1) {
                 tr[i].style.display = "none";
             }
 
             // Show the Lua script zip file
-            if ((txtValue.toLowerCase().indexOf("multiluascripts.zip") > -1 && txtValue.toUpperCase().indexOf(firmwareVersion) > -1 && includeLuaZip == true)) {
+            if ((txtValue.trim().toLowerCase() == `multiluascripts.zip (v${firmwareVersion})` && includeLuaZip == true)) {
                 tr[i].style.display = "";
             } else if (txtValue.toLowerCase().indexOf("multiluascripts.zip") > -1) {
                 tr[i].style.display = "none";
@@ -363,6 +395,7 @@ function formReset() {
         $('#radioType').val(null).trigger('change');
         $('#radioTypeNew').val(null).trigger('change');
         $('#channelOrder').val(null).trigger('change');
+        $('#firmwareType').val(null).trigger('change');
         $('#telemetryInversion').val(null).trigger('change');
         $("#firmwareVersion").prop("selectedIndex", 0).val();
         $('#firmwareVersion').trigger('change');
@@ -395,7 +428,6 @@ function copyToClipboard(elementId) {
 
     // Remove the input from the body
     document.body.removeChild(aux);
-
 }
 
 function getAssetInfo(fileName){

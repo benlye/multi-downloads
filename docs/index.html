@@ -225,25 +225,28 @@
 								</i>
 							</td>
 						</tr>
-						<tr id="regulatoryDomainSelection" style="display: none;">
+						<tr id="firmwareTypeSelection" style="display: none;">
 							<td class="col1">
-								<b>Regulatory Domain:</b>
+								<b>Firmware Type:</b>
 							</td>
 							<td class="col2">
-								<select class="js-example-basic-hide-search filterselect" id="regulatoryDomain" name="regulatory_domain" data-width="100%"
+								<select class="js-example-basic-hide-search filterselect" id="firmwareType" name="firmware_type1" data-width="100%"
 									onchange="myFunction()">
 									<option></option>
-									<option value="FCC">FCC (World)</option>
-									<option value="EU">EU (LBT)</option>
+									<option value="AIR">Air</option>
+									<option value="SFC">Surface</option>
+									<option value="LBT">EU (LBT)</option>
+									<option value="FCC">FCC</option>
 								</select>
 							</td>
 							<td class="col3">
 								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
 									data-toggle="popover" data-placement="right" title="Regulatory Domain"
-									data-content="<p>Determines which protocols are included in the firmware.</p>
-										<p><b>FCC</b> firmware contains all available protocols.</p>
-										<p><b>EU/LBT</b> firmware includes only the protocols which adhere to the European Union's Listen-Before-Talk directive and should be used in countries where this is required.</p>
-										<p>EU/LBT builds are only for available for STM32 4-in-1 and STM32 CC2500-only modules, and only from version v.1.3.3.35.</p>">
+									data-content="<p>Determines which protocols are included in the firmware. Not all firmware types are available for all module types.</p>
+										<p><b>Air</b> contains protocols mainly used in flying craft.</p>
+										<p><b>Surface</b> contains protocols mainly used in ground or water craft.</p>
+										<p><b>FCC</b> contains surface, air, and EU/LBT protocols. Only available when space permits all protocols to be included.</p>
+										<p><b>EU/LBT</b> includes only the protocols which adhere to the European Union's Listen-Before-Talk directive and should be used in countries where this is required.</p>">
 								</i>
 							</td>
 						</tr>
