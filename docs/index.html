@@ -144,8 +144,7 @@
 								<b>Module Type:</b>
 							</td>
 							<td class="col2">
-								<select class="js-example-basic-hide-search filterselect" id="moduleType" name="module_type" data-width="100%"
-									onchange="myFunction()">
+								<select class="js-example-basic-hide-search filterselect" id="moduleType" name="module_type" data-width="100%">
 									<option></option>
 									<option value="atmega-4in1">Atmega328p 4-in-1</option>
 									<option value="t18int">Jumper T18 5-in-1</option>
@@ -204,27 +203,6 @@
 								</i>
 							</td>
 						</tr>
-						<tr id="channelOrderSelection">
-							<td class="col1">
-								<b>Channel Order:</b>
-							</td>
-							<td class="col2">
-								<select class="js-example-basic-hide-search filterselect" id="channelOrder" name="channel_order" data-width="100%"
-									onchange="myFunction()">
-									<option></option>
-									<option value="-aetr-">AETR</option>
-									<option value="-taer-">TAER</option>
-									<option value="-reta-">RETA</option>
-								</select>
-							</td>
-							<td class="col3">
-								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
-									data-toggle="popover" data-placement="right" title="Channel Order"
-									data-content="<p>Determines the Expected Channel Order for the MULTI-Module. The default is <b>AETR</b>.</p>
-										<p>See the <a target=_new href=https://www.multi-module.org/using-the-module/channel-order>Channel Order</a> documentation for more details.</p>">
-								</i>
-							</td>
-						</tr>
 						<tr id="firmwareTypeSelection" style="display: none;">
 							<td class="col1">
 								<b>Firmware Type:</b>
@@ -245,8 +223,29 @@
 									data-content="<p>Determines which protocols are included in the firmware. Not all firmware types are available for all module types.</p>
 										<p><b>Air</b> includes core protocols plus protocols used in airborne craft.</p>
 										<p><b>Surface</b> includes core protocols plus protocols used in ground or water craft.</p>
-										<p><b>FCC</b> includes surface, air, and EU/LBT protocols. Only available when space permits all applicable protocols to be included.</p>
-										<p><b>EU/LBT</b> includes only the protocols which adhere to the European Union's Listen-Before-Talk directive and should be used in countries where this is required.</p>">
+										<p><b>FCC</b> includes surface, air, and EU/LBT protocols. Only available when flash space permits all protocols to be included.</p>
+										<p><b>EU/LBT</b> includes all air and surface protocols which adhere to the European Union's Listen-Before-Talk directive and should be used in countries where this is required.</p>">
+								</i>
+							</td>
+						</tr>
+						<tr id="channelOrderSelection">
+							<td class="col1">
+								<b>Channel Order:</b>
+							</td>
+							<td class="col2">
+								<select class="js-example-basic-hide-search filterselect" id="channelOrder" name="channel_order" data-width="100%"
+									onchange="myFunction()">
+									<option></option>
+									<option value="-aetr-">AETR</option>
+									<option value="-taer-">TAER</option>
+									<option value="-reta-">RETA</option>
+								</select>
+							</td>
+							<td class="col3">
+								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
+									data-toggle="popover" data-placement="right" title="Channel Order"
+									data-content="<p>Determines the Expected Channel Order for the MULTI-Module. The default is <b>AETR</b>.</p>
+										<p>See the <a target=_new href=https://www.multi-module.org/using-the-module/channel-order>Channel Order</a> documentation for more details.</p>">
 								</i>
 							</td>
 						</tr>

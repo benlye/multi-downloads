@@ -75,7 +75,6 @@ function myFunction() {
     }
 
     var moduleFilterString;
-    var activeTypeFilters = ["AIR", "SFC", "LBT"];
 
     switch(moduleType) {
         case 'stm32f1-4in1':
@@ -84,7 +83,6 @@ function myFunction() {
                 document.getElementById('newRadioTypeSelection').style = "";
             }
             useTypeFilter = true;
-            activeTypeFilters = ["AIR", "SFC", "LBT"];
             break;
         case 'stm32f1-5in1':
             moduleFilterString = 'multi-stm-5in1|mm-stm-5in1';
@@ -92,7 +90,6 @@ function myFunction() {
                 document.getElementById('newRadioTypeSelection').style = "";
             }
             useTypeFilter = true;
-            activeTypeFilters = ["AIR", "SFC", "LBT"];
             break;
         case 'stm32f1-cc2500':
             moduleFilterString = 'multi-stm-cc2500-\\D|mm-stm-cc2500-\\D';
@@ -103,7 +100,6 @@ function myFunction() {
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
             useTypeFilter = true;
-            activeTypeFilters = ["LBT", "FCC"];
             break;
         case 'stm32f1-cc2500-64':
             moduleFilterString = 'multi-stm-cc2500-64|mm-stm-cc2500-64';
@@ -114,7 +110,6 @@ function myFunction() {
                 document.getElementById('newRadioTypeSelection').style = "display:none;";
             }
             useTypeFilter = true;
-            activeTypeFilters = ["LBT", "FCC"];
             break;
         case 'atmega-4in1':
             moduleFilterString = 'multi-avr|mm-avr';
@@ -167,16 +162,9 @@ function myFunction() {
 
     if (radioType == '-PPM-') {
         showPpmWarningModal();
+        useTypeFilter = false;
     }
     
-    document.querySelectorAll("#firmwareType option").forEach(opt => {
-        if (activeTypeFilters.includes(opt.value)) {
-            opt.disabled = false;
-        } else {
-            opt.disabled = true;
-        }
-    });
-
     if(useTypeFilter && releaseDate > (new Date(2024, 1, 22))) {
         document.getElementById('firmwareTypeSelection').style = "";
         firmwareType = document.getElementById("firmwareType").value.toUpperCase();
@@ -313,6 +301,8 @@ function moduleSelect() {
             $('#radioTypeNew').val('-serial-').trigger('change');
             $('#telemetryInversion').val('-inv-').trigger('change');
             break;
+        case "rmmt12":
+            $('#firmwareType').val('SFC').trigger('change');
         case "jp-t12ext":
         case "jp-t12pro":
         case "jp-t16int":
@@ -321,7 +311,6 @@ function moduleSelect() {
         case "rmtx16s":
         case "rmzorro":
         case "rmboxer":
-        case "rmmt12":
         case "rktx18s":
         case "tbsmpm":
             $('#moduleType').val('stm32f1-4in1').trigger('change');
@@ -377,7 +366,46 @@ function moduleSelect() {
             $('#radioType').val(null).trigger('change');
             $('#radioTypeNew').val(null).trigger('change');
             $('#telemetryInversion').val(null).trigger('change');
+            $('#firmwareType').val(null).trigger('change');
             break;
+    }
+    typeSelect();
+    myFunction();
+}
+
+function typeSelect() {
+    var activeTypeFilters;
+    moduleType = document.getElementById("moduleType").value.toLowerCase();
+    switch(moduleType) {
+        case 'stm32f1-4in1':
+        case 'stm32f1-5in1':
+        case 't18int':
+        case 'tlite5in1':
+            activeTypeFilters = ["", "AIR", "SFC", "LBT"];
+            break;
+        case 'stm32f1-cc2500':
+        case 'stm32f1-cc2500-64':
+            activeTypeFilters = ["", "LBT", "FCC"];
+            break;
+        case 'atmega-4in1':
+        case 'orangerx':
+            activeTypeFilters = [""];
+            break;
+        default:
+            activeTypeFilters = ["", "AIR", "SFC", "LBT", "FCC"];
+            break; 
+    }
+
+    document.querySelectorAll("#firmwareType option").forEach(opt => {
+        if (activeTypeFilters.includes(opt.value)) {
+            opt.disabled = false;
+        } else {
+            opt.disabled = true;
+        }
+    });
+
+    if (activeTypeFilters.includes($('#firmwareType').val()) == false) {
+        $('#firmwareType').val(null).trigger('change');
     }
 
     myFunction();
@@ -470,7 +498,6 @@ function createAssetTable(data) {
 }
 
 $(document).ready(function() {
-    //var dataUrl = "https://downloads.multi-module.org/data.json";
     var dataUrl = "./data.json";
 
     $.ajax({
@@ -494,6 +521,11 @@ $(document).ready(function() {
             myFunction();
         }
       });
+
+
+    $('#moduleType').on('select2:select', function (e) {
+        typeSelect();
+    });
 
     $("[data-toggle=popover]").popover({
         html: true,
