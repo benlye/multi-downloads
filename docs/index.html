@@ -59,8 +59,7 @@
 					<a href="https://www.multi-module.org/using-the-module/firmware-updates">MULTI-Module
 						documentation</a> for further instructions on updating the firmware.</p>
 				<p><b>Important:</b> please <a href='javascript:showFirmwareFileChangeModal();'>click here</a> to read 
-						about changes to the firmware builds and file filters starting from v1.3.1.77, including the radio 
-						firmware versions required to support the changes.</p>
+						about recent changes to the firmware releases.</p>
 				<hr class="hr-thick">
 			</div> <!-- Column -->
 		</div> <!-- Row -->
@@ -203,7 +202,7 @@
 								</i>
 							</td>
 						</tr>
-						<tr id="firmwareTypeSelection" style="display: none;">
+						<tr id="firmwareTypeSelection" style="display: #none;">
 							<td class="col1">
 								<b>Firmware Type:</b>
 							</td>
@@ -220,11 +219,12 @@
 							<td class="col3">
 								<i class="fp-question-circle" tabindex="0" data-trigger="focus" data-container="body"
 									data-toggle="popover" data-placement="right" title="Firmware Type"
-									data-content="<p>Determines which protocols are included in the firmware. Not all firmware types are available for all module types.</p>
+									data-content="<p>Determines which protocols are included in the firmware. Due to space constraints, not all firmware types are available for all module types.</p>
 										<p><b>Air</b> includes core protocols plus protocols used in airborne craft.</p>
 										<p><b>Surface</b> includes core protocols plus protocols used in ground or water craft.</p>
-										<p><b>FCC</b> includes surface, air, and EU/LBT protocols. Only available when flash space permits all protocols to be included.</p>
-										<p><b>EU/LBT</b> includes all air and surface protocols which adhere to the European Union's Listen-Before-Talk directive and should be used in countries where this is required.</p>">
+										<p><b>FCC</b> includes air, surface, and EU/LBT protocols. Only available when flash space permits all protocols to be included.</p>
+										<p><b>EU/LBT</b> includes all air and surface protocols which adhere to the European Union's Listen-Before-Talk directive and should be used in countries where this is required.</p>
+										<p><b>Note:</b> <b>Air</b>, <b>Surface</b>, and <b>FCC</b> firmware files include both FCC and EU/LBT protocols.</p>">
 								</i>
 							</td>
 						</tr>
@@ -417,7 +417,27 @@
 			</div>
 			<div class="modal-body">
 				<p>
-					Starting from MULTI-Module firmware version v1.3.1.77 the firmware files have changed and some options are no longer required.
+					<h4>From v1.3.4.0</h4>
+					<p>Starting from MULTI-Module firmware version v1.3.4.0 the firmware files for 4-in-1 modules have changed because all protocols no longer fit in a single firmware image.</p>
+					<p>There are now four firmware type options:</p>
+					<ul>
+						<li><b>Air</b> - includes core protocols plus protocols used in airborne craft.</li>
+						<li><b>Surface</b> - includes core protocols plus protocols used in ground or water craft</li>
+						<li><b>FCC</b> - includes surface, air, and EU/LBT protocols. Only available for CC2500 modules, where flash space permits all protocols to be included.</li>
+						<li><b>EU (LBT)</b> - includes all air and surface protocols which adhere to the European Union's Listen-Before-Talk directive and should be used in countries where this is required.</li>
+					</ul>
+
+					<p>Notes:</p>
+					<ul>
+						<li><b>Air</b>, <b>Surface</b>, and <b>FCC</b> firmware builds include both FCC and EU/LBT protocols.</li>
+						<li>'Core protocols' are the general purpose protocols for standalone receivers which could go in any type of craft and are included in both Air and Surface builds.</li>
+						<li>If you require a combination of air and surface protocols you must compile your own firmware build using the instructions <a href="https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/blob/master/docs/Compiling_STM32.md#option-3---compiling-and-updating-firmware" target="_new">here</a>.</li>
+					</ul>
+				</p>
+				<hr>
+				<p>
+					<h4>From v1.3.1.77</h4>
+					<p>Starting from MULTI-Module firmware version v1.3.1.77 the firmware files have changed and some options are no longer required.</p>
 					<ul>
 						<li>No need to choose between OpenTX and erSkyTx/er9x builds because OpenTX/EdgeTX and erSkyTX/er9x now use the same method to receive telemetry data from the MULTI-Module.</li>
 						<li>No need to choose between inverted and non-inverted telemetry because the radio and MULTI-Module will automatically negotiate the telemetry inversion setting</li>
