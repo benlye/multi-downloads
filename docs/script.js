@@ -498,6 +498,11 @@ function createAssetTable(data) {
 }
 
 $(document).ready(function() {
+    const footerYear = new Date().getFullYear();
+    const footerText = `<b>Powered by GitHub Pages | Copyright &copy; ${footerYear}</b>`;
+    footer = document.getElementById("footer-holder");
+    footer.innerHTML = footerText;
+
     var dataUrl = "./data.json";
 
     $.ajax({
